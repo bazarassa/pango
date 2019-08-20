@@ -1,37 +1,37 @@
-pango_view_sources = [
-  'pango-view.c',
+vogue_view_sources = [
+  'vogue-view.c',
   'viewer-main.c',
   'viewer-render.c',
 ]
 
-pango_view_deps = [
-  pango_deps,
-  libpango_dep,
+vogue_view_deps = [
+  vogue_deps,
+  libvogue_dep,
 ]
 
-if build_pangoft2
-  pango_view_sources += 'viewer-pangoft2.c'
-  pango_view_deps += libpangoft2_dep
+if build_vogueft2
+  vogue_view_sources += 'viewer-vogueft2.c'
+  vogue_view_deps += libvogueft2_dep
 endif
 
-if xft_dep.found() and build_pangoft2
-  pango_view_sources += [
-    'viewer-pangoxft.c',
+if xft_dep.found() and build_vogueft2
+  vogue_view_sources += [
+    'viewer-voguexft.c',
     'viewer-x.c',
   ]
-  pango_view_deps += [ libpangoft2_dep, libpangoxft_dep, ]
+  vogue_view_deps += [ libvogueft2_dep, libvoguexft_dep, ]
 endif
 
 if cairo_dep.found()
-  pango_view_sources += [
+  vogue_view_sources += [
     'viewer-cairo.c',
-    'viewer-pangocairo.c',
+    'viewer-voguecairo.c',
   ]
-  pango_view_deps += libpangocairo_dep
+  vogue_view_deps += libvoguecairo_dep
 endif
 
-pango_view = executable('pango-view', pango_view_sources,
-                        dependencies: pango_view_deps,
+vogue_view = executable('vogue-view', vogue_view_sources,
+                        dependencies: vogue_view_deps,
                         include_directories: [ root_inc ],
                         install: true,
                         c_args: [
@@ -40,38 +40,38 @@ pango_view = executable('pango-view', pango_view_sources,
                         ])
 
 help2man = find_program('help2man', required: false)
-# help2man has to run pango-view to generate the man page, which it can't do if
+# help2man has to run vogue-view to generate the man page, which it can't do if
 # we're cross building. We also can't tell help2man what exe wrapper to use.
 if help2man.found() and not meson.is_cross_build()
   help2man_opts = [
     '--no-info',
     '--section=1',
     '--help-option=--help-all',
-    '--name=Pango text viewer',
+    '--name=Vogue text viewer',
   ]
 
-  custom_target('pango-view.1',
-                output: 'pango-view.1',
+  custom_target('vogue-view.1',
+                output: 'vogue-view.1',
                 command: [
-                  help2man, help2man_opts, '--output=@OUTPUT@', pango_view
+                  help2man, help2man_opts, '--output=@OUTPUT@', vogue_view
                 ],
                 install: true,
-                install_dir: join_paths(pango_datadir, 'man/man1'))
+                install_dir: join_paths(vogue_datadir, 'man/man1'))
 endif
 
 if cairo_dep.found()
-  pango_list_sources = [
-    'pango-list.c',
+  vogue_list_sources = [
+    'vogue-list.c',
   ]
 
-  pango_list_deps = [
-    pango_deps,
-    libpango_dep,
-    libpangocairo_dep
+  vogue_list_deps = [
+    vogue_deps,
+    libvogue_dep,
+    libvoguecairo_dep
   ]
 
-  pango_list = executable('pango-list', pango_list_sources,
-                          dependencies: pango_list_deps,
+  vogue_list = executable('vogue-list', vogue_list_sources,
+                          dependencies: vogue_list_deps,
                           include_directories: [ root_inc ],
                           install: true,
                           c_args: [

@@ -1,4 +1,4 @@
-/* Pango
+/* Vogue
  * dump-boundaries.c: Dump text boundaries for a file
  *
  * Copyright (C) 1999-2000 Red Hat Software
@@ -24,7 +24,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#include <pango/pango.h>
+#include <vogue/vogue.h>
 
 #define CHFORMAT "%0#6x"
 
@@ -50,7 +50,7 @@ static void
 dump_text (const char *text)
 {
   unsigned int len;
-  PangoLogAttr *attrs;
+  VogueLogAttr *attrs;
   unsigned int i;
   gunichar *ucs4;
 
@@ -58,12 +58,12 @@ dump_text (const char *text)
     fail ("Invalid UTF-8 in file");
 
   len = g_utf8_strlen (text, -1);
-  attrs = g_new0 (PangoLogAttr, len + 1);
+  attrs = g_new0 (VogueLogAttr, len + 1);
 
-  pango_get_log_attrs (text,
+  vogue_get_log_attrs (text,
 		       -1,
 		       0,
-		       pango_language_from_string ("C"),
+		       vogue_language_from_string ("C"),
 		       attrs,
 		       len + 1);
 

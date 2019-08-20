@@ -1,5 +1,5 @@
-/* Pango
- * test-font.c: Test PangoFontDescription
+/* Vogue
+ * test-font.c: Test VogueFontDescription
  *
  * Copyright (C) 2014 Red Hat, Inc
  *
@@ -23,115 +23,115 @@
 #include <string.h>
 #include <locale.h>
 
-#include <pango/pangocairo.h>
+#include <vogue/voguecairo.h>
 
-static PangoContext *context;
+static VogueContext *context;
 
 static void
 test_parse (void)
 {
-  PangoFontDescription *desc;
+  VogueFontDescription *desc;
 
-  desc = pango_font_description_from_string ("Cantarell 14");
+  desc = vogue_font_description_from_string ("Cantarell 14");
 
-  g_assert_cmpstr (pango_font_description_get_family (desc), ==, "Cantarell");
-  g_assert (!pango_font_description_get_size_is_absolute (desc));
-  g_assert_cmpint (pango_font_description_get_size (desc), ==, 14 * PANGO_SCALE);
-  g_assert_cmpint (pango_font_description_get_style (desc), ==, PANGO_STYLE_NORMAL);
-  g_assert_cmpint (pango_font_description_get_variant (desc), ==, PANGO_VARIANT_NORMAL);
-  g_assert_cmpint (pango_font_description_get_weight (desc), ==, PANGO_WEIGHT_NORMAL);
-  g_assert_cmpint (pango_font_description_get_stretch (desc), ==, PANGO_STRETCH_NORMAL);
-  g_assert_cmpint (pango_font_description_get_gravity (desc), ==, PANGO_GRAVITY_SOUTH);
-  g_assert_cmpint (pango_font_description_get_set_fields (desc), ==, PANGO_FONT_MASK_FAMILY | PANGO_FONT_MASK_STYLE | PANGO_FONT_MASK_VARIANT | PANGO_FONT_MASK_WEIGHT | PANGO_FONT_MASK_STRETCH | PANGO_FONT_MASK_SIZE);
+  g_assert_cmpstr (vogue_font_description_get_family (desc), ==, "Cantarell");
+  g_assert (!vogue_font_description_get_size_is_absolute (desc));
+  g_assert_cmpint (vogue_font_description_get_size (desc), ==, 14 * PANGO_SCALE);
+  g_assert_cmpint (vogue_font_description_get_style (desc), ==, PANGO_STYLE_NORMAL);
+  g_assert_cmpint (vogue_font_description_get_variant (desc), ==, PANGO_VARIANT_NORMAL);
+  g_assert_cmpint (vogue_font_description_get_weight (desc), ==, PANGO_WEIGHT_NORMAL);
+  g_assert_cmpint (vogue_font_description_get_stretch (desc), ==, PANGO_STRETCH_NORMAL);
+  g_assert_cmpint (vogue_font_description_get_gravity (desc), ==, PANGO_GRAVITY_SOUTH);
+  g_assert_cmpint (vogue_font_description_get_set_fields (desc), ==, PANGO_FONT_MASK_FAMILY | PANGO_FONT_MASK_STYLE | PANGO_FONT_MASK_VARIANT | PANGO_FONT_MASK_WEIGHT | PANGO_FONT_MASK_STRETCH | PANGO_FONT_MASK_SIZE);
 
-  pango_font_description_free (desc); 
+  vogue_font_description_free (desc); 
 
-  desc = pango_font_description_from_string ("Sans Bold Italic Condensed 22.5px");
+  desc = vogue_font_description_from_string ("Sans Bold Italic Condensed 22.5px");
 
-  g_assert_cmpstr (pango_font_description_get_family (desc), ==, "Sans");
-  g_assert (pango_font_description_get_size_is_absolute (desc)); 
-  g_assert_cmpint (pango_font_description_get_size (desc), ==, 225 * PANGO_SCALE / 10);
-  g_assert_cmpint (pango_font_description_get_style (desc), ==, PANGO_STYLE_ITALIC);
-  g_assert_cmpint (pango_font_description_get_variant (desc), ==, PANGO_VARIANT_NORMAL); 
-  g_assert_cmpint (pango_font_description_get_weight (desc), ==, PANGO_WEIGHT_BOLD);
-  g_assert_cmpint (pango_font_description_get_stretch (desc), ==, PANGO_STRETCH_CONDENSED); 
-  g_assert_cmpint (pango_font_description_get_gravity (desc), ==, PANGO_GRAVITY_SOUTH);  g_assert_cmpint (pango_font_description_get_set_fields (desc), ==, PANGO_FONT_MASK_FAMILY | PANGO_FONT_MASK_STYLE | PANGO_FONT_MASK_VARIANT | PANGO_FONT_MASK_WEIGHT | PANGO_FONT_MASK_STRETCH | PANGO_FONT_MASK_SIZE);
+  g_assert_cmpstr (vogue_font_description_get_family (desc), ==, "Sans");
+  g_assert (vogue_font_description_get_size_is_absolute (desc)); 
+  g_assert_cmpint (vogue_font_description_get_size (desc), ==, 225 * PANGO_SCALE / 10);
+  g_assert_cmpint (vogue_font_description_get_style (desc), ==, PANGO_STYLE_ITALIC);
+  g_assert_cmpint (vogue_font_description_get_variant (desc), ==, PANGO_VARIANT_NORMAL); 
+  g_assert_cmpint (vogue_font_description_get_weight (desc), ==, PANGO_WEIGHT_BOLD);
+  g_assert_cmpint (vogue_font_description_get_stretch (desc), ==, PANGO_STRETCH_CONDENSED); 
+  g_assert_cmpint (vogue_font_description_get_gravity (desc), ==, PANGO_GRAVITY_SOUTH);  g_assert_cmpint (vogue_font_description_get_set_fields (desc), ==, PANGO_FONT_MASK_FAMILY | PANGO_FONT_MASK_STYLE | PANGO_FONT_MASK_VARIANT | PANGO_FONT_MASK_WEIGHT | PANGO_FONT_MASK_STRETCH | PANGO_FONT_MASK_SIZE);
 
-  pango_font_description_free (desc); 
+  vogue_font_description_free (desc); 
 }
 
 static void
 test_roundtrip (void)
 {
-  PangoFontDescription *desc;
+  VogueFontDescription *desc;
  gchar *str;
 
-  desc = pango_font_description_from_string ("Cantarell 14");
-  str = pango_font_description_to_string (desc);
+  desc = vogue_font_description_from_string ("Cantarell 14");
+  str = vogue_font_description_to_string (desc);
   g_assert_cmpstr (str, ==, "Cantarell 14");
-  pango_font_description_free (desc); 
+  vogue_font_description_free (desc); 
   g_free (str);
 
-  desc = pango_font_description_from_string ("Sans Bold Italic Condensed 22.5px");
-  str = pango_font_description_to_string (desc);
+  desc = vogue_font_description_from_string ("Sans Bold Italic Condensed 22.5px");
+  str = vogue_font_description_to_string (desc);
   g_assert_cmpstr (str, ==, "Sans Bold Italic Condensed 22.5px");
-  pango_font_description_free (desc); 
+  vogue_font_description_free (desc); 
   g_free (str);
 }
 
 static void
 test_variation (void)
 {
-  PangoFontDescription *desc1;
-  PangoFontDescription *desc2;
+  VogueFontDescription *desc1;
+  VogueFontDescription *desc2;
   gchar *str;
 
-  desc1 = pango_font_description_from_string ("Cantarell 14");
+  desc1 = vogue_font_description_from_string ("Cantarell 14");
   g_assert (desc1 != NULL);
-  g_assert ((pango_font_description_get_set_fields (desc1) & PANGO_FONT_MASK_VARIATIONS) == 0);
-  g_assert (pango_font_description_get_variations (desc1) == NULL);
+  g_assert ((vogue_font_description_get_set_fields (desc1) & PANGO_FONT_MASK_VARIATIONS) == 0);
+  g_assert (vogue_font_description_get_variations (desc1) == NULL);
 
-  str = pango_font_description_to_string (desc1);
+  str = vogue_font_description_to_string (desc1);
   g_assert_cmpstr (str, ==, "Cantarell 14");
   g_free (str);
 
-  desc2 = pango_font_description_from_string ("Cantarell 14 @wght=100,wdth=235");
+  desc2 = vogue_font_description_from_string ("Cantarell 14 @wght=100,wdth=235");
   g_assert (desc2 != NULL);
-  g_assert ((pango_font_description_get_set_fields (desc2) & PANGO_FONT_MASK_VARIATIONS) != 0);
-  g_assert_cmpstr (pango_font_description_get_variations (desc2), ==, "wght=100,wdth=235");
+  g_assert ((vogue_font_description_get_set_fields (desc2) & PANGO_FONT_MASK_VARIATIONS) != 0);
+  g_assert_cmpstr (vogue_font_description_get_variations (desc2), ==, "wght=100,wdth=235");
 
-  str = pango_font_description_to_string (desc2);
+  str = vogue_font_description_to_string (desc2);
   g_assert_cmpstr (str, ==, "Cantarell 14 @wght=100,wdth=235");
   g_free (str);
 
-  g_assert (!pango_font_description_equal (desc1, desc2));
+  g_assert (!vogue_font_description_equal (desc1, desc2));
 
-  pango_font_description_set_variations (desc1, "wght=100,wdth=235");
-  g_assert ((pango_font_description_get_set_fields (desc1) & PANGO_FONT_MASK_VARIATIONS) != 0);
-  g_assert_cmpstr (pango_font_description_get_variations (desc1), ==, "wght=100,wdth=235");
+  vogue_font_description_set_variations (desc1, "wght=100,wdth=235");
+  g_assert ((vogue_font_description_get_set_fields (desc1) & PANGO_FONT_MASK_VARIATIONS) != 0);
+  g_assert_cmpstr (vogue_font_description_get_variations (desc1), ==, "wght=100,wdth=235");
 
-  g_assert (pango_font_description_equal (desc1, desc2));
+  g_assert (vogue_font_description_equal (desc1, desc2));
 
-  pango_font_description_free (desc1);
-  pango_font_description_free (desc2);
+  vogue_font_description_free (desc1);
+  vogue_font_description_free (desc2);
 }
 
 static void
 test_metrics (void)
 {
-  PangoFontDescription *desc;
-  PangoFontMetrics *metrics;
+  VogueFontDescription *desc;
+  VogueFontMetrics *metrics;
   char *str;
 
 
-  if (strcmp (G_OBJECT_TYPE_NAME (pango_context_get_font_map (context)), "PangoCairoWin32FontMap") == 0)
-    desc = pango_font_description_from_string ("Verdana 11");
+  if (strcmp (G_OBJECT_TYPE_NAME (vogue_context_get_font_map (context)), "VogueCairoWin32FontMap") == 0)
+    desc = vogue_font_description_from_string ("Verdana 11");
   else
-    desc = pango_font_description_from_string ("Cantarell 11");
+    desc = vogue_font_description_from_string ("Cantarell 11");
 
-  str = pango_font_description_to_string (desc);
+  str = vogue_font_description_to_string (desc);
 
-  metrics = pango_context_get_metrics (context, desc, pango_language_get_default ());
+  metrics = vogue_context_get_metrics (context, desc, vogue_language_get_default ());
 
   g_test_message ("%s metrics\n"
                   "\tascent %d\n"
@@ -144,19 +144,19 @@ test_metrics (void)
                   "\tstrikethrough position %d\n"
                   "\tstrikethrough thickness %d\n",
                   str,
-                  pango_font_metrics_get_ascent (metrics),
-                  pango_font_metrics_get_descent (metrics),
-                  pango_font_metrics_get_height (metrics),
-                  pango_font_metrics_get_approximate_char_width (metrics),
-                  pango_font_metrics_get_approximate_digit_width (metrics),
-                  pango_font_metrics_get_underline_position (metrics),
-                  pango_font_metrics_get_underline_thickness (metrics),
-                  pango_font_metrics_get_strikethrough_position (metrics),
-                  pango_font_metrics_get_strikethrough_thickness (metrics));
+                  vogue_font_metrics_get_ascent (metrics),
+                  vogue_font_metrics_get_descent (metrics),
+                  vogue_font_metrics_get_height (metrics),
+                  vogue_font_metrics_get_approximate_char_width (metrics),
+                  vogue_font_metrics_get_approximate_digit_width (metrics),
+                  vogue_font_metrics_get_underline_position (metrics),
+                  vogue_font_metrics_get_underline_thickness (metrics),
+                  vogue_font_metrics_get_strikethrough_position (metrics),
+                  vogue_font_metrics_get_strikethrough_thickness (metrics));
 
-  pango_font_metrics_unref (metrics);
+  vogue_font_metrics_unref (metrics);
   g_free (str);
-  pango_font_description_free (desc);
+  vogue_font_description_free (desc);
 }
 
 static void
@@ -164,27 +164,27 @@ test_extents (void)
 {
   char *str = "Composer";
   GList *items;
-  PangoItem *item;
-  PangoGlyphString *glyphs;
-  PangoRectangle ink, log;
-  PangoContext *context;
+  VogueItem *item;
+  VogueGlyphString *glyphs;
+  VogueRectangle ink, log;
+  VogueContext *context;
 
-  context = pango_font_map_create_context (pango_cairo_font_map_get_default ());
-  pango_context_set_font_description (context, pango_font_description_from_string ("Cantarell 11"));
+  context = vogue_font_map_create_context (vogue_cairo_font_map_get_default ());
+  vogue_context_set_font_description (context, vogue_font_description_from_string ("Cantarell 11"));
 
-  items = pango_itemize (context, str, 0, strlen (str), NULL, NULL);
-  glyphs = pango_glyph_string_new ();
+  items = vogue_itemize (context, str, 0, strlen (str), NULL, NULL);
+  glyphs = vogue_glyph_string_new ();
   item = items->data;
-  pango_shape (str, strlen (str), &item->analysis, glyphs);
-  pango_glyph_string_extents (glyphs, item->analysis.font, &ink, &log);
+  vogue_shape (str, strlen (str), &item->analysis, glyphs);
+  vogue_glyph_string_extents (glyphs, item->analysis.font, &ink, &log);
 
   g_assert_cmpint (ink.width, >=, 0);
   g_assert_cmpint (ink.height, >=, 0);
   g_assert_cmpint (log.width, >=, 0);
   g_assert_cmpint (log.height, >=, 0);
 
-  pango_glyph_string_free (glyphs);
-  g_list_free_full (items, (GDestroyNotify)pango_item_free);
+  vogue_glyph_string_free (glyphs);
+  g_list_free_full (items, (GDestroyNotify)vogue_item_free);
   g_object_unref (context);
 }
 
@@ -196,13 +196,13 @@ main (int argc, char *argv[])
 
   g_test_init (&argc, &argv, NULL);
 
-  context = pango_font_map_create_context (pango_cairo_font_map_get_default ());
+  context = vogue_font_map_create_context (vogue_cairo_font_map_get_default ());
 
-  g_test_add_func ("/pango/font/metrics", test_metrics);
-  g_test_add_func ("/pango/fontdescription/parse", test_parse);
-  g_test_add_func ("/pango/fontdescription/roundtrip", test_roundtrip);
-  g_test_add_func ("/pango/fontdescription/variation", test_variation);
-  g_test_add_func ("/pango/font/extents", test_extents);
+  g_test_add_func ("/vogue/font/metrics", test_metrics);
+  g_test_add_func ("/vogue/fontdescription/parse", test_parse);
+  g_test_add_func ("/vogue/fontdescription/roundtrip", test_roundtrip);
+  g_test_add_func ("/vogue/fontdescription/variation", test_variation);
+  g_test_add_func ("/vogue/font/extents", test_extents);
 
   return g_test_run ();
 }

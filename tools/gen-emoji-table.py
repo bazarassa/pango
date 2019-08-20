@@ -60,7 +60,7 @@ for typ,s in ranges.items():
 		       'Emoji_Modifier_Base',
 		       'Extended_Pictographic']: continue
 	print()
-	print("static const struct Interval _pango_%s_table[] =" % typ)
+	print("static const struct Interval _vogue_%s_table[] =" % typ)
 	print("{")
 	for pair in sorted(s):
 		print("  {0x%04X, 0x%04X}," % pair)

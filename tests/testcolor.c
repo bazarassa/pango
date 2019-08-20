@@ -1,5 +1,5 @@
-/* Pango
- * test-color.c: Test program for pango_color_parse()
+/* Vogue
+ * test-color.c: Test program for vogue_color_parse()
  *
  * Copyright (C) 2002 Matthias Clasen
  *
@@ -20,7 +20,7 @@
  */
 
 #include <glib.h>
-#include <pango/pango.h>
+#include <vogue/vogue.h>
 
 typedef struct _ColorSpec {
   const gchar *spec;
@@ -32,10 +32,10 @@ typedef struct _ColorSpec {
 
 static gboolean test_one_color (ColorSpec *spec)
 {
-  PangoColor color;
+  VogueColor color;
   gboolean accepted;
 
-  accepted = pango_color_parse (&color, spec->spec);
+  accepted = vogue_color_parse (&color, spec->spec);
 
   if (accepted == spec->valid &&
       (!accepted ||

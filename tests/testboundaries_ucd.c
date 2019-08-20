@@ -1,4 +1,4 @@
-/* Pango
+/* Vogue
  * testboundaries_ucd.c: Test text boundary algorithms with test data from
  *                       Unicode Character Database.
  *
@@ -20,17 +20,17 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include <pango/pango.h>
+#include <vogue/vogue.h>
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
 
 static gboolean failed = FALSE;
 
-/* PangoLogAttr has to be the same size as guint or this hack breaks */
+/* VogueLogAttr has to be the same size as guint or this hack breaks */
 typedef union
 {
-  PangoLogAttr attr;
+  VogueLogAttr attr;
   guint bits;
 }
 AttrBits;
@@ -72,7 +72,7 @@ static gboolean
 parse_line (gchar *line,
             AttrBits bits,
             gchar **str_return,
-            PangoLogAttr **attr_return,
+            VogueLogAttr **attr_return,
             gint *num_attrs)
 {
   GString *gs;
@@ -82,7 +82,7 @@ parse_line (gchar *line,
   AttrBits temp_attr;
 
   *num_attrs = count_attrs (line);
-  *attr_return = g_new (PangoLogAttr, *num_attrs);
+  *attr_return = g_new (VogueLogAttr, *num_attrs);
 
   p = line;
   i = 0;
@@ -152,8 +152,8 @@ parse_line (gchar *line,
 }
 
 static gboolean
-attrs_equal (PangoLogAttr *attrs1,
-             PangoLogAttr *attrs2,
+attrs_equal (VogueLogAttr *attrs1,
+             VogueLogAttr *attrs2,
              gint len,
              AttrBits bits)
 {
@@ -181,7 +181,7 @@ attrs_equal (PangoLogAttr *attrs1,
 
 static gchar *
 make_test_string (gchar *string, 
-                  PangoLogAttr *attrs, 
+                  VogueLogAttr *attrs, 
                   AttrBits bits)
 {
   GString *gs = g_string_new (NULL);
@@ -224,7 +224,7 @@ do_test (const gchar *filename,
   gsize length, terminator_pos;
   GError *error;
   gchar *string;
-  PangoLogAttr *expected_attrs;
+  VogueLogAttr *expected_attrs;
   gint num_attrs;
   gint i;
 
@@ -276,8 +276,8 @@ do_test (const gchar *filename,
       
       if (num_attrs > 0)
         {
-          PangoLogAttr *attrs = g_new (PangoLogAttr, num_attrs);
-          pango_get_log_attrs (string, -1, 0, pango_language_from_string ("C"), attrs, num_attrs);
+          VogueLogAttr *attrs = g_new (VogueLogAttr, num_attrs);
+          vogue_get_log_attrs (string, -1, 0, vogue_language_from_string ("C"), attrs, num_attrs);
 
           if (! attrs_equal (attrs, expected_attrs, num_attrs, bits))
             {

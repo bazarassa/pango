@@ -1,6 +1,6 @@
 /* -*- mode: C; c-file-style: "gnu" -*- */
-/* Pango
- * testscript.c: Test cases for PangoScriptIter
+/* Vogue
+ * testscript.c: Test cases for VogueScriptIter
  *
  * Copyright (C) 2002 Red Hat Software
  *
@@ -58,7 +58,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "pango/pango-script.h"
+#include "vogue/vogue-script.h"
 
 #undef VERBOSE
 
@@ -76,7 +76,7 @@ typedef struct
 {
   const char *run_text_escaped;
   char *run_text;
-  PangoScript run_code;
+  VogueScript run_code;
 } RunTestData;
 
 static gchar *
@@ -154,12 +154,12 @@ test_script_iter (void)
     { "\\U00010400\\U00010401\\U00010402\\U00010403", NULL, PANGO_SCRIPT_DESERET }
   };
 
-  PangoScriptIter *iter;
+  VogueScriptIter *iter;
   GString *all = g_string_new (FALSE);
   char *pos;
   const char *start;
   const char *end;
-  PangoScript script;
+  VogueScript script;
   unsigned int i;
 
   for (i = 0; i < G_N_ELEMENTS(test_data); i++)
@@ -168,7 +168,7 @@ test_script_iter (void)
       g_string_append (all, test_data[i].run_text);
     }
 
-  iter = pango_script_iter_new (all->str, -1);
+  iter = vogue_script_iter_new (all->str, -1);
 
 #ifdef VERBOSE
   g_print ("Total length: %d\n", all->len);
@@ -180,7 +180,7 @@ test_script_iter (void)
       char *next_pos = pos + strlen (test_data[i].run_text);
       gboolean result;
 
-      pango_script_iter_get_range (iter, &start, &end, &script);
+      vogue_script_iter_get_range (iter, &start, &end, &script);
 #ifdef VERBOSE
       g_print ("Range: %d-%d: %d\n", start - all->str, end - all->str, script);
 #endif
@@ -189,27 +189,27 @@ test_script_iter (void)
       ASSERT (end == next_pos);
       ASSERT (script == test_data[i].run_code);
 
-      result = pango_script_iter_next (iter);
+      result = vogue_script_iter_next (iter);
       ASSERT (result == (i != G_N_ELEMENTS (test_data) - 1));
 
       pos = next_pos;
     }
 
-  pango_script_iter_free (iter);
+  vogue_script_iter_free (iter);
 
   /*
    * Test an empty string.
    */
-  iter = pango_script_iter_new (all->str, 0);
+  iter = vogue_script_iter_new (all->str, 0);
 
-  pango_script_iter_get_range (iter, &start, &end, &script);
+  vogue_script_iter_get_range (iter, &start, &end, &script);
 
   ASSERT (start == all->str);
   ASSERT (end == all->str);
   ASSERT (script == PANGO_SCRIPT_COMMON);
-  ASSERT (!pango_script_iter_next (iter));
+  ASSERT (!vogue_script_iter_next (iter));
 
-  pango_script_iter_free (iter);
+  vogue_script_iter_free (iter);
 
   /* Cleanup */
 

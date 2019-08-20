@@ -1,5 +1,5 @@
-/* Pango
- * test-layout.c: Test Pango Layout
+/* Vogue
+ * test-layout.c: Test Vogue Layout
  *
  * Copyright (C) 2014 Red Hat, Inc
  *
@@ -28,11 +28,11 @@
 #endif
 
 #include "config.h"
-#include <pango/pangocairo.h>
+#include <vogue/voguecairo.h>
 #include "test-common.h"
 
 
-static PangoContext *context;
+static VogueContext *context;
 
 
 static const gchar *
@@ -52,63 +52,63 @@ enum_value_nick (GType type, gint value)
 }
 
 static const gchar *
-direction_name (PangoDirection dir)
+direction_name (VogueDirection dir)
 {
   return enum_value_nick (PANGO_TYPE_DIRECTION, dir);
 }
 
 static const gchar *
-gravity_name (PangoGravity gravity)
+gravity_name (VogueGravity gravity)
 {
   return enum_value_nick (PANGO_TYPE_GRAVITY, gravity);
 }
 
 static const gchar *
-script_name (PangoScript script)
+script_name (VogueScript script)
 {
   return enum_value_nick (PANGO_TYPE_SCRIPT, script);
 }
 
 static gchar *
-font_name (PangoFont *font)
+font_name (VogueFont *font)
 {
-  PangoFontDescription *desc;
+  VogueFontDescription *desc;
   gchar *name;
 
-  desc = pango_font_describe (font);
-  name = pango_font_description_to_string (desc);
-  pango_font_description_free (desc);
+  desc = vogue_font_describe (font);
+  name = vogue_font_description_to_string (desc);
+  vogue_font_description_free (desc);
 
   return name;
 }
 
 static void
-dump_lines (PangoLayout *layout, GString *string)
+dump_lines (VogueLayout *layout, GString *string)
 {
-  PangoLayoutIter *iter;
+  VogueLayoutIter *iter;
   const gchar *text;
   gint index, index2;
   gboolean has_more;
   gchar *char_str;
   gint i;
-  PangoLayoutLine *line;
+  VogueLayoutLine *line;
 
-  text = pango_layout_get_text (layout);
-  iter = pango_layout_get_iter (layout);
+  text = vogue_layout_get_text (layout);
+  iter = vogue_layout_get_iter (layout);
 
   has_more = TRUE;
-  index = pango_layout_iter_get_index (iter);
+  index = vogue_layout_iter_get_index (iter);
   index2 = 0;
   i = 0;
   while (has_more)
     {
-      line = pango_layout_iter_get_line (iter);
-      has_more = pango_layout_iter_next_line (iter);
+      line = vogue_layout_iter_get_line (iter);
+      has_more = vogue_layout_iter_next_line (iter);
       i++;
 
       if (has_more)
         {
-          index2 = pango_layout_iter_get_index (iter);
+          index2 = vogue_layout_iter_get_index (iter);
           char_str = g_strndup (text + index, index2 - index);
         }
       else
@@ -123,15 +123,15 @@ dump_lines (PangoLayout *layout, GString *string)
 
       index = index2;
     }
-  pango_layout_iter_free (iter);
+  vogue_layout_iter_free (iter);
 }
 
 static void
-dump_runs (PangoLayout *layout, GString *string)
+dump_runs (VogueLayout *layout, GString *string)
 {
-  PangoLayoutIter *iter;
-  PangoLayoutRun *run;
-  PangoItem *item;
+  VogueLayoutIter *iter;
+  VogueLayoutRun *run;
+  VogueItem *item;
   const gchar *text;
   gint index;
   gboolean has_more;
@@ -139,21 +139,21 @@ dump_runs (PangoLayout *layout, GString *string)
   gint i;
   gchar *font = 0;
 
-  text = pango_layout_get_text (layout);
-  iter = pango_layout_get_iter (layout);
+  text = vogue_layout_get_text (layout);
+  iter = vogue_layout_get_iter (layout);
 
   has_more = TRUE;
   i = 0;
   while (has_more)
     {
-      run = pango_layout_iter_get_run (iter);
-      index = pango_layout_iter_get_index (iter);
-      has_more = pango_layout_iter_next_run (iter);
+      run = vogue_layout_iter_get_run (iter);
+      index = vogue_layout_iter_get_index (iter);
+      has_more = vogue_layout_iter_next_run (iter);
       i++;
 
       if (run)
         {
-          item = ((PangoGlyphItem*)run)->item;
+          item = ((VogueGlyphItem*)run)->item;
           char_str = g_strndup (text + item->offset, item->length);
           font = font_name (item->analysis.font);
           g_string_append_printf (string, "i=%d, index=%d, chars=%d, level=%d, gravity=%s, flags=%d, font=%s, script=%s, language=%s, '%s'\n",
@@ -162,7 +162,7 @@ dump_runs (PangoLayout *layout, GString *string)
                                   item->analysis.flags,
                                   "OMITTED", /* for some reason, this fails on build.gnome.org, so leave it out */
                                   script_name (item->analysis.script),
-                                  pango_language_to_string (item->analysis.language),
+                                  vogue_language_to_string (item->analysis.language),
                                   char_str);
           print_attributes (item->analysis.extra_attrs, string);
           g_free (font);
@@ -174,15 +174,15 @@ dump_runs (PangoLayout *layout, GString *string)
                                   i, index);
         }
     }
-  pango_layout_iter_free (iter);
+  vogue_layout_iter_free (iter);
 }
 
 static void
 parse_params (const gchar        *str,
               gint               *width,
               gint               *ellipsize_at,
-              PangoEllipsizeMode *ellipsize,
-              PangoWrapMode      *wrap)
+              VogueEllipsizeMode *ellipsize,
+              VogueWrapMode      *wrap)
 {
   gchar **strings;
   gchar **str2;
@@ -230,13 +230,13 @@ test_file (const gchar *filename, GString *string)
   gchar *markup;
   gsize  length;
   GError *error = NULL;
-  PangoLayout *layout;
+  VogueLayout *layout;
   gchar *p;
   gint width = 0;
   gint ellipsize_at = 0;
-  PangoEllipsizeMode ellipsize = PANGO_ELLIPSIZE_NONE;
-  PangoWrapMode wrap = PANGO_WRAP_WORD;
-  PangoFontDescription *desc;
+  VogueEllipsizeMode ellipsize = PANGO_ELLIPSIZE_NONE;
+  VogueWrapMode wrap = PANGO_WRAP_WORD;
+  VogueFontDescription *desc;
 
   if (!g_file_get_contents (filename, &contents, &length, &error))
     {
@@ -253,28 +253,28 @@ test_file (const gchar *filename, GString *string)
 
   parse_params (contents, &width, &ellipsize_at, &ellipsize, &wrap);
 
-  layout = pango_layout_new (context);
-  desc = pango_font_description_from_string ("Cantarell 11");
-  pango_layout_set_font_description (layout, desc);
-  pango_font_description_free (desc);
+  layout = vogue_layout_new (context);
+  desc = vogue_font_description_from_string ("Cantarell 11");
+  vogue_layout_set_font_description (layout, desc);
+  vogue_font_description_free (desc);
 
-  pango_layout_set_markup (layout, markup, length);
+  vogue_layout_set_markup (layout, markup, length);
   g_free (contents);
 
   if (width != 0)
-    pango_layout_set_width (layout, width * PANGO_SCALE);
-  pango_layout_set_ellipsize (layout, ellipsize);
-  pango_layout_set_wrap (layout, wrap);
+    vogue_layout_set_width (layout, width * PANGO_SCALE);
+  vogue_layout_set_ellipsize (layout, ellipsize);
+  vogue_layout_set_wrap (layout, wrap);
 
-  g_string_append (string, pango_layout_get_text (layout));
+  g_string_append (string, vogue_layout_get_text (layout));
   g_string_append (string, "\n--- parameters\n\n");
-  g_string_append_printf (string, "wrapped: %d\n", pango_layout_is_wrapped (layout));
-  g_string_append_printf (string, "ellipsized: %d\n", pango_layout_is_ellipsized (layout));
-  g_string_append_printf (string, "lines: %d\n", pango_layout_get_line_count (layout));
+  g_string_append_printf (string, "wrapped: %d\n", vogue_layout_is_wrapped (layout));
+  g_string_append_printf (string, "ellipsized: %d\n", vogue_layout_is_ellipsized (layout));
+  g_string_append_printf (string, "lines: %d\n", vogue_layout_get_line_count (layout));
   if (width != 0)
-    g_string_append_printf (string, "width: %d\n", pango_layout_get_width (layout));
+    g_string_append_printf (string, "width: %d\n", vogue_layout_get_width (layout));
   g_string_append (string, "\n--- attributes\n\n");
-  print_attr_list (pango_layout_get_attributes (layout), string);
+  print_attr_list (vogue_layout_get_attributes (layout), string);
   g_string_append (string, "\n--- lines\n\n");
   dump_lines (layout, string);
   g_string_append (string, "\n--- runs\n\n");
@@ -341,7 +341,7 @@ main (int argc, char *argv[])
 
   g_test_init (&argc, &argv, NULL);
 
-  context = pango_font_map_create_context (pango_cairo_font_map_get_default ());
+  context = vogue_font_map_create_context (vogue_cairo_font_map_get_default ());
 
   /* allow to easily generate expected output for new test cases */
   if (argc > 1)

@@ -1,15 +1,15 @@
-/* Example code to show how to use pangocairo to render arbitrary shapes
- * inside a text layout, positioned by Pango.  This has become possibly
- * using the following API added in Pango 1.18:
+/* Example code to show how to use voguecairo to render arbitrary shapes
+ * inside a text layout, positioned by Vogue.  This has become possibly
+ * using the following API added in Vogue 1.18:
  * 
- * 	pango_cairo_context_set_shape_renderer ()
+ * 	vogue_cairo_context_set_shape_renderer ()
  *
  * This examples uses a small parser to convert shapes in the format of
  * SVG paths to cairo instructions.  You can typically extract these from
  * the SVG file's <path> elements directly.
  *
  * The code then searches for the Unicode bullet character in the layout
- * text and automatically adds PangoAttribtues to the layout to replace
+ * text and automatically adds VogueAttribtues to the layout to replace
  * each of the with a rendering of the GNOME Foot logo.
  *
  *
@@ -24,7 +24,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <pango/pangocairo.h>
+#include <vogue/voguecairo.h>
 
 #define BULLET "•"
 
@@ -103,7 +103,7 @@ mini_svg_render (MiniSvg  *shape,
 
 static void
 mini_svg_shape_renderer (cairo_t        *cr,
-			 PangoAttrShape *attr,
+			 VogueAttrShape *attr,
 			 gboolean        do_path,
 			 gpointer        data G_GNUC_UNUSED)
 {
@@ -122,31 +122,31 @@ mini_svg_shape_renderer (cairo_t        *cr,
 }
 
 
-static PangoLayout *
+static VogueLayout *
 get_layout (cairo_t *cr)
 {
-  PangoLayout *layout;
-  PangoAttrList *attrs;
-  PangoRectangle ink_rect     = {1 * PANGO_SCALE, -11 * PANGO_SCALE,  8 * PANGO_SCALE, 10 * PANGO_SCALE};
-  PangoRectangle logical_rect = {0 * PANGO_SCALE, -12 * PANGO_SCALE, 10 * PANGO_SCALE, 12 * PANGO_SCALE};
+  VogueLayout *layout;
+  VogueAttrList *attrs;
+  VogueRectangle ink_rect     = {1 * PANGO_SCALE, -11 * PANGO_SCALE,  8 * PANGO_SCALE, 10 * PANGO_SCALE};
+  VogueRectangle logical_rect = {0 * PANGO_SCALE, -12 * PANGO_SCALE, 10 * PANGO_SCALE, 12 * PANGO_SCALE};
   const char *p;
 
-  /* Create a PangoLayout, set the font and text */
-  layout = pango_cairo_create_layout (cr);
+  /* Create a VogueLayout, set the font and text */
+  layout = vogue_cairo_create_layout (cr);
 
-  pango_cairo_context_set_shape_renderer (pango_layout_get_context (layout),
+  vogue_cairo_context_set_shape_renderer (vogue_layout_get_context (layout),
 					  mini_svg_shape_renderer, NULL, NULL);
 
-  pango_layout_set_text (layout, text, -1);
+  vogue_layout_set_text (layout, text, -1);
 
-  attrs = pango_attr_list_new ();
+  attrs = vogue_attr_list_new ();
 
   /* Set gnome shape attributes for all bullets */
   for (p = text; (p = strstr (p, BULLET)); p += strlen (BULLET))
     {
-      PangoAttribute *attr;
+      VogueAttribute *attr;
       
-      attr = pango_attr_shape_new_with_data (&ink_rect,
+      attr = vogue_attr_shape_new_with_data (&ink_rect,
 					     &logical_rect,
 					     &GnomeFootLogo,
 					     NULL, NULL);
@@ -154,11 +154,11 @@ get_layout (cairo_t *cr)
       attr->start_index = p - text;
       attr->end_index = attr->start_index + strlen (BULLET);
 
-      pango_attr_list_insert (attrs, attr);
+      vogue_attr_list_insert (attrs, attr);
     }
 
-  pango_layout_set_attributes (layout, attrs);
-  pango_attr_list_unref (attrs);
+  vogue_layout_set_attributes (layout, attrs);
+  vogue_attr_list_unref (attrs);
 
   return layout;
 }
@@ -167,13 +167,13 @@ static void
 draw_text (cairo_t *cr, int *width, int *height)
 {
 
-  PangoLayout *layout = get_layout (cr);
+  VogueLayout *layout = get_layout (cr);
 
   /* Adds a fixed 10-pixel margin on the sides. */
 
   if (width || height)
     {
-      pango_layout_get_pixel_size (layout, width, height);
+      vogue_layout_get_pixel_size (layout, width, height);
       if (width)
         *width += 20;
       if (height)
@@ -181,7 +181,7 @@ draw_text (cairo_t *cr, int *width, int *height)
     }
 
   cairo_move_to (cr, 10, 10);
-  pango_cairo_show_layout (cr, layout);
+  vogue_cairo_show_layout (cr, layout);
 
   g_object_unref (layout);
 }

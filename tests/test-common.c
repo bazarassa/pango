@@ -1,4 +1,4 @@
-/* Pango
+/* Vogue
  * test-common.c: Common test code
  *
  * Copyright (C) 2014 Red Hat, Inc
@@ -30,7 +30,7 @@
 #include <unistd.h>
 #endif
 
-#include <pango/pangocairo.h>
+#include <vogue/voguecairo.h>
 #include "test-common.h"
 
 char *
@@ -82,14 +82,14 @@ done:
 }
 
 void
-print_attribute (PangoAttribute *attr, GString *string)
+print_attribute (VogueAttribute *attr, GString *string)
 {
   GEnumClass *class;
   GEnumValue *value;
 
   g_string_append_printf (string, "[%d,%d]", attr->start_index, attr->end_index);
 
-  class = g_type_class_ref (pango_attr_type_get_type ());
+  class = g_type_class_ref (vogue_attr_type_get_type ());
   value = g_enum_get_value (class, attr->klass->type);
   g_string_append_printf (string, "%s=", value->value_nick);
   g_type_class_unref (class);
@@ -97,11 +97,11 @@ print_attribute (PangoAttribute *attr, GString *string)
   switch (attr->klass->type)
     {
     case PANGO_ATTR_LANGUAGE:
-      g_string_append_printf (string, "%s", pango_language_to_string (((PangoAttrLanguage *)attr)->value));
+      g_string_append_printf (string, "%s", vogue_language_to_string (((VogueAttrLanguage *)attr)->value));
       break;
     case PANGO_ATTR_FAMILY:
     case PANGO_ATTR_FONT_FEATURES:
-      g_string_append_printf (string, "%s", ((PangoAttrString *)attr)->value);
+      g_string_append_printf (string, "%s", ((VogueAttrString *)attr)->value);
       break;
     case PANGO_ATTR_STYLE:
     case PANGO_ATTR_WEIGHT:
@@ -121,22 +121,22 @@ print_attribute (PangoAttribute *attr, GString *string)
     case PANGO_ATTR_ALLOW_BREAKS:
     case PANGO_ATTR_INSERT_HYPHENS:
     case PANGO_ATTR_SHOW:
-      g_string_append_printf (string, "%d", ((PangoAttrInt *)attr)->value);
+      g_string_append_printf (string, "%d", ((VogueAttrInt *)attr)->value);
       break;
     case PANGO_ATTR_FONT_DESC:
-      g_string_append_printf (string, "%s", pango_font_description_to_string (((PangoAttrFontDesc *)attr)->desc));
+      g_string_append_printf (string, "%s", vogue_font_description_to_string (((VogueAttrFontDesc *)attr)->desc));
       break;
     case PANGO_ATTR_FOREGROUND:
     case PANGO_ATTR_BACKGROUND:
     case PANGO_ATTR_UNDERLINE_COLOR:
     case PANGO_ATTR_STRIKETHROUGH_COLOR:
-      g_string_append_printf (string, "%s", pango_color_to_string (&((PangoAttrColor *)attr)->color));
+      g_string_append_printf (string, "%s", vogue_color_to_string (&((VogueAttrColor *)attr)->color));
       break;
     case PANGO_ATTR_SHAPE:
       g_string_append_printf (string, "shape");
       break;
     case PANGO_ATTR_SCALE:
-      g_string_append_printf (string,"%f", ((PangoAttrFloat *)attr)->value);
+      g_string_append_printf (string,"%f", ((VogueAttrFloat *)attr)->value);
       break;
     default:
       g_assert_not_reached ();
@@ -145,28 +145,28 @@ print_attribute (PangoAttribute *attr, GString *string)
 }
 
 void
-print_attr_list (PangoAttrList *attrs, GString *string)
+print_attr_list (VogueAttrList *attrs, GString *string)
 {
-  PangoAttrIterator *iter;
+  VogueAttrIterator *iter;
 
-  iter = pango_attr_list_get_iterator (attrs);
+  iter = vogue_attr_list_get_iterator (attrs);
   do {
     gint start, end;
     GSList *list, *l;
 
-    pango_attr_iterator_range (iter, &start, &end);
+    vogue_attr_iterator_range (iter, &start, &end);
     g_string_append_printf (string, "range %d %d\n", start, end);
-    list = pango_attr_iterator_get_attrs (iter);
+    list = vogue_attr_iterator_get_attrs (iter);
     for (l = list; l; l = l->next)
       {
-        PangoAttribute *attr = l->data;
+        VogueAttribute *attr = l->data;
         print_attribute (attr, string);
         g_string_append (string, "\n");
       }
-    g_slist_free_full (list, (GDestroyNotify)pango_attribute_destroy);
-  } while (pango_attr_iterator_next (iter));
+    g_slist_free_full (list, (GDestroyNotify)vogue_attribute_destroy);
+  } while (vogue_attr_iterator_next (iter));
 
-  pango_attr_iterator_destroy (iter);
+  vogue_attr_iterator_destroy (iter);
 }
 
 void
@@ -176,7 +176,7 @@ print_attributes (GSList *attrs, GString *string)
 
   for (l = attrs; l; l = l->next)
     {
-      PangoAttribute *attr = l->data;
+      VogueAttribute *attr = l->data;
 
       print_attribute (attr, string);
       g_string_append (string, "\n");

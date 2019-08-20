@@ -26,7 +26,7 @@
 
 void
 x_view_init (gpointer           instance,
-	     const PangoViewer *klass G_GNUC_UNUSED)
+	     const VogueViewer *klass G_GNUC_UNUSED)
 {
   XViewer *x = (XViewer *)instance;
 
@@ -38,7 +38,7 @@ x_view_init (gpointer           instance,
 }
 
 gpointer
-x_view_create (const PangoViewer *klass)
+x_view_create (const VogueViewer *klass)
 {
   XViewer *instance;
 
@@ -217,7 +217,7 @@ x_view_display (gpointer instance,
     }
 }
 
-const PangoViewer x_viewer = {
+const VogueViewer x_viewer = {
   "X",
   NULL,
   NULL,

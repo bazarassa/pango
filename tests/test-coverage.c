@@ -1,4 +1,4 @@
-/* Pango
+/* Vogue
  * test-coverage.c: Test coverage
  *
  * Copyright (C) 2019 Red Hat, Inc.
@@ -19,56 +19,56 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include <pango/pango.h>
+#include <vogue/vogue.h>
 
 static void
 test_coverage_basic (void)
 {
-  PangoCoverage *coverage;
+  VogueCoverage *coverage;
   int i;
 
-  coverage = pango_coverage_new ();
+  coverage = vogue_coverage_new ();
 
   for (i = 0; i < 100; i++)
-    g_assert_cmpint (pango_coverage_get (coverage, i), ==, PANGO_COVERAGE_NONE);
+    g_assert_cmpint (vogue_coverage_get (coverage, i), ==, PANGO_COVERAGE_NONE);
 
   for (i = 0; i < 100; i++)
-    pango_coverage_set (coverage, i, PANGO_COVERAGE_EXACT);
+    vogue_coverage_set (coverage, i, PANGO_COVERAGE_EXACT);
 
   for (i = 0; i < 100; i++)
-    g_assert_cmpint (pango_coverage_get (coverage, i), ==, PANGO_COVERAGE_EXACT);
+    g_assert_cmpint (vogue_coverage_get (coverage, i), ==, PANGO_COVERAGE_EXACT);
 
   for (i = 0; i < 100; i++)
-    pango_coverage_set (coverage, i, PANGO_COVERAGE_NONE);
+    vogue_coverage_set (coverage, i, PANGO_COVERAGE_NONE);
 
   for (i = 0; i < 100; i++)
-    g_assert_cmpint (pango_coverage_get (coverage, i), ==, PANGO_COVERAGE_NONE);
+    g_assert_cmpint (vogue_coverage_get (coverage, i), ==, PANGO_COVERAGE_NONE);
 
-  pango_coverage_unref (coverage);
+  vogue_coverage_unref (coverage);
 }
 
 static void
 test_coverage_copy (void)
 {
-  PangoCoverage *coverage;
-  PangoCoverage *coverage2;
+  VogueCoverage *coverage;
+  VogueCoverage *coverage2;
   int i;
 
-  coverage = pango_coverage_new ();
+  coverage = vogue_coverage_new ();
 
   for (i = 0; i < 100; i++)
-    pango_coverage_set (coverage, i, PANGO_COVERAGE_EXACT);
+    vogue_coverage_set (coverage, i, PANGO_COVERAGE_EXACT);
 
-  coverage2 = pango_coverage_copy (coverage);
+  coverage2 = vogue_coverage_copy (coverage);
 
   for (i = 0; i < 50; i++)
-    pango_coverage_set (coverage, i, PANGO_COVERAGE_NONE);
+    vogue_coverage_set (coverage, i, PANGO_COVERAGE_NONE);
 
   for (i = 0; i < 100; i++)
-    g_assert_cmpint (pango_coverage_get (coverage2, i), ==, PANGO_COVERAGE_EXACT);
+    g_assert_cmpint (vogue_coverage_get (coverage2, i), ==, PANGO_COVERAGE_EXACT);
 
-  pango_coverage_unref (coverage);
-  pango_coverage_unref (coverage2);
+  vogue_coverage_unref (coverage);
+  vogue_coverage_unref (coverage2);
 }
 
 int

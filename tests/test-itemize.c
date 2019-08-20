@@ -1,5 +1,5 @@
-/* Pango
- * test-break.c: Test Pango line breaking
+/* Vogue
+ * test-break.c: Test Vogue line breaking
  *
  * Copyright (C) 2019 Red Hat, Inc
  *
@@ -28,11 +28,11 @@
 #endif
 
 #include "config.h"
-#include <pango/pangocairo.h>
+#include <vogue/voguecairo.h>
 #include "test-common.h"
 
 
-static PangoContext *context;
+static VogueContext *context;
 
 static void
 append_text (GString    *s,
@@ -52,7 +52,7 @@ append_text (GString    *s,
 }
 
 static gboolean
-affects_itemization (PangoAttribute *attr,
+affects_itemization (VogueAttribute *attr,
                      gpointer        data)
 {
   switch (attr->klass->type)
@@ -85,23 +85,23 @@ affects_itemization (PangoAttribute *attr,
 
 static void
 apply_attributes_to_items (GList         *items,
-                           PangoAttrList *attrs)
+                           VogueAttrList *attrs)
 {
   GList *l;
-  PangoAttrIterator *iter;
+  VogueAttrIterator *iter;
 
   if (!attrs)
     return;
 
-  iter = pango_attr_list_get_iterator (attrs);
+  iter = vogue_attr_list_get_iterator (attrs);
 
   for (l = items; l; l = l->next)
     {
-      PangoItem *item = l->data;
-      pango_item_apply_attrs (item, iter);
+      VogueItem *item = l->data;
+      vogue_item_apply_attrs (item, iter);
     }
 
-  pango_attr_iterator_destroy (iter);
+  vogue_attr_iterator_destroy (iter);
 }
 
 static void
@@ -113,8 +113,8 @@ test_file (const gchar *filename, GString *string)
  GString *s1, *s2, *s3, *s4, *s5, *s6;
   char *test;
   char *text;
-  PangoAttrList *attrs;
-  PangoAttrList *itemize_attrs;
+  VogueAttrList *attrs;
+  VogueAttrList *itemize_attrs;
   GList *items, *l;
   const char *sep = "";
 
@@ -132,7 +132,7 @@ test_file (const gchar *filename, GString *string)
     test = strchr (test, '\n') + 1;
 
 
-  if (!pango_parse_markup (test, -1, 0, &attrs, &text, NULL, &error))
+  if (!vogue_parse_markup (test, -1, 0, &attrs, &text, NULL, &error))
     {
       fprintf (stderr, "%s\n", error->message);
       g_error_free (error);
@@ -150,22 +150,22 @@ test_file (const gchar *filename, GString *string)
   if (text[length - 1] == '\n')
     length--;
 
-  itemize_attrs = pango_attr_list_filter (attrs, affects_itemization, NULL);
-  items = pango_itemize (context, text, 0, length, itemize_attrs, NULL);
+  itemize_attrs = vogue_attr_list_filter (attrs, affects_itemization, NULL);
+  items = vogue_itemize (context, text, 0, length, itemize_attrs, NULL);
 
   apply_attributes_to_items (items, attrs);
-  pango_attr_list_unref (itemize_attrs);
+  vogue_attr_list_unref (itemize_attrs);
 
   for (l = items; l; l = l->next)
     {
-      PangoItem *item = l->data;
-      PangoFontDescription *desc;
+      VogueItem *item = l->data;
+      VogueFontDescription *desc;
       char *font;
       int m;
       GSList *a;
 
-      desc = pango_font_describe (item->analysis.font);
-      font = pango_font_description_to_string (desc);
+      desc = vogue_font_describe (item->analysis.font);
+      font = vogue_font_description_to_string (desc);
 
       if (l != items)
         sep = "|";
@@ -174,19 +174,19 @@ test_file (const gchar *filename, GString *string)
 
       g_string_append_printf (s2, "%s%s", sep, font);
       g_string_append_printf (s3, "%s%s", sep, get_script_name (item->analysis.script));
-      g_string_append_printf (s4, "%s%s", sep, pango_language_to_string (item->analysis.language));
+      g_string_append_printf (s4, "%s%s", sep, vogue_language_to_string (item->analysis.language));
       g_string_append_printf (s5, "%s%d", sep, item->analysis.level);
       g_string_append_printf (s6, "%s", sep);
       for (a = item->analysis.extra_attrs; a; a = a->next)
         {
-          PangoAttribute *attr = a->data;
+          VogueAttribute *attr = a->data;
           if (a != item->analysis.extra_attrs)
             g_string_append (s6, ",");
           print_attribute (attr, s6);
         }
 
       g_free (font);
-      pango_font_description_free (desc);
+      vogue_font_description_free (desc);
 
       m = MAX (MAX (MAX (s1->len, s2->len),
                     MAX (s3->len, s4->len)),
@@ -215,8 +215,8 @@ test_file (const gchar *filename, GString *string)
   g_string_free (s5, TRUE);
   g_string_free (s6, TRUE);
 
-  g_list_free_full (items, (GDestroyNotify)pango_item_free);
-  pango_attr_list_unref (attrs);
+  g_list_free_full (items, (GDestroyNotify)vogue_item_free);
+  vogue_attr_list_unref (attrs);
   g_free (text);
   g_free (contents);
 }
@@ -279,7 +279,7 @@ main (int argc, char *argv[])
 
   g_test_init (&argc, &argv, NULL);
 
-  context = pango_font_map_create_context (pango_cairo_font_map_get_default ());
+  context = vogue_font_map_create_context (vogue_cairo_font_map_get_default ());
 
   /* allow to easily generate expected output for new test cases */
   if (argc > 1)

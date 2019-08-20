@@ -1,5 +1,5 @@
-/* Pango
- * testiter.c: Test pangolayoutiter.c
+/* Vogue
+ * testiter.c: Test voguelayoutiter.c
  *
  * Copyright (C) 2005 Amit Aronovitch
  * Copyright (C) 2005 Red Hat, Inc
@@ -30,7 +30,7 @@
 
 #include <glib.h>
 
-#include <pango/pangocairo.h>
+#include <vogue/voguecairo.h>
 
 static void verbose (const char *format, ...) G_GNUC_PRINTF (1, 2);
 static void
@@ -77,21 +77,21 @@ const char *test_texts[] =
  *  - GlyphString's index_to_x positions match those returned by the Iter
  */
 static void
-iter_char_test (PangoLayout *layout)
+iter_char_test (VogueLayout *layout)
 {
-  PangoRectangle   extents, run_extents;
-  PangoLayoutIter *iter;
-  PangoLayoutRun  *run;
+  VogueRectangle   extents, run_extents;
+  VogueLayoutIter *iter;
+  VogueLayoutRun  *run;
   int              num_chars;
   int              i, index, offset;
   int              leading_x, trailing_x, x0, x1;
   gboolean         iter_next_ok, rtl;
   const char      *text, *ptr;
 
-  text = pango_layout_get_text (layout);
+  text = vogue_layout_get_text (layout);
   num_chars = g_utf8_strlen (text, -1);
 
-  iter = pango_layout_get_iter (layout);
+  iter = vogue_layout_get_iter (layout);
   iter_next_ok = TRUE;
 
   for (i = 0 ; i < num_chars; ++i)
@@ -99,42 +99,42 @@ iter_char_test (PangoLayout *layout)
       gchar *char_str;
       g_assert (iter_next_ok);
 
-      index = pango_layout_iter_get_index (iter);
+      index = vogue_layout_iter_get_index (iter);
       ptr = text + index;
       char_str = g_strndup (ptr, g_utf8_next_char (ptr) - ptr);
       verbose ("i=%d (visual), index = %d '%s':\n",
 	       i, index, char_str);
       g_free (char_str);
 
-      pango_layout_iter_get_char_extents (iter, &extents);
+      vogue_layout_iter_get_char_extents (iter, &extents);
       verbose ("  char extents: x=%d,y=%d w=%d,h=%d\n",
 	       extents.x, extents.y,
 	       extents.width, extents.height);
 
-      run = pango_layout_iter_get_run (iter);
+      run = vogue_layout_iter_get_run (iter);
 
       if (run)
 	{
-          PangoFontDescription *desc;
+          VogueFontDescription *desc;
           char *str;
 
 	  /* Get needed data for the GlyphString */
-	  pango_layout_iter_get_run_extents(iter, NULL, &run_extents);
+	  vogue_layout_iter_get_run_extents(iter, NULL, &run_extents);
 	  offset = run->item->offset;
 	  rtl = run->item->analysis.level%2;
-          desc = pango_font_describe (run->item->analysis.font);
-          str = pango_font_description_to_string (desc);
+          desc = vogue_font_describe (run->item->analysis.font);
+          str = vogue_font_description_to_string (desc);
 	  verbose ("  (current run: font=%s,offset=%d,x=%d,len=%d,rtl=%d)\n",
 		   str, offset, run_extents.x, run->item->length, rtl);
           g_free (str);
-          pango_font_description_free (desc);
+          vogue_font_description_free (desc);
 
 	  /* Calculate expected x result using index_to_x */
-	  pango_glyph_string_index_to_x (run->glyphs,
+	  vogue_glyph_string_index_to_x (run->glyphs,
 					 (char *)(text + offset), run->item->length,
 					 &run->item->analysis,
 					 index - offset, FALSE, &leading_x);
-	  pango_glyph_string_index_to_x (run->glyphs,
+	  vogue_glyph_string_index_to_x (run->glyphs,
 					 (char *)(text + offset), run->item->length,
 					 &run->item->analysis,
 					 index - offset, TRUE, &trailing_x);
@@ -153,7 +153,7 @@ iter_char_test (PangoLayout *layout)
 	  /* We're on a line terminator */
 	}
 
-      iter_next_ok = pango_layout_iter_next_char (iter);
+      iter_next_ok = vogue_layout_iter_next_char (iter);
       verbose ("more to go? %d\n", iter_next_ok);
     }
 
@@ -161,34 +161,34 @@ iter_char_test (PangoLayout *layout)
    * input string */
   g_assert (!iter_next_ok);
 
-  pango_layout_iter_free (iter);
+  vogue_layout_iter_free (iter);
 }
 
 static void
-iter_cluster_test (PangoLayout *layout)
+iter_cluster_test (VogueLayout *layout)
 {
-  PangoRectangle   extents;
-  PangoLayoutIter *iter;
+  VogueRectangle   extents;
+  VogueLayoutIter *iter;
   int              index;
   gboolean         iter_next_ok;
-  PangoLayoutLine *last_line = NULL;
+  VogueLayoutLine *last_line = NULL;
   int              expected_next_x = 0;
 
-  iter = pango_layout_get_iter (layout);
+  iter = vogue_layout_get_iter (layout);
   iter_next_ok = TRUE;
 
   while (iter_next_ok)
     {
-      PangoLayoutLine *line = pango_layout_iter_get_line (iter);
+      VogueLayoutLine *line = vogue_layout_iter_get_line (iter);
 
       /* Every cluster is part of a run */
-      g_assert (pango_layout_iter_get_run (iter));
+      g_assert (vogue_layout_iter_get_run (iter));
 
-      index = pango_layout_iter_get_index (iter);
+      index = vogue_layout_iter_get_index (iter);
 
-      pango_layout_iter_get_cluster_extents (iter, NULL, &extents);
+      vogue_layout_iter_get_cluster_extents (iter, NULL, &extents);
 
-      iter_next_ok = pango_layout_iter_next_cluster (iter);
+      iter_next_ok = vogue_layout_iter_next_cluster (iter);
 
       verbose ("index = %d:\n", index);
       verbose ("  cluster extents: x=%d,y=%d w=%d,h=%d\n",
@@ -210,25 +210,25 @@ iter_cluster_test (PangoLayout *layout)
 
   g_assert (!iter_next_ok);
 
-  pango_layout_iter_free (iter);
+  vogue_layout_iter_free (iter);
 }
 
 static void
 test_layout_iter (void)
 {
   const char  **ptext;
-  PangoFontMap *fontmap;
-  PangoContext *context;
-  PangoFontDescription *font_desc;
-  PangoLayout  *layout;
+  VogueFontMap *fontmap;
+  VogueContext *context;
+  VogueFontDescription *font_desc;
+  VogueLayout  *layout;
 
-  fontmap = pango_cairo_font_map_get_default ();
-  context = pango_font_map_create_context (fontmap);
-  font_desc = pango_font_description_from_string ("cantarell 11");
-  pango_context_set_font_description (context, font_desc);
+  fontmap = vogue_cairo_font_map_get_default ();
+  context = vogue_font_map_create_context (fontmap);
+  font_desc = vogue_font_description_from_string ("cantarell 11");
+  vogue_context_set_font_description (context, font_desc);
 
-  layout = pango_layout_new (context);
-  pango_layout_set_width (layout, LAYOUT_WIDTH);
+  layout = vogue_layout_new (context);
+  vogue_layout_set_width (layout, LAYOUT_WIDTH);
 
   for (ptext = test_texts; *ptext != NULL; ++ptext)
     {
@@ -237,56 +237,56 @@ test_layout_iter (void)
       verbose ( "len=%ld, bytes=%ld\n",
 		(long)g_utf8_strlen (*ptext, -1), (long)strlen (*ptext));
 
-      pango_layout_set_text (layout, *ptext, -1);
+      vogue_layout_set_text (layout, *ptext, -1);
       iter_char_test (layout);
       iter_cluster_test (layout);
     }
 
   g_object_unref (layout);
   g_object_unref (context);
-  pango_font_description_free (font_desc);
+  vogue_font_description_free (font_desc);
 }
 
 static void
 test_glyphitem_iter (void)
 {
-  PangoFontMap *fontmap;
-  PangoContext *context;
-  PangoFontDescription *font_desc;
-  PangoLayout  *layout;
-  PangoLayoutLine *line;
+  VogueFontMap *fontmap;
+  VogueContext *context;
+  VogueFontDescription *font_desc;
+  VogueLayout  *layout;
+  VogueLayoutLine *line;
   const char *text;
   GSList *l;
 
-  fontmap = pango_cairo_font_map_get_default ();
-  context = pango_font_map_create_context (fontmap);
-  font_desc = pango_font_description_from_string ("cantarell 11");
-  pango_context_set_font_description (context, font_desc);
+  fontmap = vogue_cairo_font_map_get_default ();
+  context = vogue_font_map_create_context (fontmap);
+  font_desc = vogue_font_description_from_string ("cantarell 11");
+  vogue_context_set_font_description (context, font_desc);
 
-  layout = pango_layout_new (context);
+  layout = vogue_layout_new (context);
   /* This shouldn't form any ligatures. */
-  pango_layout_set_text (layout, "test تست", -1);
-  text = pango_layout_get_text (layout);
+  vogue_layout_set_text (layout, "test تست", -1);
+  text = vogue_layout_get_text (layout);
 
-  line = pango_layout_get_line (layout, 0);
+  line = vogue_layout_get_line (layout, 0);
   for (l = line->runs; l; l = l->next)
   {
-    PangoGlyphItem *run = l->data;
+    VogueGlyphItem *run = l->data;
     int direction;
 
     for (direction = 0; direction < 2; direction++)
     {
-      PangoGlyphItemIter iter;
+      VogueGlyphItemIter iter;
       gboolean have_cluster;
 
 
       for (have_cluster = direction ?
-	     pango_glyph_item_iter_init_start (&iter, run, text) :
-	     pango_glyph_item_iter_init_end (&iter, run, text);
+	     vogue_glyph_item_iter_init_start (&iter, run, text) :
+	     vogue_glyph_item_iter_init_end (&iter, run, text);
 	   have_cluster;
 	   have_cluster = direction ?
-	     pango_glyph_item_iter_next_cluster (&iter) :
-	     pango_glyph_item_iter_prev_cluster (&iter))
+	     vogue_glyph_item_iter_next_cluster (&iter) :
+	     vogue_glyph_item_iter_prev_cluster (&iter))
       {
         verbose ("start index %d end index %d\n", iter.start_index, iter.end_index);
         g_assert (iter.start_index < iter.end_index);
@@ -298,7 +298,7 @@ test_glyphitem_iter (void)
 
   g_object_unref (layout);
   g_object_unref (context);
-  pango_font_description_free (font_desc);
+  vogue_font_description_free (font_desc);
 }
 
 int

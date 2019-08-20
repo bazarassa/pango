@@ -1,4 +1,4 @@
-project('pango', 'c', 'cpp',
+project('vogue', 'c', 'cpp',
         version: '1.44.5',
         license: 'LGPLv2.1+',
         default_options: [
@@ -12,38 +12,38 @@ project('pango', 'c', 'cpp',
 
 add_project_arguments([ '-D_POSIX_C_SOURCE=200809L', '-D_POSIX_THREAD_SAFE_FUNCTIONS', '-D_GNU_SOURCE', ], language: 'c')
 
-pango_prefix = get_option('prefix')
-pango_libdir = join_paths(pango_prefix, get_option('libdir'))
-pango_sysconfdir = join_paths(pango_prefix, get_option('sysconfdir'))
-pango_includedir = join_paths(pango_prefix, get_option('includedir'))
-pango_datadir = join_paths(pango_prefix, get_option('datadir'))
-pango_libexecdir = join_paths(pango_prefix, get_option('libexecdir'))
+vogue_prefix = get_option('prefix')
+vogue_libdir = join_paths(vogue_prefix, get_option('libdir'))
+vogue_sysconfdir = join_paths(vogue_prefix, get_option('sysconfdir'))
+vogue_includedir = join_paths(vogue_prefix, get_option('includedir'))
+vogue_datadir = join_paths(vogue_prefix, get_option('datadir'))
+vogue_libexecdir = join_paths(vogue_prefix, get_option('libexecdir'))
 
 version = meson.project_version().split('.')
-pango_major_version = version[0].to_int()
-pango_minor_version = version[1].to_int()
-pango_micro_version = version[2].to_int()
+vogue_major_version = version[0].to_int()
+vogue_minor_version = version[1].to_int()
+vogue_micro_version = version[2].to_int()
 
-pango_interface_age = pango_minor_version.is_odd() ? 0 : pango_micro_version
-pango_binary_age = pango_minor_version * 100 + pango_micro_version
+vogue_interface_age = vogue_minor_version.is_odd() ? 0 : vogue_micro_version
+vogue_binary_age = vogue_minor_version * 100 + vogue_micro_version
 
-pango_api_version = '@0@.0'.format(pango_major_version)
-pango_api_name = 'pango-@0@'.format(pango_api_version)
-pango_api_path = join_paths(pango_api_name, 'pango')
+vogue_api_version = '@0@.0'.format(vogue_major_version)
+vogue_api_name = 'vogue-@0@'.format(vogue_api_version)
+vogue_api_path = join_paths(vogue_api_name, 'vogue')
 
-pango_conf = configuration_data()
+vogue_conf = configuration_data()
 
-pango_conf.set('PANGO_BINARY_AGE', pango_binary_age)
-pango_conf.set('PANGO_INTERFACE_AGE', pango_interface_age)
-pango_conf.set('PANGO_VERSION_MAJOR', pango_major_version)
-pango_conf.set('PANGO_VERSION_MINOR', pango_minor_version)
-pango_conf.set('PANGO_VERSION_MICRO', pango_micro_version)
+vogue_conf.set('PANGO_BINARY_AGE', vogue_binary_age)
+vogue_conf.set('PANGO_INTERFACE_AGE', vogue_interface_age)
+vogue_conf.set('PANGO_VERSION_MAJOR', vogue_major_version)
+vogue_conf.set('PANGO_VERSION_MINOR', vogue_minor_version)
+vogue_conf.set('PANGO_VERSION_MICRO', vogue_micro_version)
 
 # Maintain version scheme with libtool
-pango_soversion = 0
-pango_libversion = '@0@.@1@.@2@'.format(pango_soversion, (pango_binary_age - pango_interface_age), pango_interface_age)
-osx_current = pango_binary_age - pango_interface_age + 1
-pango_osxversion = [osx_current, '@0@.@1@.0'.format(osx_current, pango_interface_age)]
+vogue_soversion = 0
+vogue_libversion = '@0@.@1@.@2@'.format(vogue_soversion, (vogue_binary_age - vogue_interface_age), vogue_interface_age)
+osx_current = vogue_binary_age - vogue_interface_age + 1
+vogue_osxversion = [osx_current, '@0@.@1@.0'.format(osx_current, vogue_interface_age)]
 
 cc = meson.get_compiler('c')
 host_system = host_machine.system()
@@ -119,13 +119,13 @@ endif
 # Symbol visibility
 if get_option('default_library') != 'static'
   if host_system == 'windows'
-    pango_conf.set('DLL_EXPORT', true)
-    pango_conf.set('_PANGO_EXTERN', '__declspec(dllexport) extern')
+    vogue_conf.set('DLL_EXPORT', true)
+    vogue_conf.set('_PANGO_EXTERN', '__declspec(dllexport) extern')
     if cc.get_id() != 'msvc'
       test_cflags += ['-fvisibility=hidden']
     endif
   else
-    pango_conf.set('_PANGO_EXTERN', '__attribute__((visibility("default"))) extern')
+    vogue_conf.set('_PANGO_EXTERN', '__attribute__((visibility("default"))) extern')
     test_cflags += ['-fvisibility=hidden']
   endif
 endif
@@ -155,7 +155,7 @@ checked_funcs = [
 
 foreach f: checked_funcs
   if cc.has_function(f)
-    pango_conf.set('HAVE_' + f.underscorify().to_upper(), 1)
+    vogue_conf.set('HAVE_' + f.underscorify().to_upper(), 1)
   endif
 endforeach
 
@@ -168,25 +168,25 @@ checked_headers = [
 
 foreach h: checked_headers
   if cc.has_header(h)
-    pango_conf.set('HAVE_' + h.underscorify().to_upper(), 1)
+    vogue_conf.set('HAVE_' + h.underscorify().to_upper(), 1)
   endif
 endforeach
 
 buildtype = get_option('buildtype')
 if buildtype.startswith('debug')
-  pango_debug_cflags = [ '-DPANGO_ENABLE_DEBUG', ]
+  vogue_debug_cflags = [ '-DPANGO_ENABLE_DEBUG', ]
 elif buildtype == 'release'
-  pango_debug_cflags = [ '-DG_DISABLE_CAST_CHECKS', ]
+  vogue_debug_cflags = [ '-DG_DISABLE_CAST_CHECKS', ]
   # TODO: We may want a configuration argument to add `G_DISABLE_CHECKS`
   # and `G_DISABLE_ASSERT` from the build, for specific build environments.
   # On the other hand, those who need these symbols can inject them in their
   # build as well.
 else
-  pango_debug_cflags = []
+  vogue_debug_cflags = []
 endif
 
 # Dependencies
-pango_deps = []
+vogue_deps = []
 
 glib_req_version = '>= 2.59.2'
 fribidi_req_version = '>= 0.19.7'
@@ -198,27 +198,27 @@ cairo_req_version = '>= 1.12.10'
 
 # libm
 mathlib_dep = cc.find_library('m', required: false)
-pango_deps += mathlib_dep
+vogue_deps += mathlib_dep
 
 # gobject
 glib_dep = dependency('glib-2.0', version: glib_req_version,
                       fallback: ['glib', 'libglib_dep'])
 gobject_dep = dependency('gobject-2.0', version: glib_req_version,
                          fallback: ['glib', 'libgobject_dep'])
-pango_deps += [glib_dep, gobject_dep]
+vogue_deps += [glib_dep, gobject_dep]
 
 fribidi_dep = dependency('fribidi', version: fribidi_req_version,
                          fallback: ['fribidi', 'libfribidi_dep'],
                          default_options: ['docs=false'])
-pango_deps += fribidi_dep
+vogue_deps += fribidi_dep
 
 thai_dep = dependency('libthai', version: libthai_req_version, required: false)
 if thai_dep.found()
-  pango_conf.set('HAVE_LIBTHAI', 1)
-  pango_deps += thai_dep
+  vogue_conf.set('HAVE_LIBTHAI', 1)
+  vogue_deps += thai_dep
 
   if cc.has_function('th_brk_find_breaks', dependencies: thai_dep)
-    pango_conf.set('HAVE_TH_BRK_FIND_BREAKS', 1)
+    vogue_conf.set('HAVE_TH_BRK_FIND_BREAKS', 1)
   endif
 endif
 
@@ -263,7 +263,7 @@ if not harfbuzz_dep.found()
   error('harfbuzz not found')
 endif
 
-pango_deps += harfbuzz_dep
+vogue_deps += harfbuzz_dep
 
 # Only use FontConfig fallback when required or requested
 fontconfig_required = (host_system != 'windows' and host_system != 'darwin') or get_option('use_fontconfig')
@@ -288,18 +288,18 @@ if fontconfig_required and not fontconfig_dep.found()
 endif
 
 if fontconfig_dep.found()
-  pango_deps += fontconfig_dep
+  vogue_deps += fontconfig_dep
 
   if fontconfig_pc == 'fontconfig'
     if fontconfig_dep.version().version_compare('>=2.12.92')
-      pango_conf.set('HAVE_FCWEIGHTFROMOPENTYPEDOUBLE', 1)
+      vogue_conf.set('HAVE_FCWEIGHTFROMOPENTYPEDOUBLE', 1)
     endif
   elif cc.has_function('FcWeightFromOpenTypeDouble', dependencies: fontconfig_dep)
-    pango_conf.set('HAVE_FCWEIGHTFROMOPENTYPEDOUBLE', 1)
+    vogue_conf.set('HAVE_FCWEIGHTFROMOPENTYPEDOUBLE', 1)
   endif
 endif
 
-if pango_conf.has('HAVE_FCWEIGHTFROMOPENTYPEDOUBLE')
+if vogue_conf.has('HAVE_FCWEIGHTFROMOPENTYPEDOUBLE')
   res = 'YES'
 else
   res = 'NO'
@@ -326,18 +326,18 @@ else
   endif
 endif
 
-# To build pangoft2, we need HarfBuzz, FontConfig and FreeType
-build_pangoft2 = harfbuzz_dep.found() and fontconfig_dep.found() and freetype_dep.found()
-if build_pangoft2
-  pango_conf.set('HAVE_FREETYPE', 1)
-  pango_deps += freetype_dep
+# To build vogueft2, we need HarfBuzz, FontConfig and FreeType
+build_vogueft2 = harfbuzz_dep.found() and fontconfig_dep.found() and freetype_dep.found()
+if build_vogueft2
+  vogue_conf.set('HAVE_FREETYPE', 1)
+  vogue_deps += freetype_dep
 endif
 
 xft_dep = dependency('xft', version: xft_req_version, required: false)
 if xft_dep.found() and fontconfig_dep.found() and freetype_dep.found()
-  pango_conf.set('HAVE_XFT', 1)
-  pango_deps += dependency('xrender', required: false)
-  pango_deps += xft_dep
+  vogue_conf.set('HAVE_XFT', 1)
+  vogue_deps += dependency('xrender', required: false)
+  vogue_deps += xft_dep
 endif
 
 if host_system == 'darwin'
@@ -349,10 +349,10 @@ if host_system == 'darwin'
                            name: 'CoreText availability',
                            dependencies: dependency('appleframeworks', modules: 'ApplicationServices'))
   if has_core_text
-    pango_conf.set('HAVE_CORE_TEXT', 1)
+    vogue_conf.set('HAVE_CORE_TEXT', 1)
   endif
 
-  pango_deps += dependency('appleframeworks', modules: [ 'CoreFoundation', 'ApplicationServices' ])
+  vogue_deps += dependency('appleframeworks', modules: [ 'CoreFoundation', 'ApplicationServices' ])
 endif
 
 cairo_found_type = ''
@@ -375,8 +375,8 @@ if not cairo_dep.found()
   cairo_found_type = cairo_dep.type_name()
 endif
 
-pango_font_backends = []
-pango_cairo_backends = []
+vogue_font_backends = []
+vogue_cairo_backends = []
 
 if ['pkgconfig', 'internal'].contains(cairo_found_type)
   # Check the following Cairo font backends
@@ -410,18 +410,18 @@ if ['pkgconfig', 'internal'].contains(cairo_found_type)
     endif
     if dep.found()
       if b[0] == 'cairo-ft'
-        if build_pangoft2
-          pango_conf.set(b[2], 1)
-          pango_font_backends += b[3]
+        if build_vogueft2
+          vogue_conf.set(b[2], 1)
+          vogue_font_backends += b[3]
         endif
       else
-        pango_conf.set(b[2], 1)
-        pango_font_backends += b[3]
+        vogue_conf.set(b[2], 1)
+        vogue_font_backends += b[3]
       endif
     endif
   endforeach
 
-  if pango_font_backends.length() == 0
+  if vogue_font_backends.length() == 0
     error('No Cairo font backends found')
   endif
 
@@ -450,12 +450,12 @@ if ['pkgconfig', 'internal'].contains(cairo_found_type)
       endforeach
     endif
     if dep.found()
-      pango_conf.set(b[2], 1)
-      pango_cairo_backends += b[3]
+      vogue_conf.set(b[2], 1)
+      vogue_cairo_backends += b[3]
     endif
   endforeach
 
-  # This is to set up pangocairo.pc so that things that refer to
+  # This is to set up voguecairo.pc so that things that refer to
   # it will link correctly
   cairo_pc = 'cairo'
 elif cairo_found_type == 'library'
@@ -465,11 +465,11 @@ elif cairo_found_type == 'library'
 
   foreach header : cairo_headers
     if cc.has_header('cairo-@0@.h'.format(header))
-      pango_conf.set('HAVE_CAIRO_@0@'.format(header.underscorify().to_upper()), 1)
+      vogue_conf.set('HAVE_CAIRO_@0@'.format(header.underscorify().to_upper()), 1)
       if header == 'win32' or header == 'quartz'
-        pango_font_backends += header
+        vogue_font_backends += header
       else
-        pango_cairo_backends += header
+        vogue_cairo_backends += header
       endif
     endif
   endforeach
@@ -485,13 +485,13 @@ elif cairo_found_type == 'library'
                  }''',
                  dependencies: cairo_dep,
                  name : 'Cairo is built with FreeType and FontConfig support')
-    if build_pangoft2
-      pango_conf.set('HAVE_CAIRO_FREETYPE', 1)
-      pango_font_backends += 'freetype'
+    if build_vogueft2
+      vogue_conf.set('HAVE_CAIRO_FREETYPE', 1)
+      vogue_font_backends += 'freetype'
     endif
   endif
 
-  if pango_font_backends.length() == 0
+  if vogue_font_backends.length() == 0
     error('Cairo found, but no Cairo font backends found')
   endif
 
@@ -506,27 +506,27 @@ elif cairo_found_type == 'library'
                  }''',
                  dependencies: cairo_dep,
                  name : 'Cairo is built with PNG output surface support')
-    pango_conf.set('HAVE_CAIRO_PNG', 1)
-    pango_cairo_backends += 'png'
+    vogue_conf.set('HAVE_CAIRO_PNG', 1)
+    vogue_cairo_backends += 'png'
   endif
 
-  # This is to set up pangocairo.pc so that things that refer to
+  # This is to set up voguecairo.pc so that things that refer to
   # it will link correctly, when we don't have pkg-config files for cairo
   cairo_lib = '-lcairo'
 endif
 
 if cairo_dep.found()
-  pango_conf.set('HAVE_CAIRO', 1)
-  pango_deps += cairo_dep
+  vogue_conf.set('HAVE_CAIRO', 1)
+  vogue_deps += cairo_dep
 
-  pangocairo_requires = ''
+  voguecairo_requires = ''
 
-  if pango_font_backends.contains('freetype')
-    pangocairo_requires += 'pangoft2 '
+  if vogue_font_backends.contains('freetype')
+    voguecairo_requires += 'vogueft2 '
   endif
 
-  if pango_font_backends.contains('win32')
-    pangocairo_requires += 'pangowin32 '
+  if vogue_font_backends.contains('win32')
+    voguecairo_requires += 'voguewin32 '
   endif
 endif
 
@@ -534,11 +534,11 @@ gnome = import('gnome')
 pkgconfig = import('pkgconfig')
 
 # Internal configuration header
-configure_file(output: 'config.h', configuration: pango_conf)
+configure_file(output: 'config.h', configuration: vogue_conf)
 
 root_inc = include_directories('.')
 
-subdir('pango')
+subdir('vogue')
 subdir('utils')
 subdir('examples')
 subdir('tests')

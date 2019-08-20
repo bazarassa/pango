@@ -1,5 +1,5 @@
-/* Pango
- * test-ellipsize.c: Test Pango harfbuzz apis
+/* Vogue
+ * test-ellipsize.c: Test Vogue harfbuzz apis
  *
  * Copyright (C) 2019 Red Hat, Inc.
  *
@@ -19,38 +19,38 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include <pango/pango.h>
-#include <pango/pangocairo.h>
+#include <vogue/vogue.h>
+#include <vogue/voguecairo.h>
 #include "test-common.h"
 
-static PangoContext *context;
+static VogueContext *context;
 
 /* Test that ellipsization does not change the height of a layout.
- * See https://gitlab.gnome.org/GNOME/pango/issues/397
+ * See https://gitlab.gnome.org/GNOME/vogue/issues/397
  */
 static void
 test_ellipsize_height (void)
 {
-  PangoLayout *layout;
+  VogueLayout *layout;
   int height1, height2;
-  PangoFontDescription *desc;
+  VogueFontDescription *desc;
 
-  layout = pango_layout_new (context);
+  layout = vogue_layout_new (context);
 
-  desc = pango_font_description_from_string ("Fixed 7");
-  //pango_layout_set_font_description (layout, desc);
-  pango_font_description_free (desc);
+  desc = vogue_font_description_from_string ("Fixed 7");
+  //vogue_layout_set_font_description (layout, desc);
+  vogue_font_description_free (desc);
 
-  pango_layout_set_text (layout, "some text that should be ellipsized", -1);
-  g_assert_cmpint (pango_layout_get_line_count (layout), ==, 1);
-  pango_layout_get_pixel_size (layout, NULL, &height1);
+  vogue_layout_set_text (layout, "some text that should be ellipsized", -1);
+  g_assert_cmpint (vogue_layout_get_line_count (layout), ==, 1);
+  vogue_layout_get_pixel_size (layout, NULL, &height1);
 
-  pango_layout_set_width (layout, 100 * PANGO_SCALE);
-  pango_layout_set_ellipsize (layout, PANGO_ELLIPSIZE_END);
+  vogue_layout_set_width (layout, 100 * PANGO_SCALE);
+  vogue_layout_set_ellipsize (layout, PANGO_ELLIPSIZE_END);
 
-  g_assert_cmpint (pango_layout_get_line_count (layout), ==, 1);
-  g_assert_cmpint (pango_layout_is_ellipsized (layout), ==, 1);
-  pango_layout_get_pixel_size (layout, NULL, &height2);
+  g_assert_cmpint (vogue_layout_get_line_count (layout), ==, 1);
+  g_assert_cmpint (vogue_layout_is_ellipsized (layout), ==, 1);
+  vogue_layout_get_pixel_size (layout, NULL, &height2);
 
   g_assert_cmpint (height1, ==, height2);
 
@@ -62,18 +62,18 @@ test_ellipsize_height (void)
 static void
 test_ellipsize_crash (void)
 {
-  PangoLayout *layout;
+  VogueLayout *layout;
 
-  layout = pango_layout_new (context);
+  layout = vogue_layout_new (context);
 
-  pango_layout_set_text (layout, "some text that should be ellipsized", -1);
-  g_assert_cmpint (pango_layout_get_line_count (layout), ==, 1);
+  vogue_layout_set_text (layout, "some text that should be ellipsized", -1);
+  g_assert_cmpint (vogue_layout_get_line_count (layout), ==, 1);
 
-  pango_layout_set_width (layout, 100 * PANGO_SCALE);
-  pango_layout_set_ellipsize (layout, PANGO_ELLIPSIZE_END);
+  vogue_layout_set_width (layout, 100 * PANGO_SCALE);
+  vogue_layout_set_ellipsize (layout, PANGO_ELLIPSIZE_END);
 
-  g_assert_cmpint (pango_layout_get_line_count (layout), ==, 1);
-  g_assert_cmpint (pango_layout_is_ellipsized (layout), ==, 1);
+  g_assert_cmpint (vogue_layout_get_line_count (layout), ==, 1);
+  g_assert_cmpint (vogue_layout_is_ellipsized (layout), ==, 1);
 
   g_object_unref (layout);
 }
@@ -81,10 +81,10 @@ test_ellipsize_crash (void)
 int
 main (int argc, char *argv[])
 {
-  PangoFontMap *fontmap;
+  VogueFontMap *fontmap;
 
-  fontmap = pango_cairo_font_map_get_default ();
-  context = pango_font_map_create_context (fontmap);
+  fontmap = vogue_cairo_font_map_get_default ();
+  context = vogue_font_map_create_context (fontmap);
 
   g_test_init (&argc, &argv, NULL);
 

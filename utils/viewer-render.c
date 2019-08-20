@@ -28,7 +28,7 @@
 
 #include <glib.h>
 #include <glib/gprintf.h>
-#include <pango/pango.h>
+#include <vogue/vogue.h>
 
 #include "viewer-render.h"
 
@@ -55,25 +55,25 @@ int opt_spacing = 0;
 double opt_line_spacing = -1.0;
 gboolean opt_justify = 0;
 int opt_runs = 1;
-PangoAlignment opt_align = PANGO_ALIGN_LEFT;
-PangoEllipsizeMode opt_ellipsize = PANGO_ELLIPSIZE_NONE;
-PangoGravity opt_gravity = PANGO_GRAVITY_SOUTH;
-PangoGravityHint opt_gravity_hint = PANGO_GRAVITY_HINT_NATURAL;
+VogueAlignment opt_align = PANGO_ALIGN_LEFT;
+VogueEllipsizeMode opt_ellipsize = PANGO_ELLIPSIZE_NONE;
+VogueGravity opt_gravity = PANGO_GRAVITY_SOUTH;
+VogueGravityHint opt_gravity_hint = PANGO_GRAVITY_HINT_NATURAL;
 HintMode opt_hinting = HINT_DEFAULT;
 HintMetrics opt_hint_metrics = HINT_METRICS_DEFAULT;
 SubpixelOrder opt_subpixel_order = SUBPIXEL_DEFAULT;
 Antialias opt_antialias = ANTIALIAS_DEFAULT;
 gboolean opt_subpixel_positions = FALSE;
-PangoWrapMode opt_wrap = PANGO_WRAP_WORD_CHAR;
+VogueWrapMode opt_wrap = PANGO_WRAP_WORD_CHAR;
 gboolean opt_wrap_set = FALSE;
-static const char *opt_pangorc = NULL; /* Unused */
-const PangoViewer *opt_viewer = NULL;
+static const char *opt_voguerc = NULL; /* Unused */
+const VogueViewer *opt_viewer = NULL;
 const char *opt_language = NULL;
 gboolean opt_single_par = FALSE;
-PangoColor opt_fg_color = {0, 0, 0};
+VogueColor opt_fg_color = {0, 0, 0};
 guint16 opt_fg_alpha = 65535;
 gboolean opt_bg_set = FALSE;
-PangoColor opt_bg_color = {65535, 65535, 65535};
+VogueColor opt_bg_color = {65535, 65535, 65535};
 guint16 opt_bg_alpha = 65535;
 
 /* Text (or markup) to render */
@@ -92,64 +92,64 @@ fail (const char *format, ...)
   exit (1);
 }
 
-static PangoLayout *
-make_layout(PangoContext *context,
+static VogueLayout *
+make_layout(VogueContext *context,
 	    const char   *text,
 	    double        size)
 {
-  static PangoFontDescription *font_description;
-  PangoAlignment align;
-  PangoLayout *layout;
+  static VogueFontDescription *font_description;
+  VogueAlignment align;
+  VogueLayout *layout;
 
-  layout = pango_layout_new (context);
+  layout = vogue_layout_new (context);
   if (opt_markup)
-    pango_layout_set_markup (layout, text, -1);
+    vogue_layout_set_markup (layout, text, -1);
   else
-    pango_layout_set_text (layout, text, -1);
+    vogue_layout_set_text (layout, text, -1);
 
-  pango_layout_set_auto_dir (layout, opt_auto_dir);
-  pango_layout_set_ellipsize (layout, opt_ellipsize);
-  pango_layout_set_justify (layout, opt_justify);
-  pango_layout_set_single_paragraph_mode (layout, opt_single_par);
-  pango_layout_set_wrap (layout, opt_wrap);
+  vogue_layout_set_auto_dir (layout, opt_auto_dir);
+  vogue_layout_set_ellipsize (layout, opt_ellipsize);
+  vogue_layout_set_justify (layout, opt_justify);
+  vogue_layout_set_single_paragraph_mode (layout, opt_single_par);
+  vogue_layout_set_wrap (layout, opt_wrap);
 
-  font_description = pango_font_description_from_string (opt_font);
+  font_description = vogue_font_description_from_string (opt_font);
   if (size > 0)
-    pango_font_description_set_size (font_description, size * PANGO_SCALE);
+    vogue_font_description_set_size (font_description, size * PANGO_SCALE);
 
   if (opt_width > 0)
-    pango_layout_set_width (layout, (opt_width * opt_dpi * PANGO_SCALE + 36) / 72);
+    vogue_layout_set_width (layout, (opt_width * opt_dpi * PANGO_SCALE + 36) / 72);
 
   if (opt_height > 0)
-    pango_layout_set_height (layout, (opt_height * opt_dpi * PANGO_SCALE + 36) / 72);
+    vogue_layout_set_height (layout, (opt_height * opt_dpi * PANGO_SCALE + 36) / 72);
   else
-    pango_layout_set_height (layout, opt_height);
+    vogue_layout_set_height (layout, opt_height);
 
   if (opt_indent != 0)
-    pango_layout_set_indent (layout, (opt_indent * opt_dpi * PANGO_SCALE + 36) / 72);
+    vogue_layout_set_indent (layout, (opt_indent * opt_dpi * PANGO_SCALE + 36) / 72);
 
   if (opt_spacing != 0)
     {
-      pango_layout_set_spacing (layout, (opt_spacing * opt_dpi * PANGO_SCALE + 36) / 72);
-      pango_layout_set_line_spacing (layout, 0.0);
+      vogue_layout_set_spacing (layout, (opt_spacing * opt_dpi * PANGO_SCALE + 36) / 72);
+      vogue_layout_set_line_spacing (layout, 0.0);
     }
   if (opt_line_spacing >= 0.0)
-    pango_layout_set_line_spacing (layout, (float)opt_line_spacing);
+    vogue_layout_set_line_spacing (layout, (float)opt_line_spacing);
 
   align = opt_align;
   if (align != PANGO_ALIGN_CENTER &&
-      pango_context_get_base_dir (context) != PANGO_DIRECTION_LTR) {
-    /* pango reverses left and right if base dir ir rtl.  so we should
+      vogue_context_get_base_dir (context) != PANGO_DIRECTION_LTR) {
+    /* vogue reverses left and right if base dir ir rtl.  so we should
      * reverse to cancel that.  unfortunately it also does that for
      * rtl paragraphs, so we cannot really get left/right.  all we get
      * is default/other-side. */
     align = PANGO_ALIGN_LEFT + PANGO_ALIGN_RIGHT - align;
   }
-  pango_layout_set_alignment (layout, align);
+  vogue_layout_set_alignment (layout, align);
 
-  pango_layout_set_font_description (layout, font_description);
+  vogue_layout_set_font_description (layout, font_description);
 
-  pango_font_description_free (font_description);
+  vogue_font_description_free (font_description);
 
   return layout;
 }
@@ -157,23 +157,23 @@ make_layout(PangoContext *context,
 gchar *
 get_options_string (void)
 {
-  PangoFontDescription *font_description = pango_font_description_from_string (opt_font);
+  VogueFontDescription *font_description = vogue_font_description_from_string (opt_font);
   gchar *font_name;
   gchar *result;
 
   if (opt_waterfall)
-    pango_font_description_unset_fields (font_description, PANGO_FONT_MASK_SIZE);
+    vogue_font_description_unset_fields (font_description, PANGO_FONT_MASK_SIZE);
 
-  font_name = pango_font_description_to_string (font_description);
+  font_name = vogue_font_description_to_string (font_description);
   result = g_strdup_printf ("%s: %s (%d dpi)", opt_viewer->name, font_name, opt_dpi);
-  pango_font_description_free (font_description);
+  vogue_font_description_free (font_description);
   g_free (font_name);
 
   return result;
 }
 
 static void
-output_body (PangoLayout    *layout,
+output_body (VogueLayout    *layout,
 	     RenderCallback  render_cb,
 	     gpointer        cb_context,
 	     gpointer        cb_data,
@@ -181,23 +181,23 @@ output_body (PangoLayout    *layout,
 	     int            *height,
 	     gboolean        supports_matrix)
 {
-  PangoRectangle logical_rect;
+  VogueRectangle logical_rect;
   int size, start_size, end_size, increment;
   int x = 0, y = 0;
 
   if (!supports_matrix)
     {
-      const PangoMatrix* matrix;
-      const PangoMatrix identity = PANGO_MATRIX_INIT;
-      PangoContext *context = pango_layout_get_context (layout);
-      matrix = pango_context_get_matrix (context);
+      const VogueMatrix* matrix;
+      const VogueMatrix identity = PANGO_MATRIX_INIT;
+      VogueContext *context = vogue_layout_get_context (layout);
+      matrix = vogue_context_get_matrix (context);
       if (matrix)
 	{
 	  x += matrix->x0;
 	  y += matrix->y0;
 	}
-      pango_context_set_matrix (context, &identity);
-      pango_layout_context_changed (layout);
+      vogue_context_set_matrix (context, &identity);
+      vogue_layout_context_changed (layout);
     }
 
   if (opt_waterfall)
@@ -219,39 +219,39 @@ output_body (PangoLayout    *layout,
     {
       if (size > 0)
         {
-	  PangoFontDescription *desc = pango_font_description_copy (pango_layout_get_font_description (layout));
-	  pango_font_description_set_size (desc, size * PANGO_SCALE);
-	  pango_layout_set_font_description (layout, desc);
-	  pango_font_description_free (desc);
+	  VogueFontDescription *desc = vogue_font_description_copy (vogue_layout_get_font_description (layout));
+	  vogue_font_description_set_size (desc, size * PANGO_SCALE);
+	  vogue_layout_set_font_description (layout, desc);
+	  vogue_font_description_free (desc);
 	}
 
-      pango_layout_get_pixel_extents (layout, NULL, &logical_rect);
+      vogue_layout_get_pixel_extents (layout, NULL, &logical_rect);
 
       if (render_cb)
 	(*render_cb) (layout, x, y+*height, cb_context, cb_data);
 
       *width = MAX (*width, 
 		    MAX (logical_rect.x + logical_rect.width,
-			 PANGO_PIXELS (pango_layout_get_width (layout))));
+			 PANGO_PIXELS (vogue_layout_get_width (layout))));
       *height +=    MAX (logical_rect.y + logical_rect.height,
-			 PANGO_PIXELS (pango_layout_get_height (layout)));
+			 PANGO_PIXELS (vogue_layout_get_height (layout)));
     }
 }
 
 static void
-set_transform (PangoContext     *context,
+set_transform (VogueContext     *context,
 	       TransformCallback transform_cb,
 	       gpointer          cb_context,
 	       gpointer          cb_data,
-	       PangoMatrix      *matrix)
+	       VogueMatrix      *matrix)
 {
-  pango_context_set_matrix (context, matrix);
+  vogue_context_set_matrix (context, matrix);
   if (transform_cb)
     (*transform_cb) (context, matrix, cb_context, cb_data);
 }
 
 void
-do_output (PangoContext     *context,
+do_output (VogueContext     *context,
 	   RenderCallback    render_cb,
 	   TransformCallback transform_cb,
 	   gpointer          cb_context,
@@ -259,10 +259,10 @@ do_output (PangoContext     *context,
 	   int              *width_out,
 	   int              *height_out)
 {
-  PangoLayout *layout;
-  PangoRectangle rect;
-  PangoMatrix matrix = PANGO_MATRIX_INIT;
-  PangoMatrix *orig_matrix;
+  VogueLayout *layout;
+  VogueRectangle rect;
+  VogueMatrix matrix = PANGO_MATRIX_INIT;
+  VogueMatrix *orig_matrix;
   gboolean supports_matrix;
   int rotated_width, rotated_height;
   int x = opt_margin_l;
@@ -272,7 +272,7 @@ do_output (PangoContext     *context,
   width = 0;
   height = 0;
 
-  orig_matrix = pango_matrix_copy (pango_context_get_matrix (context));
+  orig_matrix = vogue_matrix_copy (vogue_context_get_matrix (context));
   /* If the backend sets an all-zero matrix on the context,
    * means that it doesn't support transformations.
    */
@@ -283,18 +283,18 @@ do_output (PangoContext     *context,
 
   set_transform (context, transform_cb, cb_context, cb_data, NULL);
 
-  pango_context_set_language (context,
-			      opt_language ? pango_language_from_string (opt_language)
-					   : pango_language_get_default ());
-  pango_context_set_base_dir (context,
+  vogue_context_set_language (context,
+			      opt_language ? vogue_language_from_string (opt_language)
+					   : vogue_language_get_default ());
+  vogue_context_set_base_dir (context,
 			      opt_rtl ? PANGO_DIRECTION_RTL : PANGO_DIRECTION_LTR);
 
   if (opt_header)
     {
       char *options_string = get_options_string ();
-      pango_context_set_base_gravity (context, PANGO_GRAVITY_SOUTH);
+      vogue_context_set_base_gravity (context, PANGO_GRAVITY_SOUTH);
       layout = make_layout (context, options_string, 10);
-      pango_layout_get_extents (layout, NULL, &rect);
+      vogue_layout_get_extents (layout, NULL, &rect);
 
       width = MAX (width, PANGO_PIXELS (rect.width));
       height += PANGO_PIXELS (rect.height);
@@ -311,13 +311,13 @@ do_output (PangoContext     *context,
   if (opt_rotate != 0)
     {
       if (supports_matrix)
-	pango_matrix_rotate (&matrix, opt_rotate);
+	vogue_matrix_rotate (&matrix, opt_rotate);
       else
 	g_printerr ("The backend does not support rotated text\n");
     }
 
-  pango_context_set_base_gravity (context, opt_gravity);
-  pango_context_set_gravity_hint (context, opt_gravity_hint);
+  vogue_context_set_base_gravity (context, opt_gravity);
+  vogue_context_set_gravity_hint (context, opt_gravity_hint);
 
   layout = make_layout (context, text, -1);
 
@@ -332,7 +332,7 @@ do_output (PangoContext     *context,
   rect.width = rotated_width;
   rect.height = rotated_height;
 
-  pango_matrix_transform_pixel_rectangle (&matrix, &rect);
+  vogue_matrix_transform_pixel_rectangle (&matrix, &rect);
 
   matrix.x0 = x - rect.x;
   matrix.y0 = y - rect.y;
@@ -356,8 +356,8 @@ do_output (PangoContext     *context,
   if (height_out)
     *height_out = height;
 
-  pango_context_set_matrix (context, orig_matrix);
-  pango_matrix_free (orig_matrix);
+  vogue_context_set_matrix (context, orig_matrix);
+  vogue_matrix_free (orig_matrix);
   g_object_unref (layout);
 }
 
@@ -373,7 +373,7 @@ parse_enum (GType       type,
   gboolean ret;
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-  ret = pango_parse_enum (type,
+  ret = vogue_parse_enum (type,
 			  arg,
 			  value,
 			  FALSE,
@@ -558,7 +558,7 @@ parse_wrap (const char *name,
 }
 
 static gboolean
-parse_rgba_color (PangoColor *color,
+parse_rgba_color (VogueColor *color,
 		  guint16    *alpha,
 		  const char *name,
 		  const char *arg,
@@ -600,7 +600,7 @@ parse_rgba_color (PangoColor *color,
   else
     *alpha = 65535;
 
-  ret = pango_color_parse (color, arg);
+  ret = vogue_color_parse (color, arg);
 
 err:
   if (!ret && error)
@@ -671,7 +671,7 @@ static gchar *
 backends_to_string (void)
 {
   GString *backends = g_string_new (NULL);
-  const PangoViewer **viewer;
+  const VogueViewer **viewer;
 
   for (viewer = viewers; *viewer; viewer++)
     if ((*viewer)->id)
@@ -687,7 +687,7 @@ backends_to_string (void)
 static int
 backends_get_count (void)
 {
-  const PangoViewer **viewer;
+  const VogueViewer **viewer;
   int i = 0;
 
   for (viewer = viewers; *viewer; viewer++)
@@ -701,7 +701,7 @@ backends_get_count (void)
 static gchar *
 backend_description (void)
 {
- GString *description  = g_string_new("Pango backend to use for rendering ");
+ GString *description  = g_string_new("Vogue backend to use for rendering ");
  int backends_count = backends_get_count ();
 
  if (backends_count > 1)
@@ -722,7 +722,7 @@ parse_backend (const char *name G_GNUC_UNUSED,
 	       GError    **error)
 {
   gboolean ret = TRUE;
-  const PangoViewer **viewer;
+  const VogueViewer **viewer;
 
   for (viewer = viewers; *viewer; viewer++)
     if (!g_ascii_strcasecmp ((*viewer)->id, arg))
@@ -755,8 +755,8 @@ show_version(const char *name G_GNUC_UNUSED,
 {
   g_printf("%s (%s) %s\n", g_get_prgname (), PACKAGE_NAME, PACKAGE_VERSION);
 
-  if (PANGO_VERSION != pango_version())
-    g_printf("Linked Pango library has a different version: %s\n", pango_version_string ());
+  if (PANGO_VERSION != vogue_version())
+    g_printf("Linked Vogue library has a different version: %s\n", vogue_version_string ());
 
   exit(0);
 }
@@ -818,10 +818,10 @@ parse_options (int argc, char *argv[])
     {"margin",		0, 0, G_OPTION_ARG_CALLBACK,			&parse_margin,
      "Set the margin on the output in pixels",			    "CSS-style numbers in pixels"},
     {"markup",		0, 0, G_OPTION_ARG_NONE,			&opt_markup,
-     "Interpret text as Pango markup",					NULL},
+     "Interpret text as Vogue markup",					NULL},
     {"output",		'o', 0, G_OPTION_ARG_STRING,			&opt_output,
      "Save rendered image to output file",			      "file"},
-    {"pangorc",		0, G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING,	&opt_pangorc,
+    {"voguerc",		0, G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING,	&opt_voguerc,
      "Deprecated",		      "file"},
     {"pixels",		0, 0, G_OPTION_ARG_NONE,			&opt_pixels,
      "Use pixel units instead of points (sets dpi to 72)",		NULL},
@@ -830,7 +830,7 @@ parse_options (int argc, char *argv[])
     {"rotate",		0, 0, G_OPTION_ARG_DOUBLE,			&opt_rotate,
      "Angle at which to rotate results",			   "degrees"},
     {"runs",		'n', 0, G_OPTION_ARG_INT,			&opt_runs,
-     "Run Pango layout engine this many times",			   "integer"},
+     "Run Vogue layout engine this many times",			   "integer"},
     {"single-par",	0, 0, G_OPTION_ARG_NONE,			&opt_single_par,
      "Enable single-paragraph mode",					NULL},
     {"text",		't', 0, G_OPTION_ARG_STRING,			&opt_text,
@@ -849,7 +849,7 @@ parse_options (int argc, char *argv[])
   GError *parse_error = NULL;
   GOptionContext *context;
   size_t len;
-  const PangoViewer **viewer;
+  const VogueViewer **viewer;
 
   context = g_option_context_new ("- FILE");
   g_option_context_add_main_entries (context, entries, NULL);
@@ -918,7 +918,7 @@ parse_options (int argc, char *argv[])
   /* Make sure we have valid markup
    */
   if (opt_markup &&
-      !pango_parse_markup (text, -1, 0, NULL, NULL, NULL, &error))
+      !vogue_parse_markup (text, -1, 0, NULL, NULL, NULL, &error))
     fail ("Cannot parse input as markup: %s", error->message);
 }
 

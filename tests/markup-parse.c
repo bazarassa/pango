@@ -1,5 +1,5 @@
-/* Pango
- * markup-parse.c: Test Pango markup
+/* Vogue
+ * markup-parse.c: Test Vogue markup
  *
  * Copyright (C) 2014 Red Hat, Inc
  *
@@ -30,7 +30,7 @@
 
 #include <locale.h>
 
-#include <pango/pangocairo.h>
+#include <vogue/voguecairo.h>
 #include "test-common.h"
 
 static void
@@ -40,10 +40,10 @@ test_file (const gchar *filename, GString *string)
   gsize  length;
   GError *error = NULL;
   gchar *text;
-  PangoAttrList *attrs;
-  PangoAttrIterator *iter;
-  PangoFontDescription *desc;
-  PangoLanguage *lang;
+  VogueAttrList *attrs;
+  VogueAttrIterator *iter;
+  VogueFontDescription *desc;
+  VogueLanguage *lang;
   gboolean ret;
   char *str;
   int start, end;
@@ -55,7 +55,7 @@ test_file (const gchar *filename, GString *string)
       return;
     }
 
-  ret = pango_parse_markup (contents, length, 0, &attrs, &text, NULL, &error);
+  ret = vogue_parse_markup (contents, length, 0, &attrs, &text, NULL, &error);
   g_free (contents);
 
   if (ret)
@@ -65,18 +65,18 @@ test_file (const gchar *filename, GString *string)
       g_string_append (string, "\n\n---\n\n");
       print_attr_list (attrs, string);
       g_string_append (string, "\n\n---\n\n");
-      desc = pango_font_description_new ();
-      iter = pango_attr_list_get_iterator (attrs);
+      desc = vogue_font_description_new ();
+      iter = vogue_attr_list_get_iterator (attrs);
       do {
-        pango_attr_iterator_range (iter, &start, &end);
-        pango_attr_iterator_get_font (iter, desc, &lang, NULL);
-        str = pango_font_description_to_string (desc);
+        vogue_attr_iterator_range (iter, &start, &end);
+        vogue_attr_iterator_get_font (iter, desc, &lang, NULL);
+        str = vogue_font_description_to_string (desc);
         g_string_append_printf (string, "[%d:%d] %s %s\n", start, end, (char *)lang, str);
         g_free (str);
-      } while (pango_attr_iterator_next (iter));
-      pango_attr_iterator_destroy (iter);
-      pango_attr_list_unref (attrs);
-      pango_font_description_free (desc);
+      } while (vogue_attr_iterator_next (iter));
+      vogue_attr_iterator_destroy (iter);
+      vogue_attr_list_unref (attrs);
+      vogue_font_description_free (desc);
       g_free (text);
     }
   else

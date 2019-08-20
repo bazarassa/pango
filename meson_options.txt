@@ -1,9 +1,9 @@
 option('gtk_doc',
-       description: 'Build API reference for Pango using GTK-Doc',
+       description: 'Build API reference for Vogue using GTK-Doc',
        type: 'boolean',
        value: false)
 option('introspection',
-       description: 'Build the GObject introspection data for Pango',
+       description: 'Build the GObject introspection data for Vogue',
        type: 'boolean',
        value: true)
 option('install-tests',

@@ -21,7 +21,7 @@
 #ifndef VIEWER_RENDER_H
 #define VIEWER_RENDER_H
 
-#include <pango/pango-layout.h>
+#include <vogue/vogue-layout.h>
 
 #include "viewer.h"
 
@@ -55,13 +55,13 @@ typedef enum {
   HINT_METRICS_OFF
 } HintMetrics;
 
-typedef void (*RenderCallback) (PangoLayout *layout,
+typedef void (*RenderCallback) (VogueLayout *layout,
 				int          x,
 				int          y,
 				gpointer     cb_context,
 				gpointer     cb_data);
-typedef void (*TransformCallback) (PangoContext *context,
-				   PangoMatrix  *transform,
+typedef void (*TransformCallback) (VogueContext *context,
+				   VogueMatrix  *transform,
 				   gpointer      cb_context,
 				   gpointer      cb_data);
 
@@ -69,7 +69,7 @@ void fail (const char *format, ...) G_GNUC_PRINTF (1, 2) G_GNUC_NORETURN;
 
 void   parse_options      (int               argc,
 			   char             *argv[]);
-void   do_output          (PangoContext     *context,
+void   do_output          (VogueContext     *context,
 			   RenderCallback    render_cb,
 			   TransformCallback transform_cb,
 			   gpointer          cb_context,
@@ -93,13 +93,13 @@ extern const char *opt_text;
 extern gboolean opt_waterfall;
 extern int opt_width;
 extern int opt_indent;
-extern PangoEllipsizeMode opt_ellipsize;
+extern VogueEllipsizeMode opt_ellipsize;
 
 /* handled by viewer-main.c */
 extern gboolean opt_display;
 extern const char *opt_output;
 extern int opt_runs;
-extern const PangoViewer *opt_viewer;
+extern const VogueViewer *opt_viewer;
 
 /* handled by backend-specific code */
 extern int opt_dpi;
@@ -108,10 +108,10 @@ extern SubpixelOrder opt_subpixel_order;
 extern Antialias opt_antialias;
 extern HintMetrics opt_hint_metrics;
 extern gboolean opt_subpixel_positions;
-extern PangoColor opt_fg_color;
+extern VogueColor opt_fg_color;
 extern guint16 opt_fg_alpha;
 extern gboolean opt_bg_set;
-extern PangoColor opt_bg_color;
+extern VogueColor opt_bg_color;
 extern guint16 opt_bg_alpha;
 
 #endif /* VIEWER_RENDER_H */

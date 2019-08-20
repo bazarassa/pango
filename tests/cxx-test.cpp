@@ -1,23 +1,23 @@
-/* This test makes sure that all Pango headers can be included
+/* This test makes sure that all Vogue headers can be included
  * and compiled in a C++ program.
  */
 
-#include <pango/pango.h>
+#include <vogue/vogue.h>
 
 #ifdef HAVE_WIN32
-#include <pango/pangowin32.h>
+#include <vogue/voguewin32.h>
 #endif
 
 #ifdef HAVE_XFT
-#include <pango/pangoxft.h>
+#include <vogue/voguexft.h>
 #endif
 
 #ifdef HAVE_FREETYPE
-#include <pango/pangoft2.h>
+#include <vogue/vogueft2.h>
 #endif
 
 #ifdef HAVE_CAIRO
-#include <pango/pangocairo.h>
+#include <vogue/voguecairo.h>
 #endif
 
 int

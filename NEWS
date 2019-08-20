@@ -5,18 +5,18 @@ Overview of changes in 1.44.5
 Overview of changes in 1.44.4
 =============================
 - Add an insert-hyphens attribute
-- Reinstate the return type of pango_fc_font_lock_face
+- Reinstate the return type of vogue_fc_font_lock_face
 - Fix a problem with ellipses getting the wrong font
 - fc: Improve filtering by font format
-- Re-add PangoFcFont to public headers
-- Install PangoFc and PangoOT introspection files
+- Re-add VogueFcFont to public headers
+- Install VogueFc and VogueOT introspection files
 - Fix ink rectangles to have positive height
 - Fix mark positioning
 - Switch to using harfbuzz for metrics
 
 Overview of changes in 1.44.3
 =============================
-- Install pango-ot headers
+- Install vogue-ot headers
 - Make subpixel positioning optional
 - fc: Ignore fonts with unsupported formats
 
@@ -24,12 +24,12 @@ Overview of changes in 1.44.2
 =============================
 - Disable ligatures when letterspacing
 - Set design coords on hb_font_t
-- Expose more font options in pango-view
+- Expose more font options in vogue-view
 - OS X: Make 'system-ui' font work
-- Keep deprecated pango-fc apis in headers
+- Keep deprecated vogue-fc apis in headers
 - Make hex boxes work, always
 - introspection: Various build fixes
-- introspection: Add PangoPT, PangoFT2 namespaces
+- introspection: Add VoguePT, VogueFT2 namespaces
 - layout: Make the new line-spacing opt-in
 
 Overview of changes in 1.44.1
@@ -45,8 +45,8 @@ Overview of changes in 1.44.0
 - Stop using freetype for font loading; this
     drops support for type1 and bitmap fonts
 - Add a getter for hb_font_t
-- Make PangoCoverage a GObject
-- Add a pango_tailor_break api
+- Make VogueCoverage a GObject
+- Add a vogue_tailor_break api
 - font metrics: Add line height
 - layout: Support line spacing
 - layout: Draw hyphens for line breaks
@@ -83,7 +83,7 @@ Overview of changes in 1.42.2
 - Require harfbuzz 1.4.2
 - Restore scaling of CoreText fonts
 - Speed up font face enumeration
-- Add a pango-list utility
+- Add a vogue-list utility
 
 Overview of changes in 1.42.1
 =============================
@@ -115,13 +115,13 @@ Overview of changes between 1.40.13 and 1.40.14
 Overview of changes between 1.40.12 and 1.40.13
 ===============================================
 - Some performance improvements (#788643)
-- Update pango_default_break for line breaks (#788115)
+- Update vogue_default_break for line breaks (#788115)
 - Fix an introspection warning (#781857)
 
 Overview of changes between 1.40.11 and 1.40.12
 ===============================================
-- Fix pango_default_break for sentence start/end (#785978)
-- Fix multilib issue in pango-enum-types.h (#786887)
+- Fix vogue_default_break for sentence start/end (#785978)
+- Fix multilib issue in vogue-enum-types.h (#786887)
 
 Overview of changes between 1.40.10 and 1.40.11
 ===============================================
@@ -164,18 +164,18 @@ Overview of changes between 1.40.5 and 1.40.6
 Overview of changes between 1.40.4 and 1.40.5
 =============================================
 - Add missing introspection annotations (#778663)
-- Fix line-end handling in pango_read_line (#778816)
+- Fix line-end handling in vogue_read_line (#778816)
 - Make alpha attribute work without color (#773767)
 - win32: Enable rendering colored texti and underlines (#768779)
 
 Overview of changes between 1.40.3 and 1.40.4
 =============================================
 - Fix some Coverity findings (#778601, #778602, #778654, #778656)
-- Fix introspection annotation of pango_lkayout_get_size (#779232)
+- Fix introspection annotation of vogue_lkayout_get_size (#779232)
 
 Overview of changes between 1.40.2 and 1.40.3
 =============================================
-- Fix export of pango_cairo_win32_font_map_get_type (#771004)
+- Fix export of vogue_cairo_win32_font_map_get_type (#771004)
 - Fix build on OS X (#770729)
 
 Overview of changes between 1.40.1 and 1.40.2
@@ -189,7 +189,7 @@ Overview of changes between 1.40.1 and 1.40.2
 Overview of changes between 1.40.0 and 1.40.1
 =============================================
 - Use $PKG_CONFIG consistently (#764191)
-- Fix a PangoWin32FontMap memory leak (#7640890)
+- Fix a VogueWin32FontMap memory leak (#7640890)
 
 Overview of changes between 1.39.1 and 1.40.0
 =============================================
@@ -198,7 +198,7 @@ Overview of changes between 1.39.1 and 1.40.0
 
 Overview of changes between 1.38.1 and 1.39.0
 =============================================
-- Update PangoScript to Unicode 8.0
+- Update VogueScript to Unicode 8.0
 
 Overview of changes between 1.38.0 and 1.38.1
 =============================================
@@ -224,7 +224,7 @@ Overview of changes between 1.37.3 and 1.37.4
 
 Overview of changes between 1.37.2 and 1.37.3
 =============================================
-- Fix pango_glyph_item_iter_prev
+- Fix vogue_glyph_item_iter_prev
 - Add alpha attributes
 - Add support for alpha in markup
 
@@ -242,10 +242,10 @@ Overview of changes between 1.37.0 and 1.37.1
 
 Overview of changes between 1.36.8 and 1.37.0
 =============================================
-- Pango modules, engines, and config have been removed (#733882)
-- Added pango_fc_font_map_config_changed() (#748767)
-- Added pango_fc_font_map_[sg]et_config() (#547671)
-- Added pango_matrix_get_font_scale_factors
+- Vogue modules, engines, and config have been removed (#733882)
+- Added vogue_fc_font_map_config_changed() (#748767)
+- Added vogue_fc_font_map_[sg]et_config() (#547671)
+- Added vogue_matrix_get_font_scale_factors
 - Lot of API has been deprecated
 - Fix CoreText font fallback
 - General build fixes
@@ -257,8 +257,8 @@ Overview of changes between 1.36.7 and 1.36.8
 
 Overview of changes between 1.36.6 and 1.36.7
 =============================================
-- Add tests for pango markup
-- Add tests for PangoLayout
+- Add tests for vogue markup
+- Add tests for VogueLayout
 - Add an analysis flag for ellipsis (#735719)
 - Treat attributes in ellipsis better (#735732)
 
@@ -280,7 +280,7 @@ Overview of changes between 1.36.3 and 1.36.4
 =============================================
 - Improve thread-safety on Windows (#695913)
 - Add missing annotations (#729840)
-- Update PangoWeight documentation
+- Update VogueWeight documentation
 - Require harfbuzz 0.9.29
 
 Overview of changes between 1.36.2 and 1.36.3
@@ -288,14 +288,14 @@ Overview of changes between 1.36.2 and 1.36.3
 - Fix builddir != srdir builds
 - Avoid a crash when FT_Face is NULL (#724006)
 - Win32 build fixes
-- Update pango_color_parse docs (#711061)
+- Update vogue_color_parse docs (#711061)
 
 Overview of changes between 1.36.1 and 1.36.2
 =============================================
 - Win32 build fixes
 - Fix a possible strtol(NULL) (#719549)
 - Fix --with-included-modules
-- Fix a FPE in pango_layout_iter_get_char_extents (#720379)
+- Fix a FPE in vogue_layout_iter_get_char_extents (#720379)
 - Use 96 dpi for CoreText by default
 
 Overview of changes between 1.36.0 and 1.36.1
@@ -306,7 +306,7 @@ Overview of changes between 1.36.0 and 1.36.1
 Overview of changes between 1.35.3 and 1.36.0
 =============================================
 - Remove a useless test (#707131)
-- Never return NULL from pango_layout_get_test (#707659)
+- Never return NULL from vogue_layout_get_test (#707659)
 - Correct an annotation (#707874)
 - Fix gravity map (#708432)
 
@@ -329,7 +329,7 @@ Overview of changes between 1.34 and 1.35.0
 
 Overview of changes between 1.34.0 and 1.34.1
 =============================================
-- 96238 - PangoAttrFilterFunc vs pango_attr_list_filter docs
+- 96238 - VogueAttrFilterFunc vs vogue_attr_list_filter docs
 - Update win32/CoreText shaper signature
 - Fix CoreText scaling (again)
 - Align word breaking with newer Unicode specs
@@ -340,20 +340,20 @@ No changes
 
 Overview of changes between 1.33.8 and 1.33.9
 =============================================
-- Port PangoWin32 to use GWeakRef
-- 682846 - Use G_DEFINE_TYPE in pangowin32-fontmap
-- Fix scale in pangocairo-threads test
+- Port VogueWin32 to use GWeakRef
+- 682846 - Use G_DEFINE_TYPE in voguewin32-fontmap
+- Fix scale in voguecairo-threads test
 - Misc Win32 build fixes
 
 Overview of changes between 1.33.7 and 1.33.8
 =============================================
-- 694095 - Fails make check: -pango_cairo_win32_font_map_get_type
+- 694095 - Fails make check: -vogue_cairo_win32_font_map_get_type
 - 668154 - GTK+ Crashes on Non BMP utf-8 charpoints
-- 694626 - Add pango_font_map_changed
-- 694626 - PangoFc: change FontMap in pango_fc_font_map_clear_cache
-- 694830 - Fails make check: +pango_font_map_change
-- 694918 - Pango layout is misrendered with non-identity transformation
-- 694882 - build broken - introspection of pangoxft2 and pangoxft
+- 694626 - Add vogue_font_map_changed
+- 694626 - VogueFc: change FontMap in vogue_fc_font_map_clear_cache
+- 694830 - Fails make check: +vogue_font_map_change
+- 694918 - Vogue layout is misrendered with non-identity transformation
+- 694882 - build broken - introspection of voguexft2 and voguexft
 
 Overview of changes between 1.32.6 and 1.33.7
 =============================================
@@ -362,7 +362,7 @@ Overview of changes between 1.32.6 and 1.33.7
 
 Overview of changes between 1.32.5 and 1.32.6
 =============================================
-- Make pango threadsafe
+- Make vogue threadsafe
 - Pass down BOT/EOT flags to HarfBuzz
 - 690279 - broken relocation of modules
 - 691263 - Build with automake-1.13 broken
@@ -371,16 +371,16 @@ Overview of changes between 1.32.4 and 1.32.5
 =============================================
 - 689843 - Drop last ues of G_CONST_RETURN
 - 689864 - build failure
-- 689882 - pango-font.h:381: error: comma at end of enumerator list
-- 686512 - pango_cairo_font_get_scaled_font failed under wine
-- 690081 - pangofc-fontmap: Remove bad use of the comma operator
-- 679299 - Allow incrementally parsing pango markup
+- 689882 - vogue-font.h:381: error: comma at end of enumerator list
+- 686512 - vogue_cairo_font_get_scaled_font failed under wine
+- 690081 - voguefc-fontmap: Remove bad use of the comma operator
+- 679299 - Allow incrementally parsing vogue markup
 
 Overview of changes between 1.32.3 and 1.32.4
 =============================================
 - Require harfbuzz 0.9.9
-- 340066 - Add serials tracking changes in PangoFontMap/PangoContext/PangoLayout
-- Automatically relayout PangoLayout if PangoContext has changed
+- 340066 - Add serials tracking changes in VogueFontMap/VogueContext/VogueLayout
+- Automatically relayout VogueLayout if VogueContext has changed
 - Fix rendering of rotated frames
 - 576156 - Remove Thai/Lao Prepend/Extend properties
 - Fix grapheme properties of joiner / nonjoiner
@@ -400,7 +400,7 @@ Overview of changes between 1.32.2 and 1.32.3
 Overview of changes between 1.32.1 and 1.32.2
 =============================================
 - 685021 - Fix load_fontset() for Win32 backend
-- pango-viewer: Flush cairo surface when done
+- vogue-viewer: Flush cairo surface when done
 - 687470 - Xft: Fix a deadlock on display close
 - Add missing colors from the web palette
 - Rename configure.in to configure.ac
@@ -408,12 +408,12 @@ Overview of changes between 1.32.1 and 1.32.2
 Overview of changes between 1.32.0 and 1.32.1
 =============================================
 - Fixup grapheme clusters
-- 684959 - crash after "Add pango_shape_full()"
+- 684959 - crash after "Add vogue_shape_full()"
 
 Overview of changes between 1.31.2 and 1.32.0
 =============================================
 - Add a --without-xfg configure option
-- Add pango_shape_full()
+- Add vogue_shape_full()
 
 Overview of changes between 1.31.1 and 1.31.2
 =============================================
@@ -423,16 +423,16 @@ Overview of changes between 1.31.1 and 1.31.2
 Overview of changes between 1.31.0 and 1.31.1
 =============================================
 - The module cache file can now be located in libdir
-- Initial work towards making pango thread-safe
+- Initial work towards making vogue thread-safe
 - Update to Unicode 6.1.
 - 682421 - Fix vertical text, gravity, etc, with HarfBuzz
 - 678721 - Don't need to get item properties...
 - 678997 - Colors aqua, silver and indigo missing...
 - 653347 - rise units documented incorrectly
 - 682952 - remove old glib check
-- Deprecate pango-ot.h.
-- Deprecate pango_fc_font_kern_glyphs
-- Deprecate pango_lookup_aliases
+- Deprecate vogue-ot.h.
+- Deprecate vogue_fc_font_kern_glyphs
+- Deprecate vogue_lookup_aliases
 
 Overview of changes between 1.30.1 and 1.31.0
 =============================================
@@ -441,8 +441,8 @@ Overview of changes between 1.30.1 and 1.31.0
   Tibetan and Thai shapers (replaced by harfbuzz)
 - Remove Indic module (replaced by harfbuzz)
 - Remove Atsui support (superseded by CoreText)
-- Remove PangoX
-- 679654 - Crash for PangoContext.list_families
+- Remove VogueX
+- 679654 - Crash for VogueContext.list_families
 - 680965 - missing language strings for ...
 - 681423 - introspection: assorted fixes...
 
@@ -471,14 +471,14 @@ Overview of changes between 1.29.4 and 1.29.5
 - Build fixes for ATSUI backend
 - Add more Chinese poetry
 - Fix ChanContext backtrack matching with GPOS
-- Bug 653985 - Pango 1.29.x make GTK3-demo.exe crashed in Windows
+- Bug 653985 - Vogue 1.29.x make GTK3-demo.exe crashed in Windows
 - Bug 635399 - Add C include and exported packages information to GIRs
-- Bug 658561 - Double free after calling Pango.Context.get_font_des...
-- Bug 656014 - Missing GIR annotation/wrapper for pango_layout_get_...
+- Bug 658561 - Double free after calling Vogue.Context.get_font_des...
+- Bug 656014 - Missing GIR annotation/wrapper for vogue_layout_get_...
 - Bug 654689 - Slightly broken Introspection build
 - Bug 403499 - Text Attribute Markup page does not describe charact...
-- Bug 650456 - Visual C++ 2010 Project Files to compile Pango
-- Bug 653985 - Pango 1.29.x make GTK3-demo.exe crashed in Windows
+- Bug 650456 - Visual C++ 2010 Project Files to compile Vogue
+- Bug 653985 - Vogue 1.29.x make GTK3-demo.exe crashed in Windows
 - Bug 661612 - Add deprecation attributes to deprecated functions
 
 Overview of changes between 1.29.1 and 1.29.3
@@ -509,14 +509,14 @@ Overview of changes between 1.28.1 and 1.28.2
 - Reduce DLL hijack risk and simplify code in basic-win32 module
 - Improve performance on Windows especially for non-Latin scripts
 - Bugs fixed:
-    Bug 628497 - Crash in pango_layout_line_get_extents at pango-layout.c
+    Bug 628497 - Crash in vogue_layout_line_get_extents at vogue-layout.c
     Bug 626966 - SIGFPE _hb_sanitize_array
     Bug 629632 - configure bug
-    Bug 625807 - approximate character width is 0 on pangoft2
+    Bug 625807 - approximate character width is 0 on vogueft2
 
 Overview of changes between 1.28.0 and 1.28.1
 =============================================
-- pango-view now accepts --margin
+- vogue-view now accepts --margin
 - Various HarfBuzz bug fixes
 - Build fixes
 - Bugs fixed:
@@ -532,8 +532,8 @@ Overview of changes between 1.27.1 and 1.28.0
 - Misc bug fixes
 - Bugs fixed:
     Bug 611033 - Layout using ATSUI fontmap treats absolute font sizes a...
-    Bug 605655 - Pango 1.26.2 introduces kerning bug
-    Bug 611229 - Pango reads from uninitialized memory
+    Bug 605655 - Vogue 1.26.2 introduces kerning bug
+    Bug 611229 - Vogue reads from uninitialized memory
     Bug 594101 - [Indic] needed character class data updates to support unicode 5.1
     Bug 345066 - backspace changes independent indic characters
     Bug 609326 - Complex script shaping failed in the FT2 backend on Windows
@@ -545,13 +545,13 @@ Overview of changes between 1.26.2 and 1.27.1
 =============================================
 - Enable introspection again
 - Misc HarfBuzz bug fixes
-- Improve PangoLayout line breaking
+- Improve VogueLayout line breaking
 - Revert usage of CoreText in ATSUI backend
 - Fix FT_Face finalizer call
 - Bugs fixed:
-    Bug 593240 - (pangoosx) Crash / infinite loop with Mac OS X
-    Bug 610183 - Pango doesn't compile with gcc 3.3.3
-    Bug 582697 - Add pango-view --pixels option
+    Bug 593240 - (vogueosx) Crash / infinite loop with Mac OS X
+    Bug 610183 - Vogue doesn't compile with gcc 3.3.3
+    Bug 582697 - Add vogue-view --pixels option
 
 Overview of changes between 1.26.1 and 1.26.2
 =============================================
@@ -569,10 +569,10 @@ Overview of changes between 1.26.0 and 1.26.1
 - Fix leak with non-mmapped fonts
 - Allow using uninstalled glib
 - Bugs fixed:
-    Bug 341481 - pangocairo kerning problem with nonidentity scaling
-    Bug 587768 - [patch] Don't build pango-view twice
+    Bug 341481 - voguecairo kerning problem with nonidentity scaling
+    Bug 587768 - [patch] Don't build vogue-view twice
     Bug 594101 - [Indic] character class data updates to support unicode 5.1
-    Bug 596837 - Typo in pango_cairo_show_layout documentation
+    Bug 596837 - Typo in vogue_cairo_show_layout documentation
 
 Overview of changes between 1.25.6 and 1.26.0
 =============================================
@@ -584,7 +584,7 @@ Overview of changes between 1.25.5 and 1.25.6
 =============================================
 - Fix a couple of array overflow bugs
 - Bugs fixed:
-    Bug 593240 - updating pango to latest git master makes things crash
+    Bug 593240 - updating vogue to latest git master makes things crash
     Bug 593231 - < c99 compiler dislikes ValueRecord
 
 Overview of changes between 1.25.4 and 1.25.5
@@ -613,21 +613,21 @@ Overview of changes between 1.25.2 and 1.25.3
 - Enforce -fno-exceptions better, should fix build issues for
   distros on x86-64.
 - Call mprotect() only when available.
-- New public API: pango_glyph_item_get_logical_widths()
-- Remove G_GNUC_PURE attr from pango_glyph_string_get_width()
+- New public API: vogue_glyph_item_get_logical_widths()
+- Remove G_GNUC_PURE attr from vogue_glyph_string_get_width()
 - Fix buffer corruption in HarfBuzz
 - Bugs fixed:
     Bug 591413 – needs to link with libstdc++
     Bug 591511 – hb-blob.c does not compile using mingw on windows
     Bug 591557 – [HB] crash scrolling the evolution message list
-    Bug 591576 – crashed with SIGSEGV at pango
+    Bug 591576 – crashed with SIGSEGV at vogue
     Bug 591465 – Gimp crashes upon opening the font selection dialog
 
 Overview of changes between 1.25.1 and 1.25.2
 =============================================
 - Tweak C++ compiler options.  If you get link errors with gcc on
   x86-64 about __gxx_personality_v0(), make sure your CXXFLAGS does
-  not have -fexceptions.  This will be fixed in Pango itself later.
+  not have -fexceptions.  This will be fixed in Vogue itself later.
 - Fix crasher with gzipped fonts.
     Bug 591409 – crash in firefox.  Handle non-mmapped FT_Face
 
@@ -640,10 +640,10 @@ Overview of changes between 1.24.5 and 1.25.1
 - Port to ATSUI backend to use CoreText instead of ATS
 - New public API:
 
-	pango_gravity_get_for_script_and_width()
+	vogue_gravity_get_for_script_and_width()
 
 - Misc bug fixes
-    Bug 590042 – pango-view.1 manpage should not be gzipped
+    Bug 590042 – vogue-view.1 manpage should not be gzipped
     Bug 410169 – gravity problem with Common chars
     Bug 589113 – Some characters rotated incorrectly in vertical text
     Bug 582851 -- Little fix for compiling with Cygwin
@@ -654,8 +654,8 @@ Overview of changes between 1.24.4 and 1.24.5
 - Build introspection again
 - Misc bug fixes
 	Bug 589133 – Firefox 3.5 complains about invalid weak references
-	Bug 585806 – crash during pango_fc_font_map_shutdown
-	Bug 588678 – pango crash: install a new theme from
+	Bug 585806 – crash during vogue_fc_font_map_shutdown
+	Bug 588678 – vogue crash: install a new theme from
 
 Overview of changes between 1.24.3 and 1.24.4
 =============================================
@@ -668,26 +668,26 @@ Overview of changes between 1.24.2 and 1.24.3
 - Misc bug fixes
     Bug 585337 – Fails to install: install: will not overwrite
     	just-created
-    Bug 585164 – 'man preload' shows man page for pango-view
+    Bug 585164 – 'man preload' shows man page for vogue-view
     Bug 584328 – Persian sample text is not good
-    Bug 583250 – pango_font_metrics_get_approximate_char_width is
+    Bug 583250 – vogue_font_metrics_get_approximate_char_width is
 	    wrong when LANG=fa_IR
 
 Overview of changes between 1.24.1 and 1.24.2
 =============================================
 - Misc bug fixes
-    Bug 580987 – SIGFPE in pango_glyph_string_index_to_x
+    Bug 580987 – SIGFPE in vogue_glyph_string_index_to_x
     Bug 580273 – Font metrics functions incorrectly listed as reporting
 	    point sizes
     Bug 579694 – Cygwin parallel-build patch
-    Bug 578944 – pango-1.24.1 fails its testsuite
+    Bug 578944 – vogue-1.24.1 fails its testsuite
     Bug 578935 – Syntax error (missing semicolon) in
-	    pango/pangowin32-fontmap.c
+	    vogue/voguewin32-fontmap.c
 
 Overview of changes between 1.24.0 and 1.24.1
 =============================================
 - Fix a couple of crashers
-- Fix minor pangofc API semantics breakage
+- Fix minor voguefc API semantics breakage
 - Better handle SFNT fonts in dfont containers
 - Improved docs
 - Improved Indic shaper for new Unicode 5.1 characters
@@ -696,18 +696,18 @@ Overview of changes between 1.24.0 and 1.24.1
 
     Bug 577952 – Error loading {GDEF,GSUB,GPOS} table 0x6EAD
     Bug 578336 – ABI breakage from 1.22 to 1.24 in fontmap field
-    	of PangoFcFont
+    	of VogueFcFont
     Bug 556132 – gnome-panel crashed with SIGSEGV in
     	g_cclosure_marshal_VOID__BOXED()
-    Bug 571291 – Unicode 5.1 support in pango - Indic Lanuages
-    Bug 576298 – Fails to link pango-view if --without-x is specified
+    Bug 571291 – Unicode 5.1 support in vogue - Indic Lanuages
+    Bug 576298 – Fails to link vogue-view if --without-x is specified
     	but cairo has X11 support
 
 Overview of changes between 1.23.0 and 1.24.0
 =============================================
-- pango-view improvements:
+- vogue-view improvements:
 
-  * pango-view -q now works without a X server.
+  * vogue-view -q now works without a X server.
 
   * Ability to save to PS, EPS, PDF, and SVG files.  Filetype is
     detected from output file extension.
@@ -716,34 +716,34 @@ Overview of changes between 1.23.0 and 1.24.0
 
   * Now installs a manual page, thanks to help2man.
 
-- PangoFc API changes:
+- VogueFc API changes:
 
-  * PangoFcFont now has a "fontmap" property that subclasses can use
+  * VogueFcFont now has a "fontmap" property that subclasses can use
     at construction time to setup the font->fontmap link.
 
   * New backend-public API:
 
-	pango_fc_font_map_find_decoder()
+	vogue_fc_font_map_find_decoder()
 
 - Misc optimizations
 - Build fixes
 - Misc bug fixes
 - Bugs fixed in this release:
-    Bug 547963 – man page for pango-view
-    Bug 502804 – pango-view or pangocairo-view option to annotate
-    Bug 502801 – per-backend pango-view options
-    Bug 502805 – pango-view option for foreground/background color
-    Red Hat Bug 490331 -  Crash of galeon in libpango
-    Bug 523166 – pango-view opens display even when invoked with -q
-    Bug 567160 – Share cmap cache between PangoFcFont's of the same face
+    Bug 547963 – man page for vogue-view
+    Bug 502804 – vogue-view or voguecairo-view option to annotate
+    Bug 502801 – per-backend vogue-view options
+    Bug 502805 – vogue-view option for foreground/background color
+    Red Hat Bug 490331 -  Crash of galeon in libvogue
+    Bug 523166 – vogue-view opens display even when invoked with -q
+    Bug 567160 – Share cmap cache between VogueFcFont's of the same face
     Red Hat Bug 487593 -  crash changing language in gdm
     Bug 572662 – Remove deprecated GTK+ symbols
     Bug 572529 – Poor -I ordering can break build
 
 Overview of changes between 1.22.4 and 1.23.0
 =============================================
-- Change the PangoFc font loading API to allow for lazy loading of fonts.
-- Add private PangoFcFontset that loads fallback fonts as needed.
+- Change the VogueFc font loading API to allow for lazy loading of fonts.
+- Add private VogueFcFontset that loads fallback fonts as needed.
 - Call FcFontMatch() and only if fallback fonts are needed call FcFontSort().
 - Optimize HarfBuzz number of malloc calls
 - Don't malloc megs of unused memory in HarfBuzz
@@ -765,34 +765,34 @@ Overview of changes between 1.22.4 and 1.23.0
 
 - Misc bug fixes
 - Bugs fixed in this release:
-	Bug 569763 – pango doesn't like font descriptions without family!
-	Bug 560792 – Make PangoLayoutLine with line->layout==NULL renderable
-	Bug 567392 – Abiword crashes in pango when opening document with
+	Bug 569763 – vogue doesn't like font descriptions without family!
+	Bug 560792 – Make VogueLayoutLine with line->layout==NULL renderable
+	Bug 567392 – Abiword crashes in vogue when opening document with
 		certain locales
-	Bug 566727 – PangoFontsetLazy
+	Bug 566727 – VogueFontsetLazy
 	Bug 567165 – Apply all pattern matrices
-	Bug 567934 – Add introspection support inside pango
+	Bug 567934 – Add introspection support inside vogue
 	Bug 549532 – Correction to the sample string for Hindi in
-		pango-language-sample-table.h
+		vogue-language-sample-table.h
 	Bug 566726 – Minor optimization
 	Bug 566941 – Add PANGO_ATTRIBUTE_INDEX_FROM_TEXT_BEGINNING and
 		PANGO_ATTRIBUTE_INDEX_TO_TEXT_END
-	Bug 551469 – Fold '@' to '-' when parsing PangoLanguages
+	Bug 551469 – Fold '@' to '-' when parsing VogueLanguages
 	Bug 328206 – Update/remove some old files
 	Bug 166709 – Handle font variants more consistently
-	Bug 166676 – pango_fc_font_map_finalize
-	Bug 164001 - pango-querymodules doesn't work uninstalled on win32
-	Bug 384362 – pango can't select some font styles
-	Bug 168085 – numeric styles in pango_font_description_to_string()
+	Bug 166676 – vogue_fc_font_map_finalize
+	Bug 164001 - vogue-querymodules doesn't work uninstalled on win32
+	Bug 384362 – vogue can't select some font styles
+	Bug 168085 – numeric styles in vogue_font_description_to_string()
 	Bug 529591 – Code related to malayalam is misplaced.
 		Patch from Rahul Bhalerao
 	Bug 515807 – Don't bind modules lazily
-	Bug 512662 – Update check.docs for pango-undeclared.txt
-	Bug 565644 – Maybe pango_font_descriptions_free is deprecated
+	Bug 512662 – Update check.docs for vogue-undeclared.txt
+	Bug 565644 – Maybe vogue_font_descriptions_free is deprecated
 	Bug 469049 – Fix all compiler warnings
-	Bug 565379 – pango_font_description_better_match some style attributes
+	Bug 565379 – vogue_font_description_better_match some style attributes
 		of old_match are not checked
-	Bug 564877 – pango-engine.h: PANGO_MODULE_PREFIX and G_MODULE_EXPORT
+	Bug 564877 – vogue-engine.h: PANGO_MODULE_PREFIX and G_MODULE_EXPORT
 
 Overview of changes between 1.22.3 and 1.22.4
 =============================================
@@ -800,17 +800,17 @@ Overview of changes between 1.22.3 and 1.22.4
 - Improved docs
 - Bugs fixed in this release:
 	Bug 564644 – Not complete description of the
-		pango_font_description_better_match function
+		vogue_font_description_better_match function
 	Bug 563898 – Generated output is not deterministic
-	Bug 563803 – pango_renderer_finalize fails to call parent finalize
+	Bug 563803 – vogue_renderer_finalize fails to call parent finalize
 	Bug 499626 – Space should be optional after comma in
-		PangoFontDescription input string
-	Bug 499624 – Spaces around commas in PangoFontDescription family name
+		VogueFontDescription input string
+	Bug 499624 – Spaces around commas in VogueFontDescription family name
 		should be trimmed
 	Bug 563557 – set g_get_prgname() in fc pattern
 	Bug 563356 – The input area of firefox and the blank width after text
-		in gnome-menu was stretched too wide, under pango-1.22.3
-	Bug 562574 – Pangocariowin32 is leaking every cairo font it ever
+		in gnome-menu was stretched too wide, under vogue-1.22.3
+	Bug 562574 – Voguecariowin32 is leaking every cairo font it ever
 		creates
 
 Overview of changes between 1.22.2 and 1.22.3
@@ -818,25 +818,25 @@ Overview of changes between 1.22.2 and 1.22.3
 - Minor bug fix with matrix operations
 - Fix build with older compilers
 - Bugs fixed in this release:
-	Bug 561779 – incorrect calculations in pango_matrix_concat
+	Bug 561779 – incorrect calculations in vogue_matrix_concat
 		implementation
-	Bug 560730 – pango 1.22.2 build failure on Solaris 10, too many array
-		initializers in pango-language.c
+	Bug 560730 – vogue 1.22.2 build failure on Solaris 10, too many array
+		initializers in vogue-language.c
 	Bug 561740 – Use stack allocation for thai_engine_break
 
 Overview of changes between 1.22.1 and 1.22.2
 =============================================
-- Fix crasher when a PangoFcFontMap was freed before its fonts.
-- Mark monospace fonts as monospace in the pangoatsui backend.
+- Fix crasher when a VogueFcFontMap was freed before its fonts.
+- Mark monospace fonts as monospace in the vogueatsui backend.
 - Fix font description parsing to better handle "normal".
 - Bugs fixed in this release:
 	Bug 558254 – Internal reference handling messed up
-	Bug 558107 – is_monospace always returns FALSE in pangoatsui
-	Bug 557620 – pango_font_description_from_string not correct
+	Bug 558107 – is_monospace always returns FALSE in vogueatsui
+	Bug 557620 – vogue_font_description_from_string not correct
 
 Overview of changes between 1.22.0 and 1.22.1
 =============================================
-- Fix crasher when freeing PangoLayoutIter's
+- Fix crasher when freeing VogueLayoutIter's
 - Fix loading of bogus OpenType anchor tables
 - Fix OpenType CursiveChain positioning
 - Misc bug fixes
@@ -845,8 +845,8 @@ Overview of changes between 1.22.0 and 1.22.1
 		characters
 	Bug 552107 – Small libtool fixes
 		Patch by Patryk Zawadzki
-	Bug 539623 – document that pango_color_parse accepts NULL
-	Bug 555219 – Memory leak when using pango_layout_iter_copy
+	Bug 539623 – document that vogue_color_parse accepts NULL
+	Bug 555219 – Memory leak when using vogue_layout_iter_copy
 		Patch from Falk Rohsiepe
 	Bug 553345 – Japanese pangram.
 		Patch from  Takeshi AIHANA
@@ -859,9 +859,9 @@ Overview of changes between 1.21.6 and 1.22.0
 - Misc bug fixes
 - Bugs fixed in this release:
 	Bug 552993 – Romanian pangram
-	Bug 551865 – Can't change justification of a PangoLayout after first
+	Bug 551865 – Can't change justification of a VogueLayout after first
 		draw
-	Bug 551416 - pangowin32-fontcache.c: argument is different type
+	Bug 551416 - voguewin32-fontcache.c: argument is different type
 
 Overview of changes between 1.21.5 and 1.21.6
 =============================================
@@ -870,7 +870,7 @@ Overview of changes between 1.21.5 and 1.21.6
 - Bugs fixed in this release:
 	Bug 550659 – configure.in ignores a win32 backend only scenario
 	Bug 549758 – Swedish font sample text could use punctuation
-	Bug 549522 – New pt_BR pangram for pango
+	Bug 549522 – New pt_BR pangram for vogue
 	Bug 549520 – fr sample string
 
 Overview of changes between 1.21.4 and 1.21.5
@@ -878,15 +878,15 @@ Overview of changes between 1.21.4 and 1.21.5
 - Make the reference the font->fontmap reference weak.  Previously all
   fontmaps had circular references to their fonts and back, making them
   leak instead of being freed upon finalization.  Now they all clean after
-  themselves.  There's a slight semantic change though, that a PangoFont does
+  themselves.  There's a slight semantic change though, that a VogueFont does
   not keep its fontmap alive anymore, so that's up to the user.  But then
   again, finalizing fontmaps is not a good idea to begin with.
 
-- Improve pango_language_get_sample_string() to add language sample texts that
+- Improve vogue_language_get_sample_string() to add language sample texts that
   are actually usable.  Compiled from a variety of sources.
-  See pango-language-sample-table.h.
+  See vogue-language-sample-table.h.
 
-- In pango_language_get_sample_string() use default language if provided
+- In vogue_language_get_sample_string() use default language if provided
   language is NULL.
 
 - Update OpenType language-system tags to OpenType 1.5 draft intersected with
@@ -895,29 +895,29 @@ Overview of changes between 1.21.4 and 1.21.5
 - New API additions:
 	Add a minor new public API:
 
-		pango_language_get_scripts()
+		vogue_language_get_scripts()
 	
-	This is what pango_language_includes_script() has been using
+	This is what vogue_language_includes_script() has been using
 	internally.  Previously one had to call that function over all
 	possible script values to determine which scripts a language
 	uses.  The new API makes that much easier.
 
 - Bugs fixed in this release:
-	Bug 549003 – pango_layout_set_height(): layout should not be cleared
+	Bug 549003 – vogue_layout_set_height(): layout should not be cleared
 		     unless required
-	Bug 143542 – PangoFT2Fontmap leak
+	Bug 143542 – VogueFT2Fontmap leak
 	Bug 314094 – Get rid of poutpourri default sample string
-	Bug 473806 – Improve pango_language_get_sample_string()
+	Bug 473806 – Improve vogue_language_get_sample_string()
 	Bug 473805 – Add API enumerating scripts for a language
 	Bug 470895 – Improve OpenType language tag list
-	Bug 547432 – Deprecation of pango_(backend)_font_map_create_context()
+	Bug 547432 – Deprecation of vogue_(backend)_font_map_create_context()
 		     not clean
 
 Overview of changes between 1.21.3 and 1.21.4
 =============================================
 - Use cairo_show_text_glyphs() if target cairo surface supports that.
-  This is done by adding a new PangoRenderer method, draw_glyph_item().
-  Custom PangoRenderer implementations that delegate to pango_cairo
+  This is done by adding a new VogueRenderer method, draw_glyph_item().
+  Custom VogueRenderer implementations that delegate to vogue_cairo
   may want to implement this method if they target PDF files.
 - Requires cairo >= 1.7.4 now
 - Win32 build improvements
@@ -927,67 +927,67 @@ Overview of changes between 1.21.3 and 1.21.4
 
 	New public API:
 
-		PangoRenderer::draw_glyph_item()
-		pango_renderer_draw_glyph_item()
+		VogueRenderer::draw_glyph_item()
+		vogue_renderer_draw_glyph_item()
 
 	Make layout and layout-line default renderers go through
 	draw_glyph_item(), which then by default falls back to
 	draw_glyphs().  The advantage in draw_glyph_item() is that it
 	has access to the text and cluster information.
 
-	New public API, for iterating a PangoGlyphItem:
+	New public API, for iterating a VogueGlyphItem:
 
-		PangoGlyphItemIter
+		VogueGlyphItemIter
 		PANGO_TYPE_GLYPH_ITEM_ITER
-		pango_glyph_item_iter_copy()
-		pango_glyph_item_iter_free()
-		pango_glyph_item_iter_init_start()
-		pango_glyph_item_iter_init_end()
-		pango_glyph_item_iter_next_cluster()
-		pango_glyph_item_iter_prev_cluster()
+		vogue_glyph_item_iter_copy()
+		vogue_glyph_item_iter_free()
+		vogue_glyph_item_iter_init_start()
+		vogue_glyph_item_iter_init_end()
+		vogue_glyph_item_iter_next_cluster()
+		vogue_glyph_item_iter_prev_cluster()
 
 	Make the following previously backend-only API public:
 
-		pango_context_new()
-		pango_context_set_font_map()
+		vogue_context_new()
+		vogue_context_set_font_map()
 
 	This also means that bindings are recommended to allow
-	instantiation of pango.Context.  This was discouraged before.
+	instantiation of vogue.Context.  This was discouraged before.
 
 	New public API:
 
-		pango_font_map_create_context()
+		vogue_font_map_create_context()
 
-	This is equivalent to pango_context_new() followed by an
-	immediate pango_context_set_font_map().  This change also
+	This is equivalent to vogue_context_new() followed by an
+	immediate vogue_context_set_font_map().  This change also
 	deprecates various per-fontmap-type context constructors:
 
-	Deprecate pango_cairo_font_map_create_context().
-	Deprecate pango_fc_font_map_create_context().
-	Deprecate pango_ft2_font_map_create_context().
-	Deprecate pango_win32_get_context().
-	Deprecate pango_xft_get_context().
-	Deprecate pango_x_get_context().
+	Deprecate vogue_cairo_font_map_create_context().
+	Deprecate vogue_fc_font_map_create_context().
+	Deprecate vogue_ft2_font_map_create_context().
+	Deprecate vogue_win32_get_context().
+	Deprecate vogue_xft_get_context().
+	Deprecate vogue_x_get_context().
 
 	Language bindings are encouraged to bind
-	pango.Fontmap.create_context() and remove the create_context()
+	vogue.Fontmap.create_context() and remove the create_context()
 	method from subclass implementations.
 
 
 - Bugs fixed in this release:
-	Bug 547303 – pango_layout_get_cursor_pos crashes on certain text
+	Bug 547303 – vogue_layout_get_cursor_pos crashes on certain text
 		buffers
 	Fedora Bug 457883 - Sindhi Characters are not supported in
-		pango [U+097B-U+097F]
+		vogue [U+097B-U+097F]
 		Patch from Pravin Satpute
 	Bug 441654 – prefix fails when more than one base characters (as
 		conjuncts) present after a half form the next prefix renders
 		incorrectly
 		Patch from  Rahul Bhalerao
-	Bug 546534 – pango_cairo_font_map_set_default(NULL) errs
-	Bug 431394 – Use pango_glyph_item_iter in more places
-	Bug 377948 – Make pango_glyph_item_iter public
-	Bug 472625 – Add draw_glyph_item() to PangoRenderer
+	Bug 546534 – vogue_cairo_font_map_set_default(NULL) errs
+	Bug 431394 – Use vogue_glyph_item_iter in more places
+	Bug 377948 – Make vogue_glyph_item_iter public
+	Bug 472625 – Add draw_glyph_item() to VogueRenderer
 	Bug 540592 – Crash in HB_GSUB_Apply_String with Linux-Libertine font
 	Bug 540036 – Doesn't link to fontconfig
 	Bug 380094 – Fix split matra rendering bug for Kannada language
@@ -998,11 +998,11 @@ Overview of changes between 1.21.2 and 1.21.3
 ==============================================
 - Various small fixes and improvements
 - Bugs fixed in this release:
-	Bug 538661 – Improve pango_cairo_context_update_context()
-	Bug 536190 – Make pango_fc_font_map_clear_cache() public?
-	Bug 537258 – Add a pango_language_to_string() function
-	Bug 537257 – pango_language_from_string(NULL) not happy
-	Bug 537186 – Make PangoFcFont pattern property readable
+	Bug 538661 – Improve vogue_cairo_context_update_context()
+	Bug 536190 – Make vogue_fc_font_map_clear_cache() public?
+	Bug 537258 – Add a vogue_language_to_string() function
+	Bug 537257 – vogue_language_from_string(NULL) not happy
+	Bug 537186 – Make VogueFcFont pattern property readable
 
 Overview of changes between 1.21.1 and 1.21.2
 ==============================================
@@ -1011,19 +1011,19 @@ Overview of changes between 1.21.1 and 1.21.2
 	Bug 510299 – OpenType font variants are broken with ATSUI/Cairo
 	Bug 436363 - Bold and Bold Italic style of MS-Mincho font are not
 		listed in GtkFontSelection
-	Bug 523193 – Vista Hebrew, CJK fonts to builtin win32 pango aliases
+	Bug 523193 – Vista Hebrew, CJK fonts to builtin win32 vogue aliases
 		Patch by Daniel Atallah.
 
 Overview of changes between 1.21.0 and 1.21.1
 ==============================================
-- Partial work to make pango_break() exactly follow Unicode TR#14 and TR#29.
+- Partial work to make vogue_break() exactly follow Unicode TR#14 and TR#29.
   The Grapheme Boundaries and Word Boundaries now work.  For word boundaries,
-  a new member was added to PangoLogAttr.  Sentence Boundaries and Line Breaks
+  a new member was added to VogueLogAttr.  Sentence Boundaries and Line Breaks
   to follow in the next release.
 - Err if no cairo font backends found
 - Misc bug fixes
 - New public API:
-	Add new PangoLogAttr member is_word_boundary, that implements UAX#29's
+	Add new VogueLogAttr member is_word_boundary, that implements UAX#29's
 	Word Boundaries semantics.  The is_word_start and is_word_end members
 	will change implementation later on to be consitent with the word
 	boundaries.
@@ -1032,8 +1032,8 @@ Overview of changes between 1.21.0 and 1.21.1
 	Bug 531242 – Leak when calculating win32 font coverage
 		Patch from Daniel Atallah
 	Bug 530757 – Docs build breaks because of hash sign in URL in <ulink...>
-	Bug 530685 – Pango no longer using cairo as a backend as of pango 1.19.4
-	Part of Bug 97545 – Make pango_default_break follow Unicode TR #29
+	Bug 530685 – Vogue no longer using cairo as a backend as of vogue 1.19.4
+	Part of Bug 97545 – Make vogue_default_break follow Unicode TR #29
 
 Overview of changes between 1.20.2 and 1.21.0
 ==============================================
@@ -1042,28 +1042,28 @@ Overview of changes between 1.20.2 and 1.21.0
 - Add a section in the docs for bidirectional text.
 - Improved hex-box rendering in the cairo backend.
 - Add some aliases for <span> tag attributes.
-- Preserve current-point around pango_cairo_* functions.
+- Preserve current-point around vogue_cairo_* functions.
 - New public API:
-	pango_attr_type_get_name()
-	enum PangoBidiType;
-	pango_bidi_type_get_type()
-	pango_bidi_type_for_unichar()
-	pango_layout_get_baseline()
-	pango_cairo_create_context()
-	pango_cairo_font_map_set_default()
+	vogue_attr_type_get_name()
+	enum VogueBidiType;
+	vogue_bidi_type_get_type()
+	vogue_bidi_type_for_unichar()
+	vogue_layout_get_baseline()
+	vogue_cairo_create_context()
+	vogue_cairo_font_map_set_default()
 
 - Bugs fixed in this release:
 	Bug 515432 – Add function to get bidirectional character type of a
 		unicode character
 		Patch from Jürg Billeter
-	Bug 517119 – Add pango_cairo_create_context()
-	Bug 404416 – pango_layout_get_baseline or something
+	Bug 517119 – Add vogue_cairo_create_context()
+	Bug 404416 – vogue_layout_get_baseline or something
 	Bug 474706 – cairo hexbox looks ugly
 	Bug 490669 – add some <span> attribute aliases
-	Bug 501334 – Make pango_cairo_[show_]*[_path]() functions preserve
+	Bug 501334 – Make vogue_cairo_[show_]*[_path]() functions preserve
 		current point
-	Bug 514617 – Add pango_cairo_font_map_set_default()
-	Bug 511183 – Add pango_attr_type_get_name()
+	Bug 514617 – Add vogue_cairo_font_map_set_default()
+	Bug 511183 – Add vogue_attr_type_get_name()
 
 Overview of changes between 1.20.1 and 1.20.2
 ==============================================
@@ -1072,7 +1072,7 @@ Overview of changes between 1.20.1 and 1.20.2
 Overview of changes between 1.20.0 and 1.20.1
 ==============================================
 - Update to Unicode Character Databse 5.1.0.  This adds new entries to
-  the PangoScript enum.  Requires glib >= 2.16.3 for the update Unicode
+  the VogueScript enum.  Requires glib >= 2.16.3 for the update Unicode
   data there, but not bumping the requirement in a stable point release.
 - Try making our OS X stuff compile with latest cairo 1.5.x snapshots
   that renamed cairo-atsui to cairo-quartz-font, as well as older versions.
@@ -1088,18 +1088,18 @@ Overview of changes between 1.19.4 and 1.20.0
 Overview of changes between 1.19.3 and 1.19.4
 ==============================================
 - Make Win32 backend be able to use Type1 fonts
-- Fixed blocker bug with pango_layout_set_height() and positive height.
+- Fixed blocker bug with vogue_layout_set_height() and positive height.
 - Fixed small leak in ATSUI backend.
 - Improved docs.
 - Bugs fixed in this release:
-	Bug 511172 – pango_layout_set_height() with positive height always
+	Bug 511172 – vogue_layout_set_height() with positive height always
 		shows at least two lines
 	Bug 515484 – Uniscribe interface handles surrogate
 		pairs incorrectly
-	Bug 515484 – Pango on Windows is missing Type 1
+	Bug 515484 – Vogue on Windows is missing Type 1
 		font support
 		Patch from Adrian Johnson.
-	Bug 517083 – pango modules: wrong fallback adding code?
+	Bug 517083 – vogue modules: wrong fallback adding code?
 	Bug 515484 – Variable is initialized twice
 	Bug 504810 – Samvruthokaram (combination of U+0D41 and U+0D4D) is not
 		rendered correctly
@@ -1111,11 +1111,11 @@ Overview of changes between 1.19.3 and 1.19.4
 
 Overview of changes between 1.19.2 and 1.19.3
 ==============================================
-- pango_layout_get_pixel_extents() and pango_layout_line_get_pixel_extents()
+- vogue_layout_get_pixel_extents() and vogue_layout_line_get_pixel_extents()
   now round extents to pixels inclusively.  That is, pass both ink_rect and
-  logical_rect as first argument to pango_extents_to_pixels().
+  logical_rect as first argument to vogue_extents_to_pixels().
 
-- Rename pango_extents_to_pixels() function arguments from @ink_rect and
+- Rename vogue_extents_to_pixels() function arguments from @ink_rect and
   @logical_rect to @inclusive and @nearest.  Given that this API is a
   fairly new addition and not commonly used, language bindings are
   encouraged to update their argument names accordingly.  Moreover, they
@@ -1124,14 +1124,14 @@ Overview of changes between 1.19.2 and 1.19.3
   similar conventions that best reflect their native language.
 
 - HarfBuzz was relicensed to a more generous and simpler license.
-  Adapt.  See pango/opentype/COPYING for the new license which is
+  Adapt.  See vogue/opentype/COPYING for the new license which is
   LGPL-compatible.
 
 - New public API:
 
-	pango_layout_set_height()
+	vogue_layout_set_height()
 
-  This sets the height to which the #PangoLayout should be ellipsized at.
+  This sets the height to which the #VogueLayout should be ellipsized at.
   There are two different behaviors, based on whether @height is positive or
   negative.
 
@@ -1155,7 +1155,7 @@ Overview of changes between 1.19.2 and 1.19.3
   be fixed before 1.20), and bug 511171 (which will be fixed in a future
   version).
 
-- New command-line arguments to pango-view: --height and --single-par.
+- New command-line arguments to vogue-view: --height and --single-par.
 
 - Make the following symbols available to engines:
 
@@ -1165,26 +1165,26 @@ Overview of changes between 1.19.2 and 1.19.3
 	PANGO_OT_RULESET
 	PANGO_TYPE_OT_INFO
 	PANGO_TYPE_OT_RULESET
-	pango_ot_info_get_type
-	pango_ot_ruleset_get_type
+	vogue_ot_info_get_type
+	vogue_ot_ruleset_get_type
 
 - Bugs fixed in this release:
-	Bug 508002 – change pango_layout_pixel_extents() to round logical rect
+	Bug 508002 – change vogue_layout_pixel_extents() to round logical rect
 		to be inclusive
-	Bug 469313 – Add pango_layout_set_height()
-	Bug 508179 – PangoGlyphUnit confusion
+	Bug 469313 – Add vogue_layout_set_height()
+	Bug 508179 – VogueGlyphUnit confusion
 	Bug 508381 – indent and center alignment don't mix
-	Bug 508007 – Add option for single-paragraph mode to pango-view
-	Bug 506284 – docs typo for pango_coverage_unref
+	Bug 508007 – Add option for single-paragraph mode to vogue-view
+	Bug 506284 – docs typo for vogue_coverage_unref
 		Patch from Christian Persch
 	Bug 504802 – build failure: No rule to make target
-		`pango-querymodules.1', needed by `all-am'. Stop.
-	Bug 504585 – pango-querymodules.1 syntax error
-	Red Hat Bug 426178: gtkdoc-scan fails on pango
+		`vogue-querymodules.1', needed by `all-am'. Stop.
+	Bug 504585 – vogue-querymodules.1 syntax error
+	Red Hat Bug 426178: gtkdoc-scan fails on vogue
 
 Overview of changes between 1.19.1 and 1.19.2
 ==============================================
-- Render a crossed box for each invalid input byte to pango_layout_set_text().
+- Render a crossed box for each invalid input byte to vogue_layout_set_text().
   Previously we rendered an ASCII question mark instead.  The crossed box has
   a glyph of value of PANGO_GLYPH_INVALID_INPUT.
 - Use pkg-config to detect cairo features [Benjamin Otte]
@@ -1194,8 +1194,8 @@ Overview of changes between 1.19.1 and 1.19.2
 	PANGO_GLYPH_INVALID_INPUT
 
 - Bugs fixed in this release:
-	Bug 502926 – pango-1.16.4 configure bug: can fail to accept cairo
-	Bug 399573 – replace strtoul in pango-markup.c with pango_scan_int()
+	Bug 502926 – vogue-1.16.4 configure bug: can fail to accept cairo
+	Bug 399573 – replace strtoul in vogue-markup.c with vogue_scan_int()
 	Bug 478914 – Use something invalid instead of '?' when validating
 		input text
 	Bug 501938 – Arabic shaping broken with vertical layout with
@@ -1206,18 +1206,18 @@ Overview of changes between 1.19.1 and 1.19.2
 Overview of changes between 1.19.0 and 1.19.1
 ==============================================
 - Various cleanup in the HarfBuzz code and merging with upstream/Qt changes.
-- Built-in pango.aliases file for Win32 default aliases.
+- Built-in vogue.aliases file for Win32 default aliases.
 - Document cairo examples and misc documentation improvements.
 - Bugs fixed in this release:
 	Bug 485536 – underline_position can be zero
-	Bug 500549 – pangocairo.h should include pango.h and cairo.h
+	Bug 500549 – voguecairo.h should include vogue.h and cairo.h
 	Bug 492517 – Built-in default aliases file
-	Bug 495091 – pango-utils.c:variable is declared at middle of block
+	Bug 495091 – vogue-utils.c:variable is declared at middle of block
 
 Overview of changes between 1.18.3 and 1.19.0
 ==============================================
 - Update list of languages to that of fontconfig-2.4.91.
-- Various optimizations, making rendering the same Pango layout using
+- Various optimizations, making rendering the same Vogue layout using
   changing cairo matrices much faster.
 
 - Make sure all boxed type copy/free functions accept NULL as legitimate
@@ -1226,8 +1226,8 @@ Overview of changes between 1.18.3 and 1.19.0
 
 - Apply 'vkrn' GPOS feature in vertical writing.
 
-- In pangofc, set "pangoversion" in pattern passed to fontconfig,
-  such that font configuration can condition on being driven by Pango
+- In voguefc, set "vogueversion" in pattern passed to fontconfig,
+  such that font configuration can condition on being driven by Vogue
   or not.
 
 - Various optimizations and cleanups in the OpenType Layout engine,
@@ -1236,21 +1236,21 @@ Overview of changes between 1.18.3 and 1.19.0
 
 - Changed APIs:
 
-  * All PangoAttribute constructors are changed to initialize the
+  * All VogueAttribute constructors are changed to initialize the
     attribute to the range [0..MAXUINT].  The range was undefined
     previously.  All custom attribute constructors are recommended
-    to call the new pango_attribute_init() to do the same.
+    to call the new vogue_attribute_init() to do the same.
 
   * Public API chance: Mark the following types as abstract:
 
-	PangoFont
-	PangoFontFace
-	PangoFontFamily
-	PangoFontMap
-	PangoFcFont
-	PangoFcFontMap
+	VogueFont
+	VogueFontFace
+	VogueFontFamily
+	VogueFontMap
+	VogueFcFont
+	VogueFcFontMap
 
-    PangoContext may be marked so in the future too.
+    VogueContext may be marked so in the future too.
 
   * Make following macros public.  Previously they were only
     defined for backend/engine implementations.
@@ -1264,37 +1264,37 @@ Overview of changes between 1.18.3 and 1.19.0
 	
   * Convenience for initializing custom attributes:
 
-	pango_attribute_init()
+	vogue_attribute_init()
 
-  * Adding boxed type for PangoGlyphItem:
+  * Adding boxed type for VogueGlyphItem:
 
 	PANGO_TYPE_GLYPH_ITEM
-	pango_glyph_item_copy()
-	pango_glyph_item_get_type()
+	vogue_glyph_item_copy()
+	vogue_glyph_item_get_type()
 
   * Add missing copy function for a boxed type in C:
 
-	pango_layout_iter_copy()
+	vogue_layout_iter_copy()
 
   * Add missing getter:
 
-	pango_layout_iter_get_layout()
+	vogue_layout_iter_get_layout()
 
-  * Convenience for writing custom PangoRenderer's:
+  * Convenience for writing custom VogueRenderer's:
 
-	pango_renderer_get_layout()
-	pango_renderer_get_layout_line()
+	vogue_renderer_get_layout()
+	vogue_renderer_get_layout_line()
 
-  * PangoFc extensions to fontconfig's pattern syntax:
+  * VogueFc extensions to fontconfig's pattern syntax:
 
 	PANGO_FC_GRAVITY
 	PANGO_FC_VERSION
 
 
 - Bugs fixed in this release:
-	Bug 490661 – Pango Markup: Link to font_desc syntax explanation
+	Bug 490661 – Vogue Markup: Link to font_desc syntax explanation
 		Based on patch from Chris Toshok
-	Bug 489909 – pango_cairo_update_context() should ignore matrix
+	Bug 489909 – vogue_cairo_update_context() should ignore matrix
 		translation
 	Bug 488840 – harfbuzz: protect against ligid overflow
 	Bug 486932 – Apply vkrn GPOS feature in vertical writing
@@ -1304,15 +1304,15 @@ Overview of changes between 1.18.3 and 1.19.0
 	Bug 485559 – Boston Summit HarfBuzz optimizations
 	Bug 481537 – compiler warning fixes
 		Patch from Kjartan Maraas
-	Bug 478865 – Drastically reduce number of PangoFont objects created
+	Bug 478865 – Drastically reduce number of VogueFont objects created
 		for rotating text
 	Bug 472924 – Mark some classes abstract
-	Bug 472629 – Add pango_renderer_get_layout(_line)
+	Bug 472629 – Add vogue_renderer_get_layout(_line)
 	Bug 472303 – Make PANGO_GLYPH_EMPTY and PANGO_GLYPH_UNKNOWN_FLAG public
-	Bug 471601 – Pass pango version information to fontconfig
-	Bug 471577 – GBoxed GType for PangoGlyphItem
-	Bug 471571 – Add pango_layout_iter_get_layout()
-	Bug 471568 – Optimizations in _pango_cairo_update_context()
+	Bug 471601 – Pass vogue version information to fontconfig
+	Bug 471577 – GBoxed GType for VogueGlyphItem
+	Bug 471571 – Add vogue_layout_iter_get_layout()
+	Bug 471568 – Optimizations in _vogue_cairo_update_context()
 	Bug 469641 – Initialize attribute start/end to [0..MAXUINT]
 
 
@@ -1323,7 +1323,7 @@ Overview of changes between 1.18.2 and 1.18.3
 - Fix minor leak in win32 backend.
 - Bugs fixed in this release:
 	Bug 483600 – Leak of font family name in
-	pango_win32_font_description_from_logfont(w)
+	vogue_win32_font_description_from_logfont(w)
 	Patch from Daniel Atallah
 
 Overview of changes between 1.18.1 and 1.18.2
@@ -1331,8 +1331,8 @@ Overview of changes between 1.18.1 and 1.18.2
 - Require libthai >= 0.1.9 for enabling thai-lang module
 - Misc bug fixes
 - Bugs fixed in this release:
-	Bug 474708 – pangocairo leaks memory
-	Bug 472891 – Bad consistency check in pango_get_log_attrs
+	Bug 474708 – voguecairo leaks memory
+	Bug 472891 – Bad consistency check in vogue_get_log_attrs
 		Patch from Mathias Hasselmann
 	Bug 302952 – The placement of a diacritic marks for an arabic ligature
 		is not correct
@@ -1345,13 +1345,13 @@ Overview of changes between 1.18.0 and 1.18.1
 - Bugs fixed in this release:
 	Bug 470042 – missing Macedonian OT tag
 		Patch from Denis Jacquerye
-	Bug 468953 – pango-renderer.c: using function without prototype
+	Bug 468953 – vogue-renderer.c: using function without prototype
 	Bug 463430 – Gets stuck while "formatting message"
 
 Overview of changes between 1.17.5 and 1.18.0
 ==============================================
-- Make pango_script_for_unichar() just call g_unichar_get_script(),
-  and document that PangoScript and GUnicodeScript are interchangeable
+- Make vogue_script_for_unichar() just call g_unichar_get_script(),
+  and document that VogueScript and GUnicodeScript are interchangeable
   enumerations.
 
 - Misc bug fixes
@@ -1360,82 +1360,82 @@ Overview of changes between 1.17.5 and 1.18.0
 	Bug 348348 – Add a way to get the script name of a gunichar
 	Bug 451682 – Cursor positioning for Sinhala is broken
 		Based on patch from Harshula
-	Bug 462137 – memory corruption in pango_default_break
+	Bug 462137 – memory corruption in vogue_default_break
 	Bug 462420 – Clicking on pixbuf should move the cursor to the position
 		nearest to the click point
-	Bug 462630 – pango_cairo_context_set_font_options() and some others
+	Bug 462630 – vogue_cairo_context_set_font_options() and some others
 		don't have a Since: tag
-	Bug 464183 – Minimum tab width enforcement in pango-layout breaks
+	Bug 464183 – Minimum tab width enforcement in vogue-layout breaks
 		TabArray positions
 		Patch by David Trowbridge
 	Bug 464270 – ellipsize doesn't work consistent
 	Bug 465174 – TextView is ignoring multiple consecutive \t's
-	Bug 466755 – pango hangul is crashing in gnome-about because it is
+	Bug 466755 – vogue hangul is crashing in gnome-about because it is
 		failing to retrieve a font.
 	Bug 467056 – Shape attribute handling is not consistent
 	Bug 467077 – Remove special-case for shape attribute in
-		pango_layout_line_index_to_x()
+		vogue_layout_line_index_to_x()
 
 Overview of changes between 1.17.4 and 1.17.5
 ==============================================
-- Export PangoCairoFont and cleanup various standard macros.
+- Export VogueCairoFont and cleanup various standard macros.
 
 - Bugs fixed in this release:
 	Bug 150883 – Unicode LRO defect
 	Bug 449482 – Build error when xft not present
-	Part of Bug 347236 – provide pango_cairo_font_get_scaled_font
+	Part of Bug 347236 – provide vogue_cairo_font_get_scaled_font
 
 Overview of changes between 1.17.3 and 1.17.4
 ==============================================
-- Refactored the ATSUI font backend and install pangoatsui.h
-  that has a single function pango_atsui_font_get_atsu_font_id() and
+- Refactored the ATSUI font backend and install vogueatsui.h
+  that has a single function vogue_atsui_font_get_atsu_font_id() and
   a couple of types.
 
 - Bugs fixed in this release:
 	Bug 451547 – FAIL: runtests.sh
-	Bug 449543 - Ship pangoatsui.h
+	Bug 449543 - Ship vogueatsui.h
 
 Overview of changes between 1.17.2 and 1.17.3
 ==============================================
-- Extensive pangocairo internal code refactoring and cleanup
+- Extensive voguecairo internal code refactoring and cleanup
 
 - New public API:
 
-	pango_font_face_is_synthesized()
+	vogue_font_face_is_synthesized()
 
-	pango_cairo_font_get_scaled_font()
-	pango_cairo_font_map_new_for_font_type()
-	pango_cairo_font_map_get_font_type()
+	vogue_cairo_font_get_scaled_font()
+	vogue_cairo_font_map_new_for_font_type()
+	vogue_cairo_font_map_get_font_type()
 
 - New engine macros:
 	
 	PANGO_OT_TAG_MAKE()
 	PANGO_OT_TAG_MAKE_FROM_STRING()
 
-- New PangoFontFace method is_synthesized.
+- New VogueFontFace method is_synthesized.
 
 - Misc bug fixes
 - Bugs fixed in this release:
 	Bug 337593 – move glyph extents code (and cache) from
-		pangocairo-*font.c into pangocairo-font.c
-	Bug 347235 – Add pango_cairo_font_map_get_font_type
-	Bug 347236 – provide pango_cairo_font_get_scaled_font
-	Bug 353291 – Provide pango_cairo_font_map_new_for_font_type
+		voguecairo-*font.c into voguecairo-font.c
+	Bug 347235 – Add vogue_cairo_font_map_get_font_type
+	Bug 347236 – provide vogue_cairo_font_get_scaled_font
+	Bug 353291 – Provide vogue_cairo_font_map_new_for_font_type
 	Bug 438801 – underline should add "error" type.
-	Bug 440588 – Add pango_font_face_is_synthesized()
-	Bug 445832 – pango_cairo_update_layout() always invalidates layout
-	Bug 446018 – Bus error in the pango_ot_tag_from_language()
-	Bug 446355 – the parsing with pango_parse_markup is not coherent
-	Bug 447189 – fonts.c: pango_font_face_is_synthesized returns NULL
+	Bug 440588 – Add vogue_font_face_is_synthesized()
+	Bug 445832 – vogue_cairo_update_layout() always invalidates layout
+	Bug 446018 – Bus error in the vogue_ot_tag_from_language()
+	Bug 446355 – the parsing with vogue_parse_markup is not coherent
+	Bug 447189 – fonts.c: vogue_font_face_is_synthesized returns NULL
 	Bug 447568 – improve docs on what absolute size means
-	Bug 448342 – pango_layout_index_to_line_x() counts lines from 1
+	Bug 448342 – vogue_layout_index_to_line_x() counts lines from 1
 
 Overview of changes between 1.17.1 and 1.17.2
 ==============================================
-- Rename recently added pango_ot_ruleset_get_for() to
-  pango_ot_ruleset_get_for_description().
+- Rename recently added vogue_ot_ruleset_get_for() to
+  vogue_ot_ruleset_get_for_description().
 
-- New engine API: pango_ot_ruleset_new_from_description().
+- New engine API: vogue_ot_ruleset_new_from_description().
 
 - Treat Unknown script like Common and other non-"real" scripts.
   [Martin Hosken]
@@ -1459,19 +1459,19 @@ Overview of changes between 1.17.0 and 1.17.1
 
 - Fixed font metrics returned by the ATSUI backend. [Richard Hult]
 
-- Make itemization use pango_language_get_default() if context has no
-  language set on it.  Ditto for pango_context_get_metrics() if both
+- Make itemization use vogue_language_get_default() if context has no
+  language set on it.  Ditto for vogue_context_get_metrics() if both
   input language and context language are NULL.
 
 - Improved documentation on vertical text, also added stability note
-  to those parts of Pango API that are not indefinitely stable (shaper
+  to those parts of Vogue API that are not indefinitely stable (shaper
   and language engine APIs).
 
 - Misc bug fixes.
 
 - New OpenType engine API:
 
-	pango_ot_ruleset_get_feature_count()
+	vogue_ot_ruleset_get_feature_count()
 
 - Bugs fixed in this release:
 
@@ -1481,7 +1481,7 @@ Overview of changes between 1.17.0 and 1.17.1
 	Bug 433805 - [Atsui] Approximate char/digit width width often 0
 	Bug 436699 – N'Ko support
 	Bug 438705 – Test runs non-existent "/bin/bash" on HP-UX 11.11
-	Bug 438814 – synaptic crash with pango 1.17.0
+	Bug 438814 – synaptic crash with vogue 1.17.0
 	Bug 440603 – Minor ABI change
 
 Overview of changes between 1.16.4 and 1.17.0
@@ -1494,17 +1494,17 @@ General:
   found, by adjust letter spacing.  [Based on patch by Mathias
   Hasselmann]
 
-- The pango_script_get_sample_language() function is modified to use
+- The vogue_script_get_sample_language() function is modified to use
   the value of environment variables PANGO_LANGUAGE or LANGUAGE
   (checked in that order) to make guess better languages for scripts.
   The env var should be a list of language tags, like "en:fa" for
-  example where in effect makes Pango choose Persian (fa) fonts
+  example where in effect makes Vogue choose Persian (fa) fonts
   instead of Arabic (ar) fonts when a run of text in the Arabic script
   is found in an otherwise non-Arabic layout.
 
   This trick is also useful for East Asian languages.  For example a
   Japanese user that cannot set her primary language to Japanese can
-  still set PANGO_LANGUAGE="ja" and Pango will map CJK characters to
+  still set PANGO_LANGUAGE="ja" and Vogue will map CJK characters to
   Japanese.
 
   The LANGUAGE env var is a standard gettext variable listing
@@ -1512,14 +1512,14 @@ General:
   However, since most packages don't provide separate English
   translations, setting LANGUAGE="en:ja" doesn't have the intended
   effect and UI messages will be shown in Japanese.  For these
-  situations one can use LANGUAGE="en:C:ja".  Pango skips the special
+  situations one can use LANGUAGE="en:C:ja".  Vogue skips the special
   language tag 'C'.
 
-- Simplified embedded-shape rendering with pangocairo backends do.
+- Simplified embedded-shape rendering with voguecairo backends do.
   [Richard Hult]
 
-- New header file: Moved PangoLanguage APIs into its own header
-  pango-language.h, which is included from pango-types.h.
+- New header file: Moved VogueLanguage APIs into its own header
+  vogue-language.h, which is included from vogue-types.h.
 
 - ATSUI backend now lists synthesized italic faces like other
 
@@ -1531,7 +1531,7 @@ OpenType Layout Engine Improvements:
   font supports them.
 
 - Instead of hardcoded OpenType script tag in each module, and using
-  Default Language System unconditionally, Pango will now find and use
+  Default Language System unconditionally, Vogue will now find and use
   the script/lang-sys pair that best matches the detected script and
   language of a run of text.  Moreover, it also applies the OpenType
   'locl' feature.
@@ -1543,7 +1543,7 @@ OpenType Layout Engine Improvements:
   Only basic, arabic, and syriac modules updated to take advantage of
   the new support so far.
 
-New pango-view command line options:
+New vogue-view command line options:
 
 	--align
 	--justify
@@ -1551,50 +1551,50 @@ New pango-view command line options:
 
 Public API Changes:
 
-- New public pangocairo API:
+- New public voguecairo API:
 
-	PangoCairoShapeRendererFunc
-	pango_cairo_context_set_shape_renderer() 
-	pango_cairo_context_get_shape_renderer() 
+	VogueCairoShapeRendererFunc
+	vogue_cairo_context_set_shape_renderer() 
+	vogue_cairo_context_get_shape_renderer() 
 
-  These are used by the default pangocairo renderer to render shape
-  attributes (see examples/cairoshape.c).  Cairo-based PangoRenderer
-  implementations outside Pango may want to implement the draw_shape()
+  These are used by the default voguecairo renderer to render shape
+  attributes (see examples/cairoshape.c).  Cairo-based VogueRenderer
+  implementations outside Vogue may want to implement the draw_shape()
   method similarly to provide compatibility with these new APIs.  (See
-  bug #437533 for GdkPangoRenderer for example.)
+  bug #437533 for GdkVogueRenderer for example.)
 
 - Other public API changes:
 
-	New is_expandable_space member in PangoLogAttr
+	New is_expandable_space member in VogueLogAttr
 	New macro PANGO_UNITS_ROUND()
 
-- New OpenType engine API.  These are engine API, for use by Pango
+- New OpenType engine API.  These are engine API, for use by Vogue
   modules, and typically need not to be bound by language bindings:
 
 	PANGO_OT_NO_FEATURE
 	PANGO_OT_NO_SCRIPT
 	PANGO_OT_TAG_DEFAULT_SCRIPT
 	PANGO_OT_TAG_DEFAULT_LANGUAGE
-	PangoOTFeatureMap
-	PangoOTRulesetDescription
-	pango_ot_ruleset_get_for()
-	pango_ot_ruleset_new_for()
-	pango_ot_ruleset_maybe_add_feature()
-	pango_ot_ruleset_maybe_add_features()
-	pango_ot_ruleset_description_hash()
-	pango_ot_ruleset_description_equal()
-	pango_ot_ruleset_description_copy()
-	pango_ot_ruleset_description_free()
-	pango_ot_tag_from_script()
-	pango_ot_tag_to_script()
-	pango_ot_tag_from_language()
-	pango_ot_tag_to_language()
+	VogueOTFeatureMap
+	VogueOTRulesetDescription
+	vogue_ot_ruleset_get_for()
+	vogue_ot_ruleset_new_for()
+	vogue_ot_ruleset_maybe_add_feature()
+	vogue_ot_ruleset_maybe_add_features()
+	vogue_ot_ruleset_description_hash()
+	vogue_ot_ruleset_description_equal()
+	vogue_ot_ruleset_description_copy()
+	vogue_ot_ruleset_description_free()
+	vogue_ot_tag_from_script()
+	vogue_ot_tag_to_script()
+	vogue_ot_tag_from_language()
+	vogue_ot_tag_to_language()
 
 - Bugs fixed in this release:
 
-	Bug 64538 – pango_layout_set_justify() doesn't work
-	Bug 325714 – Pango should respect $LANGUAGE
-	Bug 414264 – Pango vertical writing support is different with real
+	Bug 64538 – vogue_layout_set_justify() doesn't work
+	Bug 325714 – Vogue should respect $LANGUAGE
+	Bug 414264 – Vogue vertical writing support is different with real
 		     CJK usage.
 	Bug 416515 – Time is not aligned with date on vertical panel
 	Bug 429397 – Updated MS Mincho/Gothic are not listed in font dialog
@@ -1602,22 +1602,22 @@ Public API Changes:
 	Bug 433805 – [Atsui] Approximate char/digit width width often 0
 		     (worked around)
 	Bug 434160 - [atsui] Italic versions of some faces can't be created
-	Bug 435709 – pango_cairo_context_[sg]et_shape_renderer()
-	Bug 355789 – Pango misaligns word-wrapped text due to trailing
+	Bug 435709 – vogue_cairo_context_[sg]et_shape_renderer()
+	Bug 355789 – Vogue misaligns word-wrapped text due to trailing
 		     whitespace
-	Bug 436154 – Error building the pango.modules file while cross
+	Bug 436154 – Error building the vogue.modules file while cross
 		     compiling
-	Bug 436988 – Adding PangoScript to PangoAnalysis
-	Bug 437534 – pango_language_includes_script is buggy
+	Bug 436988 – Adding VogueScript to VogueAnalysis
+	Bug 437534 – vogue_language_includes_script is buggy
 
 Overview of changes between 1.16.3 and 1.16.4
 ==============================================
 - Add new configure option --disable-doc-cross-references and make
   sure releases are made using it.  Distributions are encouraged to
-  build with --enable-gtk-doc such that their Pango docs correctly
+  build with --enable-gtk-doc such that their Vogue docs correctly
   cross reference glib and cairo docs.
 - Bugs fixed in this release:
-	Bug 432991 – developer docs for libpango are broken
+	Bug 432991 – developer docs for libvogue are broken
 
 Overview of changes between 1.16.2 and 1.16.3
 ==============================================
@@ -1633,7 +1633,7 @@ Overview of changes between 1.16.1 and 1.16.2
 - Improved ATSUI backend
 - Misc build system fixes
 - Bugs fixed in this release:
-	Bug 417946 – pangowin32-fontmap.c:using function without prototype
+	Bug 417946 – voguewin32-fontmap.c:using function without prototype
 	Bug 419262 - Don't create coverage every time it's asked for
 
 Overview of changes between 1.16.0 and 1.16.1
@@ -1647,9 +1647,9 @@ Overview of changes between 1.16.0 and 1.16.1
 - Misc build system fixes
 - Bugs fixed in this release:
 	Bug 110521 – can't find bold and/or italic fonts on win32
-	Bug 120195 – there are some functions in pangowin32-fontmap.c that
+	Bug 120195 – there are some functions in voguewin32-fontmap.c that
 		might maybe should be static
-	Bug 407315 – Use wide character Win32 API in the pangowin32 code
+	Bug 407315 – Use wide character Win32 API in the voguewin32 code
 	Bug 412654 – SED variable undefined in the `libtool --config' output
 		used by configure
 	Bug 414297 – Fails to build with --enable-static
@@ -1675,9 +1675,9 @@ Overview of changes between 1.15.5 and 1.15.6
 - Fix possible crasher in win32 font selection [Owen Taylor]
 - Misc build fixes.
 - Bugs fixed in this release:
-	Bug 399738 – pango 1.15.5 won't compile on Mac OS X: 'FC_HINT_STYLE'
+	Bug 399738 – vogue 1.15.5 won't compile on Mac OS X: 'FC_HINT_STYLE'
 		undeclared (first use in this function)
-	Bug 404295 – Crash initializing pango-win32 fontmap
+	Bug 404295 – Crash initializing vogue-win32 fontmap
 
 Overview of changes between 1.15.4 and 1.15.5
 ==============================================
@@ -1685,7 +1685,7 @@ Overview of changes between 1.15.4 and 1.15.5
 - Respect FC_HINT_STYLE in the ft2 backend.  Patch has been in Fedora for ages.
 - Require automake 1.9
 Bugs fixed in this release:
-	Bug 398238 – pangorc file missing from tests directory
+	Bug 398238 – voguerc file missing from tests directory
 
 Overview of changes between 1.15.3 and 1.15.4
 ==============================================
@@ -1703,33 +1703,33 @@ Win32 Improvements:
 Code base cleanups:
 - Whitespace cleanups.  Hopefully patches still apply using patch -l
 - Replace C++-style // comments with C-style /* */ ones.
-- Move the pango-view tool from examples/ into pango-view/.  The examples/
+- Move the vogue-view tool from examples/ into vogue-view/.  The examples/
   dir is still available and for simple examples only.
 
 Public API changes:
 
-- New PangoLayout query functions:
+- New VogueLayout query functions:
 
-	pango_layout_is_wrapped()
-	pango_layout_is_ellipsized()
-	pango_layout_get_unknown_glyphs_count()
+	vogue_layout_is_wrapped()
+	vogue_layout_is_ellipsized()
+	vogue_layout_get_unknown_glyphs_count()
 
   The is_wrapped and is_ellipsized functions return whether the layout
   had to wrap/ellipsize any paragraphs, as opposed to the get_wrap and
   get_ellipsize that return the wrap/ellipsize mode set.
 
 - Misc new function:
-	pango_parse_enum()
+	vogue_parse_enum()
 
   This is more a convenience function for internal use, but set public
-  to go with other pango_parse_* functions.  Bindings should feel free
+  to go with other vogue_parse_* functions.  Bindings should feel free
   to ignore this.
 
 
 - New header files:
 
-  Moved gravity and matrix stuff into their own header files pango-gravity.h
-  and pango-matrix.h.  Both are included from pango-types.h.
+  Moved gravity and matrix stuff into their own header files vogue-gravity.h
+  and vogue-matrix.h.  Both are included from vogue-types.h.
 
 - Vertical text:
 
@@ -1740,7 +1740,7 @@ Public API changes:
 
   New enum type:
 
-	PangoGravityHint
+	VogueGravityHint
 
   New macro:
 
@@ -1748,29 +1748,29 @@ Public API changes:
 
   New public functions:
 
-	pango_attr_gravity_new()
-	pango_attr_gravity_hint_new()
-	pango_gravity_hint_get_type
-	pango_context_set_gravity_hint()
-	pango_context_get_gravity_hint()
-	pango_gravity_get_for_matrix()
-	pango_gravity_get_for_script()
+	vogue_attr_gravity_new()
+	vogue_attr_gravity_hint_new()
+	vogue_gravity_hint_get_type
+	vogue_context_set_gravity_hint()
+	vogue_context_get_gravity_hint()
+	vogue_gravity_get_for_matrix()
+	vogue_gravity_get_for_script()
 
   Removed:
-	pango_matrix_to_gravity()
+	vogue_matrix_to_gravity()
 
-  replaced by pango_gravity_get_for_matrix()
+  replaced by vogue_gravity_get_for_matrix()
   
   Gravity API added in previous releases:
 
-	PangoGravity
-        pango_gravity_get_type
-        pango_context_get_base_gravity
-        pango_context_get_gravity
-        pango_context_set_base_gravity
-	pango_font_description_get_gravity
-	pango_font_description_set_gravity
-	pango_gravity_to_rotation
+	VogueGravity
+        vogue_gravity_get_type
+        vogue_context_get_base_gravity
+        vogue_context_get_gravity
+        vogue_context_set_base_gravity
+	vogue_font_description_get_gravity
+	vogue_font_description_set_gravity
+	vogue_gravity_to_rotation
 
   A tip on using the vertical text support: If you just want to get correct
   behavior in rotated labels (say, vertical Chinese/Japanese, but rotated
@@ -1778,7 +1778,7 @@ Public API changes:
   PANGO_GRAVITY_AUTO.  You can do this for example
 
 	#if defined(PANGO_VERSION_CHECK) && PANGO_VERSION_CHECK(1,15,4)
-	  pango_context_set_gravity (context, PANGO_GRAVITY_AUTO);
+	  vogue_context_set_gravity (context, PANGO_GRAVITY_AUTO);
 	#endif
 
 Bugs fixed in this release:
@@ -1787,9 +1787,9 @@ Bugs fixed in this release:
 		     changes
 	Bug 328585 – Need to know if a layout has unknown glyphs
 		     Patch from LingNing Zhang
-	Bug 326693 – PangoLayouts should be query-able about their
+	Bug 326693 – VogueLayouts should be query-able about their
 		     effective properties (width / wrapped / ellipsized / etc)
-	Bug 397327 – pango-layout.c: 'pango_layout_is_ellipsized' must return
+	Bug 397327 – vogue-layout.c: 'vogue_layout_is_ellipsized' must return
 		     a value
 	Bug 323173 – Add layout of mixed direction text for vertical layout
 	Bug 394453 – Use -mms-bitfields
@@ -1803,35 +1803,35 @@ Overview of changes between 1.15.2 and 1.15.3
 - Build fixes
 - Don't introduce bitfields in public structs.  This changes some public API
   that was broken in the 1.15 series.  The new struct is backward compatible
-  with the older Pango series, but not with earlier 1.15.x devel releases.
+  with the older Vogue series, but not with earlier 1.15.x devel releases.
 
 - New Public API:
 
-  * PangoAnalysis.flags and PANGO_ANALYSIS_FLAGS_CENTERED_BASELINE.  These are
-    mostly only useful for the vertical text support in Pango, but language
-    bindings probably want to update their bindings for PangoAnalysis to
+  * VogueAnalysis.flags and PANGO_ANALYSIS_FLAGS_CENTERED_BASELINE.  These are
+    mostly only useful for the vertical text support in Vogue, but language
+    bindings probably want to update their bindings for VogueAnalysis to
     include these.
 
-  * New PangoMatrix methods:
+  * New VogueMatrix methods:
 
-	pango_matrix_transform_distance()
-	pango_matrix_transform_point()
-	pango_matrix_transform_rectangle()
-	pango_matrix_transform_pixel_rectangle()
+	vogue_matrix_transform_distance()
+	vogue_matrix_transform_point()
+	vogue_matrix_transform_rectangle()
+	vogue_matrix_transform_pixel_rectangle()
 
     The transform_rectangle methods are particularly useful when an
     app/toolkit wants to know the extents of a rotated layout in device
     coordinates.  It will be used by Gtk+ for example, and is used by the
-    pango-view tool too.  The _pixel_ variant takes a PangoRectangle in device
-    units instead of Pango units.
+    vogue-view tool too.  The _pixel_ variant takes a VogueRectangle in device
+    units instead of Vogue units.
 
   * Unit conversion helpers:
 
-	pango_units_from_double()
-	pango_units_to_double()
-	pango_extents_to_pixels()
+	vogue_units_from_double()
+	vogue_units_to_double()
+	vogue_extents_to_pixels()
 
-    The first two just convert between Pango units (fixed precision) and
+    The first two just convert between Vogue units (fixed precision) and
     double floating-point numbers.  The current implementations are as simple
     as "(int)floor (d * PANGO_SCALE + 0.5)" and "(double)i / PANGO_SCALE", but
     the idea is to have optimized versions of these that do not use the FPU in
@@ -1839,18 +1839,18 @@ Overview of changes between 1.15.2 and 1.15.3
     units.  Since the functionality can be generally useful, the API is made
     public.
 
-    The pango_extents_to_pixels() function in conjunction with
-    pango_matrix_transform_rectangle() makes it possible to convert extents to
+    The vogue_extents_to_pixels() function in conjunction with
+    vogue_matrix_transform_rectangle() makes it possible to convert extents to
     device space and round then, instead of having to transform rounded
     user-space extents.
 
 - Bugs fixed in this release:
-	Bug 351496 – PangoAnalysis::gravity breaks binary compatibility
+	Bug 351496 – VogueAnalysis::gravity breaks binary compatibility
 	Bug 388702 – Crash when there's no Hangul glyph in the font.
 	Bug 384543 – FcFontMatch misuse
 	Bug 392789 – vpath build fails in basic module
 		     Patch from J. Ali Harlow
-	Bug 390877 – Don't feed pango-features.h to glib-mkenums
+	Bug 390877 – Don't feed vogue-features.h to glib-mkenums
 		     Patch from Yevgen Muntyan
 
 
@@ -1863,13 +1863,13 @@ Overview of changes between 1.15.1 and 1.15.2
 
 * Optimizations:
   - Avoid some floating-point operations.  Should cut the number of float
-    ops per expose event in pangocairo to a half.
-  - Cache ink and logical extents for PangoLayout
+    ops per expose event in voguecairo to a half.
+  - Cache ink and logical extents for VogueLayout
 
 * New Public API:
 
-  - New, generated, public header file pango-features.h.  Included by
-    pango.h.  Currently contains the version information.  In the future,
+  - New, generated, public header file vogue-features.h.  Included by
+    vogue.h.  Currently contains the version information.  In the future,
     can be expanded to define which backends have been enabled, etc.
 
   - Public macros and functions for compile- and run-time version checking:
@@ -1881,26 +1881,26 @@ Overview of changes between 1.15.1 and 1.15.2
 	PANGO_VERSION
 	PANGO_VERSION_STRING
 	PANGO_VERSION_CHECK()
-	pango_version()
-	pango_version_string()
-	pango_version_check()
+	vogue_version()
+	vogue_version_string()
+	vogue_version_check()
 
     The scheme chosen here is a mixture of approaches taken by glib and cairo.
     The advantage over the glib model is that there are no public variables,
     but it still gives access to a string and numerical representation of the
     version number at compile- and run-time.
     
-    The macros enable conditional compilation of code depending on newer Pango
+    The macros enable conditional compilation of code depending on newer Vogue
     APIs, while the runtime functions allow refusing to run against old
     versions of the library.
 
   - New, readonly, version of methods that give read/write access to the
-    internals of PangoLayout:
+    internals of VogueLayout:
 
-	pango_layout_get_line_readonly()
-	pango_layout_get_lines_readonly()
-	pango_layout_iter_get_line_readonly()
-	pango_layout_iter_get_run_readonly()
+	vogue_layout_get_line_readonly()
+	vogue_layout_get_lines_readonly()
+	vogue_layout_iter_get_line_readonly()
+	vogue_layout_iter_get_run_readonly()
 
     These should be used when you do not intend to modify the run/line,
     which is most of the time the case.  The only exception known to me
@@ -1912,32 +1912,32 @@ Overview of changes between 1.15.1 and 1.15.2
     xmlroff, GtkMathView, Conglomerate, Dia, Anjuta, wxWindows, The Gimp, 
     and various other applications/libraries:
 
-      http://www.google.com/codesearch?hl=en&q=+pango_layout_(iter_)%3Fget_(lines%3F%7Crun)%5B%5E_%5D&start=50&sa=N
+      http://www.google.com/codesearch?hl=en&q=+vogue_layout_(iter_)%3Fget_(lines%3F%7Crun)%5B%5E_%5D&start=50&sa=N
 
-    Worth noting here is that, many uses of pango_layout_get_lines() can be
-    replaced by a pango_layout_get_iter() that works both more elegantly and
+    Worth noting here is that, many uses of vogue_layout_get_lines() can be
+    replaced by a vogue_layout_get_iter() that works both more elegantly and
     more efficiently.  The versioning macros introduced in this release can be
     used to make code use these new symbols without breaking compilation
-    against older Pango (though, such code compiled with the new Pango cannot
-    be run against an older Pango).
+    against older Vogue (though, such code compiled with the new Vogue cannot
+    be run against an older Vogue).
 
-  - pango_language_get_default(): Note that, this does not make Pango
+  - vogue_language_get_default(): Note that, this does not make Vogue
     fallback to the default language automatically (yet), but the user can
     use this function to set the default language of the locale on a context:
 
-	  pango_context_set_language (context, pango_language_get_default());
+	  vogue_context_set_language (context, vogue_language_get_default());
 
-    This essentially deprecates gtk_get_default_language().  The pango-view
+    This essentially deprecates gtk_get_default_language().  The vogue-view
     tool has been updated to use this feature, so it now respects $LANG when
     choosing fonts.
 
-  - pango_color_to_string().
+  - vogue_color_to_string().
 
 * Bugs fixed in this release:
 	Bug 326099 – Setting width, indentation and ellipsizing doesn't work
 		     as I would expect
 	Bug 385478 – Fix tests on OPD platform
-	Bug 319808 – Patch to let pango support artifical italic, bold and
+	Bug 319808 – Patch to let vogue support artifical italic, bold and
 		     bold italic styles for the fonts which don't have these styles.
 		     Patch from James Su
 	Bug 385321 – Worst case expansion for Sinhala
@@ -1945,7 +1945,7 @@ Overview of changes between 1.15.1 and 1.15.2
 	Red Hat Bug 211574: [hi/ml/si_LK] cursor naviation is wrong when
 		     using ZWJ (200d)
 		     Patch from LingNing Zhang
-	Red Hat Bug 216424: [te_IN] pango - consonant + dependent vowel (ai)
+	Red Hat Bug 216424: [te_IN] vogue - consonant + dependent vowel (ai)
 		     Composed char is not rendering properly
 		     Patch from LingNing Zhang
 	Bug 373856 – Wish: Function to convert a GdkColor to a string
@@ -1953,7 +1953,7 @@ Overview of changes between 1.15.1 and 1.15.2
 	Red Hat Bug 216850: Issue in combination with vowels (ml_IN)
 		     Patch from LingNing Zhang
 	Bug 382437 – tests/testboundaries fails
-	Bug 333982 – Fallback to $LANG whenever NULL PangoLanguage is used
+	Bug 333982 – Fallback to $LANG whenever NULL VogueLanguage is used
 		     Patch from LingNing Zhang
 
 Overview of changes between 1.15.0 and 1.15.1
@@ -1961,21 +1961,21 @@ Overview of changes between 1.15.0 and 1.15.1
 * Add Thai langauage engine. (currently makes tests/testboundary fail.)
 * Add Lao and improved Thai sample text.
 * Improved Indic module.
-* Output correct path for hexboxes in pango_cairo_layout_path().
+* Output correct path for hexboxes in vogue_cairo_layout_path().
 * Implement get_resolution method for the FT2 fontmap.  Shouldn't make
   any difference whatsoever.  Open a bug if it does.
 * Misc small fixes.
 
 * Optimizations:
-  - Rework PangoLayout algorithms to avoid calling a recursive call to
-    pango_layout_get_extents().  Avoids one pango_font_get_glyph_extents()
+  - Rework VogueLayout algorithms to avoid calling a recursive call to
+    vogue_layout_get_extents().  Avoids one vogue_font_get_glyph_extents()
     call per glyph per layout rendering.  We now make 2 such calls.
-  - Don't cache run_logical_rect in PangoLayoutIter.
-    Avoids one pango_font_get_glyph_extents() call per glyph per layout
+  - Don't cache run_logical_rect in VogueLayoutIter.
+    Avoids one vogue_font_get_glyph_extents() call per glyph per layout
     rendering.  We are down to 1 now.
-  - Cache line extents.  This avoids the final pango_font_get_glyph_extents()
+  - Cache line extents.  This avoids the final vogue_font_get_glyph_extents()
     call per glyph per layout rendering.  Now we don't make any
-    pango_font_get_glyph_extents() calls when rendering a layout (some
+    vogue_font_get_glyph_extents() calls when rendering a layout (some
     conditions apply)!
   - Replace PANGO_IS_RENDERER with PANGO_IS_RENDERER_FAST for most
     internal uses, that is, just a NULL-check.
@@ -1990,20 +1990,20 @@ Overview of changes between 1.15.0 and 1.15.1
 		Patch from LingNing Zhang
 	Bug 371388 – Add Thai langauage engine
 		Patch from Theppitak Karoonboonyanan
-	Bug 377975 – bug in _pango_glyph_item_iter_next_cluster
+	Bug 377975 – bug in _vogue_glyph_item_iter_next_cluster
 	Bug 369670 – Checked g_free calls
 
 Changes that also appeared between 1.14.7 and 1.14.8
 =====================================================
-* Improved thread-safety.  Pango is still NOT thread-safe, but this fixes
-  lots of crashes using pangocairo from multiple threads.
+* Improved thread-safety.  Vogue is still NOT thread-safe, but this fixes
+  lots of crashes using voguecairo from multiple threads.
 * Fix out-of-bounds array access.
 * Improved Indic shaper.
 * Improved Arabic language engine.
 * Choose shaper/font for unassigned Unicode codepoints.
 * Build fixes.
 * Bugs fixed in this release:
-	Bug 356666 – pango is not thread-safe, nautilus does not honour that
+	Bug 356666 – vogue is not thread-safe, nautilus does not honour that
 	Bug 352795 – configure.in: Bug in "checking Whether to write
 	             dependencies into .pc files"
 	Bug 350132 – backspacing doesn't work properly for Arabic
@@ -2012,22 +2012,22 @@ Changes that also appeared between 1.14.7 and 1.14.8
 
 Overview of changes between 1.14.7 and 1.15.0
 ==============================================
-* Add basic support for vertical text.  (PangoGravity and related API)
-* New PangoCairo example (examples/cairotwisted) to lay text out on a path
+* Add basic support for vertical text.  (VogueGravity and related API)
+* New VogueCairo example (examples/cairotwisted) to lay text out on a path
 * Fix various bugs in the way language engines are used.  Add simple Arabic
   and Indic language engines. (Backported to 1.14.6)
 * Step module interface version up to 1.6.0
 * Misc small cleanups.
 * Bugs fixed in this release:
         Bug 330407 – Multiple dependant vowel signs (indic) displayed as one
-        Bug 359043 – PangoRenderer does not show in API docs
+        Bug 359043 – VogueRenderer does not show in API docs
         Bug 359046 – renderdemo.c unconditionally use GLib 2.12
         Bug 357228 – Remove aix specific hack from configure.in
         Part of Bug 350132 – backspacing doesn't work properly for Arabic
-        Bug 356194 – more pango_get_log_attrs problems
-        Bug 355820 – pango_get_log_attrs broken
-        Bug 352811 – SIGSEGV with pango(cairo)-view on HP-UX
-        Bug 351496 – PangoAnalysis::gravity breaks binary compatibility
+        Bug 356194 – more vogue_get_log_attrs problems
+        Bug 355820 – vogue_get_log_attrs broken
+        Bug 352811 – SIGSEGV with vogue(cairo)-view on HP-UX
+        Bug 351496 – VogueAnalysis::gravity breaks binary compatibility
         Bug 351585 – API documentation issues with 2.15 release
 
 Overview of changes between 1.14.6 and 1.14.7
@@ -2062,9 +2062,9 @@ Overview of changes between 1.14.4 and 1.14.5
 	             Patch from Rahul Bhalerao
 	Bug 357790 – Rendering problem for malayalam consonant RA (U+0D30)
 	             Patch from Rahul Bhalerao
-	Bug 349813 – typo in docs for pango_layout_move_cursor_visually
-	Bug 357686 – pangocairo-font.c: illegal g_object_unref in
-	             pango_cairo_font_get_hex_box_info
+	Bug 349813 – typo in docs for vogue_layout_move_cursor_visually
+	Bug 357686 – voguecairo-font.c: illegal g_object_unref in
+	             vogue_cairo_font_get_hex_box_info
 
 Overview of changes between 1.14.3 and 1.14.4
 ==============================================
@@ -2078,15 +2078,15 @@ Overview of changes between 1.14.3 and 1.14.4
 	             Malayalm are wrong.
 	             Patch from LingNing Zhang
 	Bug 349876 – U+0x0904 of Devanagari need be "independent vowel", but
-	             it is "reserved" in Pango
+	             it is "reserved" in Vogue
 	             Patch from LingNing Zhang
 	Bug 355550 – Miscalculation of logical attributes in
-	             pango_get_log_attrs()
+	             vogue_get_log_attrs()
 	             Patch from Theppitak Karoonboonyanan
 	Bug 355697 – The IndicOTClassTable of Oriya has a error.
-	Bug 355782 – Misaligned extents in pango
+	Bug 355782 – Misaligned extents in vogue
 	Bug 355605 – hexbox with 0000 in it
-	Bug 355435 – Invalid calls to pango_map_get_engine()
+	Bug 355435 – Invalid calls to vogue_map_get_engine()
 	             Patch from Theppitak Karoonboonyanan
 	Bug 347146 – underline/overstrike spaces
 	Bug 352535 – Ink extents of empty glyph
@@ -2095,9 +2095,9 @@ Overview of changes between 1.14.2 and 1.14.3
 ==============================================
 * Win32 build improvement. [Tor Lillqist]
 * Bugs fixed in this release:
-	Bug 353525 – libpangoft2-1.0.so.0: undefined reference to
-	             `pango_font_description_get_gravity'
-	Bug 349813 – typo in docs for pango_layout_move_cursor_visually
+	Bug 353525 – libvogueft2-1.0.so.0: undefined reference to
+	             `vogue_font_description_get_gravity'
+	Bug 349813 – typo in docs for vogue_layout_move_cursor_visually
 
 Overview of changes between 1.14.1 and 1.14.2
 ==============================================
@@ -2107,17 +2107,17 @@ Overview of changes between 1.14.1 and 1.14.2
 Overview of changes between 1.14.0 and 1.14.1
 ==============================================
 * Increased fontset cache size from 16 to 64.  This should make
-  firefox+pango A LOT faster.
+  firefox+vogue A LOT faster.
 * Bugs fixed in this release:
-	Bug 352114 – pango-1.14: generated docs still contain old example code
-	Part of Bug 348825 – pango should optimize away calls to FcFontSort as
+	Bug 352114 – vogue-1.14: generated docs still contain old example code
+	Part of Bug 348825 – vogue should optimize away calls to FcFontSort as
 	                     much as possible
 	Bug 351585 – API documentation issues with 2.15 release
 
 
 Overview of changes between 1.13.5 and 1.14.0
 ==============================================
-* Make pango-view accept non-ASCII --text.
+* Make vogue-view accept non-ASCII --text.
 * Require cairo-1.2.2 for the important bug fixes it has.
 
 Overview of changes between 1.13.4 and 1.13.5
@@ -2145,15 +2145,15 @@ Overview of changes between 1.13.2 and 1.13.3
 * Improved build system.  Using gnome-autogen.sh now.
   (gnome-common needed for bootstrapping)
 * Improved documentation.  Docs now include list of new API for
-  each stable version of Pango.
+  each stable version of Vogue.
 * New public API:
-	- pango_glyph_string_get_width
+	- vogue_glyph_string_get_width
 * Little performance improvement.
 * Misc fixes.
 * Bugs fixed in this release:
-	Bug 330603 – pango_scan_int invokes undefined behaviour
-	Bug 315599 – PangoAttribute remains in wrong context.
-	Bug 163677 – pango_attr_list_splice: inconsistent docs
+	Bug 330603 – vogue_scan_int invokes undefined behaviour
+	Bug 315599 – VogueAttribute remains in wrong context.
+	Bug 163677 – vogue_attr_list_splice: inconsistent docs
 		     Patch from Morten Welinder
 	Bug 345070 – [ml_IN] not render for combination with ZWJ
 		     Patch from LingNing Zhang
@@ -2163,7 +2163,7 @@ Overview of changes between 1.13.2 and 1.13.3
 		     Patch from Priit Laes
 	Bug 135683 – Cache glyphstring extents
 	Bug 344766 – Memory leak in get_ruleset() in modules/basic/basic-fc.c
-	Bug 345600 – cvs build error in pango/opentype/Makefile
+	Bug 345600 – cvs build error in vogue/opentype/Makefile
 	Bug 345511 – -no-undefined problem with new libtool
 
 Overview of changes between 1.13.1 and 1.13.2
@@ -2171,16 +2171,16 @@ Overview of changes between 1.13.1 and 1.13.2
 * Improved hexbox drawing, and font metrics calculations.
 * Synthesize italic variants on win32 [Hans Breuer]
 * New public API:
-	- pango_cairo_show_error_underline
-	- pango_cairo_error_underline_path
-	- pango_font_describe_with_absolute_size
+	- vogue_cairo_show_error_underline
+	- vogue_cairo_error_underline_path
+	- vogue_font_describe_with_absolute_size
 * Misc fixes.
 * Bugs fixed in this release:
 	Bug 326960 – hex box drawing for win32 and atsui backends of cairo
 	Bug 343717 – License information in unclear.
-	Bug 343355 – Add pango_cairo_show_error_underline &
-	             pango_cairo_error_underline_path
-	Bug 343966 – pango Cygwin build fixes
+	Bug 343355 – Add vogue_cairo_show_error_underline &
+	             vogue_cairo_error_underline_path
+	Bug 343966 – vogue Cygwin build fixes
 	             Patch from Cygwin Ports maintainer.
 	Bug 343796 – Italic Chinese character can't be show correctly in
 	             Win32.
@@ -2192,46 +2192,46 @@ Overview of changes between 1.13.1 and 1.13.2
 	Bug 336153 – Mark to mark positioning (Lookup Type 6) isn't correct
 	             when using MarkAttchmentType
 	             Patch from Tin Myo Htet.
-	Bug 333984 – pango_language_from_string improvements
+	Bug 333984 – vogue_language_from_string improvements
 	Bug 125378 – Better underline thickness handling
-	Bug 339730 – Pango needlessly falls back away from a Type 1 font into
+	Bug 339730 – Vogue needlessly falls back away from a Type 1 font into
 	             a TTF font
 	Bug 342562 – Support absolute sizes in
-	             pango_font_description_to/from_string
-	Bug 341922 – pango should handle more characters as zero width
+	             vogue_font_description_to/from_string
+	Bug 341922 – vogue should handle more characters as zero width
 	             Patch from Roozbeh Pournader
-	Bug 342525 – With PangoFc and PangoWin32, approximate digit width is
+	Bug 342525 – With VogueFc and VogueWin32, approximate digit width is
 	             not what it says
-	Bug 342079 – pangoatsui-private.h missing from release
+	Bug 342079 – vogueatsui-private.h missing from release
 
 Overview of changes between 1.13.0 and 1.13.1
 ==============================================
-* Increased robustness against broken pango.modules
+* Increased robustness against broken vogue.modules
 * Improved build infrastructure:
-  - Remove CAIRO_CFLAGS from pangocairo.pc.in, as it Require's cairo already.
+  - Remove CAIRO_CFLAGS from voguecairo.pc.in, as it Require's cairo already.
   - Use -no-undefined on Unix too.
 * Improved documentation.
 * Misc fixes.
 * Bugs fixed in this release:
 	Bug 307196 – Unhinted fonts are measured incorrectly and drawing
 	             problems occur as a result
-	Bug 329547 – pango_layout_get_pixel_extents and
-	             pango_layout_get_pixel_size cause off-by-one metrics
-	Bug 339747 – pango_font_metrics_get_approximate_digit_width docs
-	Bug 339749 – pango_language_from_string issues
+	Bug 329547 – vogue_layout_get_pixel_extents and
+	             vogue_layout_get_pixel_size cause off-by-one metrics
+	Bug 339747 – vogue_font_metrics_get_approximate_digit_width docs
+	Bug 339749 – vogue_language_from_string issues
 	             Patch from Morten Welinder.
 	Bug 333771 – Use gmodule-no-export-2.0 instead of gmodule-2.0 in
-	             pango-uninstalled.pc.in
-	Bug 337594 – pango_glyph_string_extents_range possible bug
-	Bug 329664 – Move gunichar_to_glyph cache from PangoCairoFcFont to
-	             PangoFcFont
+	             vogue-uninstalled.pc.in
+	Bug 337594 – vogue_glyph_string_extents_range possible bug
+	Bug 329664 – Move gunichar_to_glyph cache from VogueCairoFcFont to
+	             VogueFcFont
 	             Patch from LingNing Zhang.
 	Bug 322374 – Examples does not build on MacOS X
-	Bug 340229 – pango_font_description_from_string does not do bound
+	Bug 340229 – vogue_font_description_from_string does not do bound
 	             checking
 	Bug 329483 – hinting hexbox in cairo backend doesn't handle absolute
 	             font size
-	Bug 340040 – pangocairo hex box hinting falls apart with PS/PDF
+	Bug 340040 – voguecairo hex box hinting falls apart with PS/PDF
 	             backends
 	Bug 71033 – make size 0 fonts work
 
@@ -2264,7 +2264,7 @@ Overview of changes between 1.11.6 and 1.11.99
 * Fix problem recently introduced that made Win32 backend render boxes
   only. [#332538, Hans Breuer]
 * Insert '?' chars instead of invalid UTF-8 sequences in
-  pango_layout_set_text [#33195]
+  vogue_layout_set_text [#33195]
 * Bugs fixed in this release:
   332167,332538,331995
 
@@ -2282,18 +2282,18 @@ Overview of changes between 1.11.4 and 1.11.5
 =============================================
 * Cleanup work on the win32 backend.  Families are not listed all
   in lower case anymore.
-* New public function: pango_win32_font_description_from_logfont.
-* pango-view accepts --wrap now, and lists backends in --help output.
+* New public function: vogue_win32_font_description_from_logfont.
+* vogue-view accepts --wrap now, and lists backends in --help output.
 * A couple minor bug fixes.
 
 Overview of changes between 1.11.3 and 1.11.4
 =============================================
-* Major change in the low-level interface of Pango.  The special value
+* Major change in the low-level interface of Vogue.  The special value
   PANGO_GLYPH_EMPTY is now defined to mean a "draw nothing" glyph.  This
   was what glyph 0 was used for previously.  As a result, bumped up the
-  Pango module version, meaning that modules compiled against earlier
+  Vogue module version, meaning that modules compiled against earlier
   versions are probably not compatible with this release. [#73147]
-* New framework in examples for building a binary called pango-view,
+* New framework in examples for building a binary called vogue-view,
   that can be used to render a text file using any of the available
   backends.  This is installed into bindir now.
 * Enhancements to the FT2 backend, to draw boxes on missing glyphs.
@@ -2328,7 +2328,7 @@ Overview of changes between 1.11.0 and 1.11.1
 
 Optimizations:
 
-* Cache GObject private data in PangoFcFont.priv [Federico Mena Quintero]
+* Cache GObject private data in VogueFcFont.priv [Federico Mena Quintero]
 * Add a constant-sized light-weight cache for glyph extents.
 * Use g_slice_* instead of GMemChunk in mini-fribidi.
 
@@ -2358,7 +2358,7 @@ Optimizations:
 * Several strlen and g_utf8_strlen calls removed. [Owen Taylor, Billy Biggs]
 * Use call tables in the OpenType layout code.
 * Use quarks for accessing GObject data. [Federico]
-* Open Pango modules with lazy-bind flags. [John Rice]
+* Open Vogue modules with lazy-bind flags. [John Rice]
 * Use new negative offsets in g_utf8_pointer_to_offset to avoid
   scanning from the beginning of line on cursor movement.
 * Avoid redundant PANGO_IS_FC_FONT checks.
@@ -2367,7 +2367,7 @@ Overview of changes between 1.10.0 and 1.10.1
 =============================================
 * Add various forms of caching to the Win32 backend, greatly
   improving performance [Tor Lillqvist]
-* Fix problem with colors leaking from a Pango item to 
+* Fix problem with colors leaking from a Vogue item to 
   subsequently drawn strings. [Choe Hwanjin]
 * Fix bug where error underlines would be drawn 1024 times
   too big in the Cairo backend. [Luis Villa]
@@ -2383,7 +2383,7 @@ Overview of changes between 1.9.1 and 1.10.0
 
 Overview of changes between 1.9.0 and 1.9.1
 ==========================================
-* Support setting of font options and DPI on PangoContext for
+* Support setting of font options and DPI on VogueContext for
   the Cairo backend.
 * Adapt to recent Cairo API changes
 * Win32 build improvements [Tor Lillqvist]
@@ -2391,10 +2391,10 @@ Overview of changes between 1.9.0 and 1.9.1
 	
 Overview of changes between 1.8.x and 1.9.x
 ===========================================
-* Add Cairo support; PangoCairoFontmap is an interface with
+* Add Cairo support; VogueCairoFontmap is an interface with
   implementations for Fontconfig fonts and Win32 fonts
-* Extend PangoFcFontmap to allow more customization by subclasses
-* Handle NULL language better for pango_context_get_metrics()
+* Extend VogueFcFontmap to allow more customization by subclasses
+* Handle NULL language better for vogue_context_get_metrics()
 * misc optimization [Paolo Borelli, Behdad Esfahbod]
 * Misc bug and build fixes [Hans Breuer, Damien Carbery, 
   Keith Packard, Manish Singh]
@@ -2405,8 +2405,8 @@ Overview of changes between 1.8.x and 1.9.x
 Overview of changes between 1.8.1 and 1.8.2
 ===========================================
 * Add Khmer support [Jens Herden, Javier Sola]
-* Fix bugs and crashes in the operation of PangoLayoutIter [Amit Aronovitch]
-* Increase sharing of data between different copies of Pango
+* Fix bugs and crashes in the operation of VogueLayoutIter [Amit Aronovitch]
+* Increase sharing of data between different copies of Vogue
   [Tommi Komulainen, Ross Burton]
 * Remove dependence of opentype code on FreeType internals [David Turner,
   Behdad Esfahbod]
@@ -2418,7 +2418,7 @@ Overview of changes between 1.8.1 and 1.8.2
 * Handle zero width chars properly in Hangul backend 
   [Young-Ho Cha, Changwoo Ryu]
 * Fix Oriya character classification [Gora Mohanty, Gautam Sengupta]
-* PangoAttrIterator bug fixes [Morten Welinder]
+* VogueAttrIterator bug fixes [Morten Welinder]
 * Clean up copyright/licensing information [William N. Ray]
 * Misc bug and build fixes [Sebastien Bacher, Brandon Bergren,
   Chris Blizzard, Paolo Borelli, Behdad, Harshula, Alex Jones, Aivars Kalvans, 
@@ -2444,7 +2444,7 @@ Overview of changes between 1.7.0 and 1.8.0
 * Add Sinhala support to the Indic module [Anuradha Ratnaweera]
 * Add Tibetan module [G Karunakar, Pema Geyleg]
 * Support pixel sizes for fonts [Chris Lahey]
-* Add pango_layout_get_font_description() [Morten Welinder]
+* Add vogue_layout_get_font_description() [Morten Welinder]
 * Add PANGO_WEIGHT_SEMIBOLD [Lars Clausen]
 * Report underline metrics on Win32 [Tor]
 * Handle GLib-2.6.0 win32 filename encoding changes [Tor Lillqvist,
@@ -2455,15 +2455,15 @@ Overview of changes between 1.7.0 and 1.8.0
 Overview of changes between 1.6.x and 1.7.0
 ===========================================
 
-* Add PangoRenderer, a subclassable driver object holding the 
-  logic for rendering PangoLayout.
+* Add VogueRenderer, a subclassable driver object holding the 
+  logic for rendering VogueLayout.
 * Support transformed rendering for the Xft backend
 * Add Lao support in Thai Module [Theppitak Karoonboonyanan]
 * Support Thai OpenType fonts [Theppitak]
 * Add Syriac module [Emil Soleyman-Zomalan]
 * Add underline-color and strikethrough-color attributes
   [Morten Welinder]
-* Add pango_win32_render_transformed() [Hans Breuer]
+* Add vogue_win32_render_transformed() [Hans Breuer]
 * Misc fixes [Hans Breuer, Matthias Clasen, Manish Singh,
    Morten Welinder]
 * Documentation improvements
@@ -2494,22 +2494,22 @@ Overview of changes between 1.5.1 and 1.5.2
 
 Overview of changes between 1.5.0 and 1.5.1
 ===========================================
-* Add ellipsization support to PangoLayout
-* Add pango_context_get_font_map().
+* Add ellipsization support to VogueLayout
+* Add vogue_context_get_font_map().
 * Fix metrics for the Xft backend when a transform is in effect
-* Separate out backend-independent parts of pangoft2topgm for
+* Separate out backend-independent parts of vogueft2topgm for
   future rendering testbeds.
-* Code cleanups (use G_DEFINE_TYPE, make PangoMatrix parameters const)
-* Add a GType for PangoMatrix [Torsten Schoenfeld]
+* Code cleanups (use G_DEFINE_TYPE, make VogueMatrix parameters const)
+* Add a GType for VogueMatrix [Torsten Schoenfeld]
 * Misc bug fixes [Morten Welinder]
 
 Overview of changes between 1.4.x and 1.5.0
 ===========================================
 * Allow applications to provide custom font decoders [Chris Blizzard]
-* Add support for setting a transformation matrix on a PangoContext
+* Add support for setting a transformation matrix on a VogueContext
 * Add support for rotated rendering to the FT2 backend
 * Add metrics for underline and strikethrough position and thickness.
-* Add letter-spacing attribute and implement in PangoLayout
+* Add letter-spacing attribute and implement in VogueLayout
 * OpenType support in Thai Module [Theppitak Karoonboonyanan]
 * Add Add PANGO_TYPE_LAYOUT_ITER [Johan Dahlin]
 
@@ -2547,10 +2547,10 @@ Overview of changes between 1.3.5 and 1.3.6
 Overview of changes between 1.3.3 and 1.3.5
 ===========================================
 * Add support for automatically determining the base direction for
-  PangoLayout from the contained text [Dov Grobgeld]
+  VogueLayout from the contained text [Dov Grobgeld]
 * Major rework of internal opentype interfaces to fix
   problems with GPOS. Turn on GPOS handling for Arabic.
-* Add a PangoAttribute to turn off font fallback [Noah Levitt]
+* Add a VogueAttribute to turn off font fallback [Noah Levitt]
 * Add wavy error-indication underlines [Nicolas Setton]
 * Improve handling of BENGALI LETTER A/E [Sayamindu Dasgupta]
 * Win32 bug fixes and improvements [J. Ali Harlow, Hans Breuer]
@@ -2558,8 +2558,8 @@ Overview of changes between 1.3.3 and 1.3.5
 
 Overview of changes between 1.3.2 and 1.3.3
 ===========================================
-* Add pango_font_face_list_sizes() [Noah Levitt]
-* Add pango_font_family_is_monospace [Noah]
+* Add vogue_font_face_list_sizes() [Noah Levitt]
+* Add vogue_font_family_is_monospace [Noah]
 * Do OpenType processing for CFF fonts [Manjunath Sripadarao]
 * Fix wrong sign for GPOS vertical positioning
 * Fix up -uninstalled .pc files [Laszlo Peter]
@@ -2591,8 +2591,8 @@ Overview of changes between 1.3.0 and 1.3.1
 
 Overview of changes between 1.2.x and 1.3.0
 ===========================================
-* Share modules between the FT2 and Xft backend. Export PangoFcFont
-  and PangoFcFontMap base classes so that other fontconfig based
+* Share modules between the FT2 and Xft backend. Export VogueFcFont
+  and VogueFcFontMap base classes so that other fontconfig based
   backends can be written and use these same modules.
 * Redo module system to use GTypeModule and work much like GTK+ theme
   engines and input method modules.
@@ -2605,14 +2605,14 @@ Overview of changes between 1.2.x and 1.3.0
   improve language tags. This solves problems with incorrect language
   tags resulting in drastically wrong fonts being selected by
   fontconfig.
-* Add backspace-deletes-character PangoLogAttr; will allow proper
+* Add backspace-deletes-character VogueLogAttr; will allow proper
   deletion behavior for non-Western scripts.  [Noah Levitt]
-* Add pango_fc_font_kern_glyphs(), which speeds up kerning a lot over
+* Add vogue_fc_font_kern_glyphs(), which speeds up kerning a lot over
   doing it pair-by-pair. [Soeren Sandmann]. Kern in the Xft backend as
   well as the FT2 backend.
 * Remove the X font backend, except a minimal set of stubs to maintain
   binary compatibility.
-* Many improvements to pangoft2topgm to allow displaying PangoMarkup,
+* Many improvements to vogueft2topgm to allow displaying VogueMarkup,
   saving to different file formats, etc.
 * Convert build system to automake-1.7; many cleanups and
   improvements. [James Henstridge]
@@ -2624,12 +2624,12 @@ Overview of changes between 1.2.x and 1.3.0
 
 ============================================================
 
-Overview of Changes in Pango 1.2.5
+Overview of Changes in Vogue 1.2.5
 ==================================
 * Fix a problem where the indic-xft shaper didn't get linked
   against all necessary files.
 
-Overview of Changes in Pango 1.2.4
+Overview of Changes in Vogue 1.2.4
 ==================================
 * Win32 [Tor Lillqvist]
   - Avoid calling Uniscribe when not necessary [Hans Breuer]
@@ -2649,13 +2649,13 @@ Overview of Changes in Pango 1.2.4
   Tony Graham, Morten Welinder]
 * Build fixes [Sven Neumann, Benedikt Spranger]
 
-Overview of Changes in Pango 1.2.3
+Overview of Changes in Vogue 1.2.3
 ==================================
 * Fix operation with --disable-debug [Jeff Waugh]
 * Improve handling of ink rectangle extents for empty runs
 * Fix problem with keynav at line boundaries for RTL text [Matthias Clasen]
 
-Overview of Changes in Pango 1.2.2
+Overview of Changes in Vogue 1.2.2
 ==================================
 * Cache fontsets for the Xft and FT2 backends, a large speedup for short 
   strings [Owen Taylor, Soeren Sandmann]
@@ -2663,7 +2663,7 @@ Overview of Changes in Pango 1.2.2
    work more like the GDK implementation [Sven Neumann]
 * Add an indic-ft2 module [Kapil Chowskey], 
   Add a thai-ft2 module [Theppitak Karoonboonyanan]
-* Optimize pango_x_render() by drawing multiple character with
+* Optimize vogue_x_render() by drawing multiple character with
   a single request when possible [Morten Welinder]
 * Change the handling of attributes that cover only partial glyphs
   [Owen, Taneem Ahmed, Sunil Mohan Adapa]
@@ -2677,7 +2677,7 @@ Overview of Changes in Pango 1.2.2
   Noah, Padraig O'Briain, Benjamin Otte, Andrey Panov, Federic Zhang]
 * Documentation fixes [Tim, Sven]
 
-Overview of Changes in Pango 1.2.1
+Overview of Changes in Vogue 1.2.1
 ==================================
 * Handle older TrueType Open Arabic fonts.
 * Make Win32 backend handle a common TrueType font bug [Tor Lillqvist]
@@ -2723,7 +2723,7 @@ Changes between 1.1.3 and 1.1.4
   [Soeren Sandmann]
 * Fix memory leak in Win32 backend [Tor Lillqvist]
 * Fix crasher problem with non-BMP characters [He Qiangqiang]
-* Implement pango_ft2_font_map_set_default_substitute() [Matthias Clasen]
+* Implement vogue_ft2_font_map_set_default_substitute() [Matthias Clasen]
 * Doc improvements [Matthias Clasen, Michael R. Walton, Jungshik Shin]
 * Misc bug and build fixes [Dagfinn I. Mannsåker, Tony Graham,
   Dan Mills, Sebastian Wilhelmi]
@@ -2737,12 +2737,12 @@ Changes between 1.1.2 and 1.1.3
   - Use Uniscribe when present
 * Some doc build fixes [Matthias Clasen]
 * Code cleanup [Manish Singh]
-* Fix assertion failure in PangoLayout [Alex Larsson]
+* Fix assertion failure in VogueLayout [Alex Larsson]
 * Fix memory leak when freeing fontmaps [Sven Neumann]
 
 Changes between 1.1.1 and 1.1.2
 
-* Add a new wrap mode for PangoLayout - PANGO_WRAP_WORD_CHAR [Alex Larsson]
+* Add a new wrap mode for VogueLayout - PANGO_WRAP_WORD_CHAR [Alex Larsson]
 * Win32 work [Tor Lillqvist]
   - Handle choosing the right font for CJK languages based on language tags. 
   - Fix boxes showing up for tabs [Florent Duguet]
@@ -2755,9 +2755,9 @@ Changes between 1.1.1 and 1.1.2
 * Improve language specific charset ordering basic-x11 [James Su, Brian Yuan]
 * Some merges of fixes by Werner Lemberg to the original 
   FreeType OpenType code.
-* Robustify and otherwise improve pango_color_parse() [Matthias Clasen]
+* Robustify and otherwise improve vogue_color_parse() [Matthias Clasen]
 * Some cross-compiling fixes [J. Ali Harlow]
-* Bug fix for pango_scan_int() needed for recent GTK+.
+* Bug fix for vogue_scan_int() needed for recent GTK+.
 
 Changes between 1.1.0 and 1.1.1
 
@@ -2771,10 +2771,10 @@ Changes between 1.0.x and 1.1.0
 * Support for version 2 of the Xft library. [Keith Packard]
 * Convert the freetype backend over to using fontconfig,
   instead of MiniXft for font cataloging.
-* A port of the Indic OpenType code from ICU to Pango. [Eric Mader]
+* A port of the Indic OpenType code from ICU to Vogue. [Eric Mader]
 * A new hangul-xft [Changwoo Ryu]
 * Bug-fixes to the OpenType handling code.
-* Various cleanups to the PangoXft and PangoFT2 public APIs.
+* Various cleanups to the VogueXft and VogueFT2 public APIs.
 * Docs switched over to DocBook XML. [Matthias Clasen]
 
 ============================================================
@@ -2796,9 +2796,9 @@ Changes between 1.0.2 and 1.0.3
   Windows to match the system method. [Joaquin Cuenca Abela,
   Tor Lillqvist]
 * Fix family listing for the FT2 backend. [Sven Neumann]
-* Fix memory leak in pango_font_real_get_metrics() [Matthias Clasen]
+* Fix memory leak in vogue_font_real_get_metrics() [Matthias Clasen]
 * Some compilation warning fixes. [David L. Cooper II]
-* Fix passing attr_list == NULL to pango_parse_markip [Andreas J. Guelzow]
+* Fix passing attr_list == NULL to vogue_parse_markip [Andreas J. Guelzow]
 
 Changes between 1.0.1 and 1.0.2
 
@@ -2806,7 +2806,7 @@ Changes between 1.0.1 and 1.0.2
 * List Sans,Serif,Monospace when listing fonts for the
   Xft and FT2 backends. (Xavier Cho)
 * Portability fixes. (David L. Cooper II, Jacob Berkman)
-* Fix problem with pango-querymodules using g_print().
+* Fix problem with vogue-querymodules using g_print().
 
 Changes between 1.0.0 and 1.0.1
 
@@ -2863,7 +2863,7 @@ Changes between 0.23 and 0.24
 
 * Win32 backend improvements [Tor Lillqvist]
 * Doc improvements [Havoc Pennington, Dennis Bjorklund]
-* Fix problem where "foo\n" was treated as one paragraph by pango-layout,
+* Fix problem where "foo\n" was treated as one paragraph by vogue-layout,
   not two. [Arjan J. Molenaar, Owen Taylor]
 * Add glyph caching to FT2 backend [Alex Larsson]
 * Try to make configure checks for Qt-based example more robust [Owen]
@@ -2903,18 +2903,18 @@ Other Contributors: Darin Alder, Sven Neumann, Raymond Wan
 Changes between 0.20 and 0.21
 
 * Documentation improvements. [Matthias Clasen, Sven Neumann]
-* pango_break() now reports n + 1 attributes for n characters, not n. [Havoc Pennington]
+* vogue_break() now reports n + 1 attributes for n characters, not n. [Havoc Pennington]
 * Win32 fixes, including support for configure.in on Win32. [Tor Lillqvist]
 * Bug fixes [Tony Graham, Eric Lemings, Manish Singh, Sven Neumann, Matt Wilson, 
              Frank Belew]
 
 Changes between 0.19 and 0.20
 
-* Change PangoFontDescription to save values for unset fields
+* Change VogueFontDescription to save values for unset fields
 * Fix for compilation with FreeType 2.0.4 [Havoc Pennington]
 * Add PANGO_TYPE_FONT_METRICS [James Henstridge]
 * Win32 fixes and updates [Hans Breuer
-* PangoLayout bug fixes [Alex Larsson, Padraig O'Briain]
+* VogueLayout bug fixes [Alex Larsson, Padraig O'Briain]
 * Misc fixes and cleanups.
 
 Other contributors: Matthias Clasen, Tony Graham, Mario Motta, Sven Neumann
@@ -2923,9 +2923,9 @@ Changes between 0.18 and 0.19
 
 * Change font listing API to be more extensible. Instead of
   using family names and 
-* Make PangoMetrics and PangoFontDescription opaque heap-allocated
+* Make VogueMetrics and VogueFontDescription opaque heap-allocated
   structures to allow extension going forward.
-* Allow for PangoFontDescription structures with unspecified
+* Allow for VogueFontDescription structures with unspecified
   style/variant/stretch/weight.
 * Add PANGO_ENABLE_BACKEND and PANGO_ENABLE_ENGINE #defines to
   protect parts of the API where we don't want to guarantee
@@ -2934,16 +2934,16 @@ Changes between 0.18 and 0.19
 
 Changes between 0.17 and 0.18
 
-* Add PangoLanguage type for language tags, use consistently.
+* Add VogueLanguage type for language tags, use consistently.
 * Add support for different font orderings for different lanuages to
   basic shaper.
 * Win32 fixes [Alex,Hans]
-* Add pango_context_get_metrics() to get metrics for a font description
+* Add vogue_context_get_metrics() to get metrics for a font description
 * Add GTypes for various types [James]
 * Lots of warning fixes [Darin]
-* Fix to PangoLayout for lines with only tabs on them [Matthias]
-* Improve compositing of glyphs for pangoft2 backend [Sven]
-* Export pango_color_parse().
+* Fix to VogueLayout for lines with only tabs on them [Matthias]
+* Improve compositing of glyphs for vogueft2 backend [Sven]
+* Export vogue_color_parse().
 * Adapt to changes in GLib.
 * Build and bug fixes.
 
@@ -2956,7 +2956,7 @@ Changes between 0.16 and 0.17
 
 Changes between 0.15 and 0.16
 
-* Ability to make newlines in a PangoLayout display as regular characters
+* Ability to make newlines in a VogueLayout display as regular characters
   (useful for, e.g., having an entry widget with embedded newlines.)
 * Build fixes
 * Bug fixes
@@ -2988,17 +2988,17 @@ Changes between 0.12 and 0.13
 
 * Win32 Support [Tor]
 * Per-display caching of font coverage on the root window  [Owen]
-* Handling of embedded non-characters in PangoLayout [Elliot]
+* Handling of embedded non-characters in VogueLayout [Elliot]
 * Mapping table fixes and improvements [KUSANO Takayuki, Abigail, Owen]
-* Adjustable tab handling in PangoLayout [Havoc]
+* Adjustable tab handling in VogueLayout [Havoc]
 * Add relative font-scaling attribute [Havoc]
-* Add function to convert XML/GMarkup description to a PangoAttrList [Havoc]
+* Add function to convert XML/GMarkup description to a VogueAttrList [Havoc]
 * New version of Arabic shaper [Karl]
 * Enhanced Indic support with ligature tables from the font and
   many more languages [Abigail]
-* Include FriBidi core that provides the features that Pango needs and
+* Include FriBidi core that provides the features that Vogue needs and
   can be used instead of separately installed fribidi. [Owen]
-* Add PangoLayoutIterator that abstracts the geometry operations for
+* Add VogueLayoutIterator that abstracts the geometry operations for
   iterating over the lines/items/clusters/chars in a layout [Havoc]
 * Bug fixes, and more bug fixes
 

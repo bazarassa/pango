@@ -1,7 +1,7 @@
-/* Simple example to use pangocairo to render rotated text */
+/* Simple example to use voguecairo to render rotated text */
 
 #include <math.h>
-#include <pango/pangocairo.h>
+#include <vogue/voguecairo.h>
 
 static void
 draw_text (cairo_t *cr)
@@ -17,26 +17,26 @@ draw_text (cairo_t *cr)
  */
 #define TWEAKABLE_SCALE ((double) 0.1)
 
-  PangoLayout *layout;
-  PangoFontDescription *desc;
+  VogueLayout *layout;
+  VogueFontDescription *desc;
   int i;
 
   /* Center coordinates on the middle of the region we are drawing
    */
   cairo_translate (cr, RADIUS / TWEAKABLE_SCALE, RADIUS / TWEAKABLE_SCALE);
 
-  /* Create a PangoLayout, set the font and text */
-  layout = pango_cairo_create_layout (cr);
+  /* Create a VogueLayout, set the font and text */
+  layout = vogue_cairo_create_layout (cr);
 
-  pango_layout_set_text (layout, "Test\nسَلام", -1);
+  vogue_layout_set_text (layout, "Test\nسَلام", -1);
 
-  desc = pango_font_description_from_string (FONT_WITH_MANUAL_SIZE);
-  pango_font_description_set_absolute_size(desc, FONT_SIZE * DEVICE_DPI * PANGO_SCALE / (72.0 * TWEAKABLE_SCALE));
-  //pango_font_description_set_size(desc, 27 * PANGO_SCALE / TWEAKABLE_SCALE);
+  desc = vogue_font_description_from_string (FONT_WITH_MANUAL_SIZE);
+  vogue_font_description_set_absolute_size(desc, FONT_SIZE * DEVICE_DPI * PANGO_SCALE / (72.0 * TWEAKABLE_SCALE));
+  //vogue_font_description_set_size(desc, 27 * PANGO_SCALE / TWEAKABLE_SCALE);
 
   printf("PANGO_SCALE = %d\n", PANGO_SCALE);
-  pango_layout_set_font_description (layout, desc);
-  pango_font_description_free (desc);
+  vogue_layout_set_font_description (layout, desc);
+  vogue_font_description_free (desc);
 
   /* Draw the layout N_WORDS times in a circle */
   for (i = 0; i < N_WORDS; i++)
@@ -53,12 +53,12 @@ draw_text (cairo_t *cr)
 
       cairo_rotate (cr, angle * G_PI / 180.);
 
-      /* Inform Pango to re-layout the text with the new transformation */
-      pango_cairo_update_layout (cr, layout);
+      /* Inform Vogue to re-layout the text with the new transformation */
+      vogue_cairo_update_layout (cr, layout);
 
-      pango_layout_get_size (layout, &width, &height);
+      vogue_layout_get_size (layout, &width, &height);
       cairo_move_to (cr,( - (((double)width) / PANGO_SCALE) / 2.0) , (- RADIUS)  / TWEAKABLE_SCALE);
-      pango_cairo_show_layout (cr, layout);
+      vogue_cairo_show_layout (cr, layout);
 
       cairo_restore (cr);
     }

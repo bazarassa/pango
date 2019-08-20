@@ -1,12 +1,12 @@
-The Pango backends written for Win32 is pangowin32. Pangowin32 uses
+The Vogue backends written for Win32 is voguewin32. Voguewin32 uses
 the Win32 GDI font API. GTK+ 2.8 and later on Win32 however actually
-uses the pangocairo backend (which then uses only small parts of
-pangowin32). Much of the GDI font API calls are in cairo.
+uses the voguecairo backend (which then uses only small parts of
+voguewin32). Much of the GDI font API calls are in cairo.
 
-The pangoft2 backend was originally written with Win32 in mind, but
+The vogueft2 backend was originally written with Win32 in mind, but
 its main use nowadays is on other platforms than Win32.
 
-To build Pango for Win32:
+To build Vogue for Win32:
 
 You need to have gcc (mingw) or Visual Studio 2008~2017, along with
 Python 3.4.x+ and Meson 0.43.0.  If building the introspection files,
@@ -26,14 +26,14 @@ only their headers/import libraries are needed on Visual Studio:
 -GLib
 -Fribidi
 -Cairo* (With Win32 support built in, and optionally FreeType and FontConfig
-         support for building PangoFT2.)
--FreeType* (Optional, needed for PangoFT2)
--FontConfig* (Optional, needed for PangoFT2)
--HarfBuzz* (Optional, GLib and FreeType support required if used, needed for PangoFT2)
+         support for building VogueFT2.)
+-FreeType* (Optional, needed for VogueFT2)
+-FontConfig* (Optional, needed for VogueFT2)
+-HarfBuzz* (Optional, GLib and FreeType support required if used, needed for VogueFT2)
 
 Please see meson.build to see what versions are needed for these dependencies.
 
-Follow the following steps to build Pango:
+Follow the following steps to build Vogue:
 
 1) Invoke the Meson configuration as follows, in a directory separate from the sources:
 
@@ -48,7 +48,7 @@ For Visual Studio builds, building using the Visual Studio IDE is also supported
 with Visual Studio 2010, 2015 and 2017.  Append --backend=vs to the Meson
 configuration command above to use this support.
 
-2) Build Pango by running Ninja, or by opening and building the generated
+2) Build Vogue by running Ninja, or by opening and building the generated
    Visual Studio 2010/2015/2017 solution file.
 	
 3) Run tests and/or install the build using the "test" and "install" targets
@@ -59,12 +59,12 @@ configuration command above to use this support.
    From the build directory:
    for /f %a in (*.dll.manifest) do if exist $(PREFIX)\bin\%~na /manifest %a /outputresource:$(PREFIX)\bin\%~na;2
    for /f %a in (*.exe.manifest) do if exist $(PREFIX)\bin\%~na /manifest %a /outputresource:$(PREFIX)\bin\%~na;1
-   for /f %a in (*.exe.manifest) do if exist $(PREFIX)\libexec\installed-tests\pango\%~na /manifest %a /outputresource:$(PREFIX)\libexec\installed-tests\pango\%~na;1
+   for /f %a in (*.exe.manifest) do if exist $(PREFIX)\libexec\installed-tests\vogue\%~na /manifest %a /outputresource:$(PREFIX)\libexec\installed-tests\vogue\%~na;1
    
    So that the security manifests that are generated can be embedded into the built
    DLLs and EXEs so that they can be usable.
 
 See the following GNOME Live! page for a more detailed description of building
-Pango's dependencies with Visual Studio:
+Vogue's dependencies with Visual Studio:
 
 https://live.gnome.org/GTK%2B/Win32/MSVCCompilationOfGTKStack

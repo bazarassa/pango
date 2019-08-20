@@ -135,7 +135,7 @@ def print_table():
 		               'Virama',
 		               'Vowel_Dependent']: continue
 	        print()
-	        print("static inline gboolean _pango_is_%s (gunichar wc)" % typ)
+	        print("static inline gboolean _vogue_is_%s (gunichar wc)" % typ)
 	        print("{")
                 print_balanced_search(sorted(s))
 	        print("}")

@@ -1,4 +1,4 @@
-/* viewer.h: PangoViewer class
+/* viewer.h: VogueViewer class
  *
  * Copyright (C) 1999,2004,2005 Red Hat, Inc.
  * Copyright (C) 2001 Sun Microsystems
@@ -21,11 +21,11 @@
 #ifndef VIEWER_H
 #define VIEWER_H
 
-#include <pango/pango.h>
+#include <vogue/vogue.h>
 
-typedef struct _PangoViewer PangoViewer;
+typedef struct _VogueViewer VogueViewer;
 
-struct _PangoViewer {
+struct _VogueViewer {
 
   const char *name;
 
@@ -33,11 +33,11 @@ struct _PangoViewer {
 
   const char *write_suffix;
 
-  gpointer (*create) (const PangoViewer *klass);
+  gpointer (*create) (const VogueViewer *klass);
 
   void (*destroy) (gpointer instance);
 
-  PangoContext * (*get_context) (gpointer instance);
+  VogueContext * (*get_context) (gpointer instance);
 
   gpointer (*create_surface) (gpointer instance,
 			      int      width,
@@ -48,7 +48,7 @@ struct _PangoViewer {
 
   void (*render) (gpointer      instance,
 		  gpointer      surface,
-		  PangoContext *context,
+		  VogueContext *context,
 		  int          *width,
 		  int          *height,
 		  gpointer      state);
@@ -90,9 +90,9 @@ struct _PangoViewer {
 		int      height,
 		int      stride);
 
-  GOptionGroup * (*get_option_group) (const PangoViewer *klass);
+  GOptionGroup * (*get_option_group) (const VogueViewer *klass);
 };
 
-extern const PangoViewer *viewers[];
+extern const VogueViewer *viewers[];
 
 #endif /* VIEWER_H */

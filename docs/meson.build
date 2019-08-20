@@ -7,37 +7,37 @@ configure_file(input: 'version.xml.in',
                configuration: version_xml_conf)
 
 private_headers = [
-  'pangocairo-private.h',
-  'pangocairo-fc-private.h',
-  'pangocairo-fc.h',
-  'pangocairo-win32.h',
-  'pangocairo-atsui.h',
-  'pango-coverage-private.h',
-  'pango-color-table.h',
-  'pango-emoji-private.h',
-  'pango-font-private.h',
-  'pango-fontmap-private.h',
-  'pango-fontset-private.h',
-  'pango-impl-utils.h',
-  'pango-glyph-item-private.h',
-  'pango-layout-private.h',
-  'pango-script-table.h',
-  'pango-script-private.h',
-  'pango-utils-private.h',
-  'pangofc-private.h',
-  'pangofc-fontmap-private.h',
-  'pangoft2-private.h',
-  'pangowin32-private.h',
-  'pangoatsui-private.h',
-  'pangoxft-private.h',
-  'pango-ot-private.h',
-  'pango-script-lang-table.h',
-  'pango-language-sample-table.h',
-  'pangocoretext-private.h',
+  'voguecairo-private.h',
+  'voguecairo-fc-private.h',
+  'voguecairo-fc.h',
+  'voguecairo-win32.h',
+  'voguecairo-atsui.h',
+  'vogue-coverage-private.h',
+  'vogue-color-table.h',
+  'vogue-emoji-private.h',
+  'vogue-font-private.h',
+  'vogue-fontmap-private.h',
+  'vogue-fontset-private.h',
+  'vogue-impl-utils.h',
+  'vogue-glyph-item-private.h',
+  'vogue-layout-private.h',
+  'vogue-script-table.h',
+  'vogue-script-private.h',
+  'vogue-utils-private.h',
+  'voguefc-private.h',
+  'voguefc-fontmap-private.h',
+  'vogueft2-private.h',
+  'voguewin32-private.h',
+  'vogueatsui-private.h',
+  'voguexft-private.h',
+  'vogue-ot-private.h',
+  'vogue-script-lang-table.h',
+  'vogue-language-sample-table.h',
+  'voguecoretext-private.h',
 ]
 
 content_files = [
-  'pango_markup.sgml',
+  'vogue_markup.sgml',
   'version.xml',
 ]
 
@@ -49,36 +49,36 @@ html_images = [
   'rects2.png',
 ]
 
-docdeps = [ libpango_dep ]
+docdeps = [ libvogue_dep ]
 
-if build_pangoft2
-  docdeps += libpangoft2_dep
+if build_vogueft2
+  docdeps += libvogueft2_dep
 endif
 
 if xft_dep.found()
-  docdeps += libpangoxft_dep
+  docdeps += libvoguexft_dep
 endif
 
 if cairo_dep.found()
-  docdeps += libpangocairo_dep
+  docdeps += libvoguecairo_dep
 endif
 
 glib_prefix = dependency('glib-2.0').get_pkgconfig_variable('prefix')
 glib_docpath = join_paths(glib_prefix, 'share', 'gtk-doc', 'html')
 cairo_prefix = dependency('cairo').get_pkgconfig_variable('prefix')
 cairo_docpath = join_paths(cairo_prefix, 'share', 'gtk-doc', 'html')
-docpath = join_paths(pango_datadir, 'gtk-doc', 'html')
+docpath = join_paths(vogue_datadir, 'gtk-doc', 'html')
 
-gnome.gtkdoc('pango',
-             main_xml: 'pango-docs.sgml',
+gnome.gtkdoc('vogue',
+             main_xml: 'vogue-docs.sgml',
              src_dir: [
-               join_paths(meson.source_root(), 'pango'),
-               join_paths(meson.build_root(), 'pango'),
+               join_paths(meson.source_root(), 'vogue'),
+               join_paths(meson.build_root(), 'vogue'),
              ],
              dependencies: docdeps,
-             gobject_typesfile: configure_file(input: 'pango.types.in',
-                                               output: 'pango.types',
-                                               configuration: pango_conf),
+             gobject_typesfile: configure_file(input: 'vogue.types.in',
+                                               output: 'vogue.types',
+                                               configuration: vogue_conf),
              scan_args: [
                '--deprecated-guards=PANGO_DISABLE_DEPRECATED',
                '--ignore-decorators=_PANGO_EXTERN',

@@ -6,13 +6,13 @@ char * diff_with_file (const char  *file,
                        gssize       len,
                        GError     **error);
 
-void print_attribute (PangoAttribute *attr,
+void print_attribute (VogueAttribute *attr,
                       GString        *string);
 
 void print_attributes (GSList        *attrs,
                        GString       *string);
 
-void print_attr_list (PangoAttrList  *attrs,
+void print_attr_list (VogueAttrList  *attrs,
                       GString        *string);
 
 const char *get_script_name (GUnicodeScript s);

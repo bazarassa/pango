@@ -1,4 +1,4 @@
-/* Example code to show how to use pangocairo to render text
+/* Example code to show how to use voguecairo to render text
  * projected on a path.
  *
  *
@@ -11,7 +11,7 @@
 
 #include <math.h>
 #include <stdlib.h>
-#include <pango/pangocairo.h>
+#include <vogue/voguecairo.h>
 
 void fancy_cairo_stroke (cairo_t *cr);
 void fancy_cairo_stroke_preserve (cairo_t *cr);
@@ -471,9 +471,9 @@ draw_text (cairo_t *cr,
 	   const char *font,
 	   const char *text)
 {
-  PangoLayout *layout;
-  PangoLayoutLine *line;
-  PangoFontDescription *desc;
+  VogueLayout *layout;
+  VogueLayoutLine *line;
+  VogueFontDescription *desc;
   cairo_font_options_t *font_options;
 
   font_options = cairo_font_options_create ();
@@ -484,21 +484,21 @@ draw_text (cairo_t *cr,
   cairo_set_font_options (cr, font_options);
   cairo_font_options_destroy (font_options);
 
-  layout = pango_cairo_create_layout (cr);
+  layout = vogue_cairo_create_layout (cr);
 
-  desc = pango_font_description_from_string (font);
-  pango_layout_set_font_description (layout, desc);
-  pango_font_description_free (desc);
+  desc = vogue_font_description_from_string (font);
+  vogue_layout_set_font_description (layout, desc);
+  vogue_font_description_free (desc);
 
-  pango_layout_set_text (layout, text, -1);
+  vogue_layout_set_text (layout, text, -1);
 
-  /* Use pango_layout_get_line() instead of pango_layout_get_line_readonly()
-   * for older versions of pango
+  /* Use vogue_layout_get_line() instead of vogue_layout_get_line_readonly()
+   * for older versions of vogue
    */
-  line = pango_layout_get_line_readonly (layout, 0);
+  line = vogue_layout_get_line_readonly (layout, 0);
 
   cairo_move_to (cr, x, y);
-  pango_cairo_layout_line_path (cr, line);
+  vogue_cairo_layout_line_path (cr, line);
 
   g_object_unref (layout);
 }

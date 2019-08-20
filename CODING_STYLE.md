@@ -1,7 +1,7 @@
 Formatting
 ==========
 
-The Pango formatting style is basically the GNU style of formatting
+The Vogue formatting style is basically the GNU style of formatting
 (see http://www.gnu.org/prep/standards.html), with a few additions.
 In brief overview:
 
@@ -48,22 +48,22 @@ All public API functions should have inline documentation headers
 in the gtk-doc / gnome-doc style. For instance:
 
 /**
- * pango_layout_get_line:
- * @layout: a #PangoLayout
+ * vogue_layout_get_line:
+ * @layout: a #VogueLayout
  * @line: the index of a line, which must be between 0 and
- *        pango_layout_get_line_count(layout) - 1, inclusive.
+ *        vogue_layout_get_line_count(layout) - 1, inclusive.
  * 
- * Retrieves a particular line from a #PangoLayout (or @layout.)
+ * Retrieves a particular line from a #VogueLayout (or @layout.)
  * 
- * Return value: the requested #PangoLayoutLine, or %NULL if the
+ * Return value: the requested #VogueLayoutLine, or %NULL if the
  *               index is out of range. This layout line can
  *               be ref'ed and retained, but will become invalid
- *               if changes are made to the #PangoLayout.
+ *               if changes are made to the #VogueLayout.
  *
  * Since: 1.6
  **/
-PangoLayoutLine *
-pango_layout_get_line (PangoLayout *layout,
+VogueLayoutLine *
+vogue_layout_get_line (VogueLayout *layout,
 		       int          line)
 [...]
 
@@ -73,26 +73,26 @@ Choosing Function Names
 
 - Don't abbreviate in unexpected ways:
 
-    pango_layout_get_line_count ()
+    vogue_layout_get_line_count ()
 
   Not:
 
-    pango_layout_ln_cnt ()
+    vogue_layout_ln_cnt ()
 
 - function that retrieve a value in a side-effect free fashion, should
   include "get" in the name.
 
-    int pango_layout_get_line_count (PangoLayout *layout)
+    int vogue_layout_get_line_count (VogueLayout *layout)
 
   not 
 
-    pango_layout_line_count ()
+    vogue_layout_line_count ()
 
 
 - functions that set a single parameter in a side-effect free fashion
   should include "set" in the name, for instance:
 
-  void pango_layout_set_width (PangoLayout    *layout,
+  void vogue_layout_set_width (VogueLayout    *layout,
 			       int             width);
 
 Other comments

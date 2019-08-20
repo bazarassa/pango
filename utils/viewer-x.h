@@ -21,7 +21,7 @@
 #ifndef VIEWER_X_H
 #define VIEWER_X_H
 
-#include <pango/pango.h>
+#include <vogue/vogue.h>
 
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
@@ -36,12 +36,12 @@ typedef struct
 } XViewer;
 
 
-extern const PangoViewer x_viewer;
+extern const VogueViewer x_viewer;
 
 void x_view_init (gpointer           instance,
-		  const PangoViewer *klass);
+		  const VogueViewer *klass);
 
-gpointer x_view_create (const PangoViewer *klass);
+gpointer x_view_create (const VogueViewer *klass);
 
 void x_view_destroy (gpointer instance);
 

@@ -1,5 +1,5 @@
-/* Pango
- * test-shape.c: Test Pango shaping
+/* Vogue
+ * test-shape.c: Test Vogue shaping
  *
  * Copyright (C) 2019 Red Hat, Inc
  *
@@ -28,11 +28,11 @@
 #endif
 
 #include "config.h"
-#include <pango/pangocairo.h>
+#include <vogue/voguecairo.h>
 #include "test-common.h"
 
 
-static PangoContext *context;
+static VogueContext *context;
 
 static void
 append_text (GString    *s,
@@ -72,7 +72,7 @@ parse_params (const char *str,
 }
 
 static gboolean
-affects_itemization (PangoAttribute *attr,
+affects_itemization (VogueAttribute *attr,
                      gpointer        data)
 {
   switch (attr->klass->type)
@@ -104,7 +104,7 @@ affects_itemization (PangoAttribute *attr,
 }
 
 static gboolean
-affects_break_or_shape (PangoAttribute *attr,
+affects_break_or_shape (VogueAttribute *attr,
                         gpointer        data)
 {
   switch (attr->klass->type)
@@ -122,23 +122,23 @@ affects_break_or_shape (PangoAttribute *attr,
 
 static void
 apply_attributes_to_items (GList         *items,
-                           PangoAttrList *attrs)
+                           VogueAttrList *attrs)
 {
   GList *l;
-  PangoAttrIterator *iter;
+  VogueAttrIterator *iter;
 
   if (!attrs)
     return;
 
-  iter = pango_attr_list_get_iterator (attrs);
+  iter = vogue_attr_list_get_iterator (attrs);
 
   for (l = items; l; l = l->next)
     {
-      PangoItem *item = l->data;
-      pango_item_apply_attrs (item, iter);
+      VogueItem *item = l->data;
+      vogue_item_apply_attrs (item, iter);
     }
 
-  pango_attr_iterator_destroy (iter);
+  vogue_attr_iterator_destroy (iter);
 }
 
 static void
@@ -149,9 +149,9 @@ test_file (const gchar *filename, GString *string)
   GError *error = NULL;
   char *test;
   char *text;
-  PangoAttrList *attrs;
-  PangoAttrList *itemize_attrs;
-  PangoAttrList *shape_attrs;
+  VogueAttrList *attrs;
+  VogueAttrList *itemize_attrs;
+  VogueAttrList *shape_attrs;
   GList *items, *l;
   GString *s1, *s2, *s3, *s4, *s5, *s6, *s7;
   gboolean insert_hyphen = FALSE;
@@ -177,7 +177,7 @@ test_file (const gchar *filename, GString *string)
   parse_params (test, &insert_hyphen);
   test  = p + 1;
 
-  if (!pango_parse_markup (test, -1, 0, &attrs, &text, NULL, &error))
+  if (!vogue_parse_markup (test, -1, 0, &attrs, &text, NULL, &error))
     {
       fprintf (stderr, "%s\n", error->message);
       g_error_free (error);
@@ -196,31 +196,31 @@ test_file (const gchar *filename, GString *string)
   if (text[length - 1] == '\n')
     length--;
 
-  itemize_attrs = pango_attr_list_filter (attrs, affects_itemization, NULL);
-  shape_attrs = pango_attr_list_filter (attrs, affects_break_or_shape, NULL);
+  itemize_attrs = vogue_attr_list_filter (attrs, affects_itemization, NULL);
+  shape_attrs = vogue_attr_list_filter (attrs, affects_break_or_shape, NULL);
 
-  items = pango_itemize (context, text, 0, length, itemize_attrs, NULL);
+  items = vogue_itemize (context, text, 0, length, itemize_attrs, NULL);
   apply_attributes_to_items (items, shape_attrs);
 
-  pango_attr_list_unref (itemize_attrs);
-  pango_attr_list_unref (shape_attrs);
+  vogue_attr_list_unref (itemize_attrs);
+  vogue_attr_list_unref (shape_attrs);
 
-  pango_attr_list_unref (attrs);
+  vogue_attr_list_unref (attrs);
 
   for (l = items; l; l = l->next)
     {
-      PangoItem *item = l->data;
-      PangoGlyphString *glyphs;
+      VogueItem *item = l->data;
+      VogueGlyphString *glyphs;
       gboolean rtl = item->analysis.level % 2;
-      PangoGlyphItem glyph_item;
+      VogueGlyphItem glyph_item;
       int i;
 
-      glyphs = pango_glyph_string_new ();
-      pango_shape_full (text + item->offset, item->length, text, length, &item->analysis, glyphs);
+      glyphs = vogue_glyph_string_new ();
+      vogue_shape_full (text + item->offset, item->length, text, length, &item->analysis, glyphs);
 
       glyph_item.item = item;
       glyph_item.glyphs = glyphs;
-      pango_glyph_item_apply_attrs (&glyph_item, text, attrs);
+      vogue_glyph_item_apply_attrs (&glyph_item, text, attrs);
 
       g_string_append (s1, sep);
       g_string_append (s2, sep);
@@ -236,7 +236,7 @@ test_file (const gchar *filename, GString *string)
       for (i = 0; i < glyphs->num_glyphs; i++)
         {
           int len;
-          PangoGlyphInfo *gi = &glyphs->glyphs[i];
+          VogueGlyphInfo *gi = &glyphs->glyphs[i];
 
           char *p;
           p = text + item->offset + glyphs->log_clusters[i];
@@ -278,7 +278,7 @@ test_file (const gchar *filename, GString *string)
           g_string_append_printf (s7, "%*s", len - (int)g_utf8_strlen (s7->str, s7->len), "");
         }
 
-      pango_glyph_string_free (glyphs);
+      vogue_glyph_string_free (glyphs);
     }
 
   g_string_append_printf (string, "%s\n", test);
@@ -298,7 +298,7 @@ test_file (const gchar *filename, GString *string)
   g_string_free (s6, TRUE);
   g_string_free (s7, TRUE);
 
-  g_list_free_full (items, (GDestroyNotify)pango_item_free);
+  g_list_free_full (items, (GDestroyNotify)vogue_item_free);
   g_free (contents);
   g_free (text);
 }
@@ -361,7 +361,7 @@ main (int argc, char *argv[])
 
   g_test_init (&argc, &argv, NULL);
 
-  context = pango_font_map_create_context (pango_cairo_font_map_get_default ());
+  context = vogue_font_map_create_context (vogue_cairo_font_map_get_default ());
 
   /* allow to easily generate expected output for new test cases */
   if (argc > 1)

@@ -22,34 +22,34 @@ tests = [
   [ 'testboundaries_ucd' ],
   [ 'testcolor' ],
   [ 'testscript' ],
-  [ 'test-harfbuzz', [ 'test-harfbuzz.c' ], [ libpangocairo_dep ] ],
-  [ 'cxx-test', [ 'cxx-test.cpp' ], [ libpangocairo_dep ] ],
-  [ 'test-break', [ 'test-break.c', 'test-common.c' ], [libpangocairo_dep ] ],
+  [ 'test-harfbuzz', [ 'test-harfbuzz.c' ], [ libvoguecairo_dep ] ],
+  [ 'cxx-test', [ 'cxx-test.cpp' ], [ libvoguecairo_dep ] ],
+  [ 'test-break', [ 'test-break.c', 'test-common.c' ], [libvoguecairo_dep ] ],
 ]
 
-if build_pangoft2
+if build_vogueft2
   test_cflags += '-DHAVE_FREETYPE'
   tests += [
-    [ 'test-ot-tags', [ 'test-ot-tags.c' ], [ libpangoft2_dep ] ],
+    [ 'test-ot-tags', [ 'test-ot-tags.c' ], [ libvogueft2_dep ] ],
   ]
 endif
 
 if cairo_dep.found()
   test_cflags += '-DHAVE_CAIRO'
   tests += [
-    [ 'testiter', [ 'testiter.c' ], [ libpangocairo_dep ] ],
-    [ 'test-ellipsize', [ 'test-ellipsize.c' ], [ libpangocairo_dep ] ],
-    [ 'markup-parse', [ 'markup-parse.c' , 'test-common.c' ], [ libpangocairo_dep ] ],
-    [ 'test-layout', [ 'test-layout.c', 'test-common.c' ], [ libpangocairo_dep ] ],
-    [ 'test-itemize', [ 'test-itemize.c', 'test-common.c' ], [ libpangocairo_dep ] ],
-    [ 'test-shape', [ 'test-shape.c', 'test-common.c' ], [ libpangocairo_dep ] ],
-    [ 'test-font', [ 'test-font.c' ], [ libpangocairo_dep ] ],
-    [ 'testattributes', [ 'testattributes.c', 'test-common.c' ], [ libpangocairo_dep ] ],
+    [ 'testiter', [ 'testiter.c' ], [ libvoguecairo_dep ] ],
+    [ 'test-ellipsize', [ 'test-ellipsize.c' ], [ libvoguecairo_dep ] ],
+    [ 'markup-parse', [ 'markup-parse.c' , 'test-common.c' ], [ libvoguecairo_dep ] ],
+    [ 'test-layout', [ 'test-layout.c', 'test-common.c' ], [ libvoguecairo_dep ] ],
+    [ 'test-itemize', [ 'test-itemize.c', 'test-common.c' ], [ libvoguecairo_dep ] ],
+    [ 'test-shape', [ 'test-shape.c', 'test-common.c' ], [ libvoguecairo_dep ] ],
+    [ 'test-font', [ 'test-font.c' ], [ libvoguecairo_dep ] ],
+    [ 'testattributes', [ 'testattributes.c', 'test-common.c' ], [ libvoguecairo_dep ] ],
   ]
 
-  if pango_cairo_backends.contains('png')
+  if vogue_cairo_backends.contains('png')
     tests += [
-      [ 'test-pangocairo-threads', [ 'test-pangocairo-threads.c' ], [ libpangocairo_dep, cairo_dep ] ],
+      [ 'test-voguecairo-threads', [ 'test-voguecairo-threads.c' ], [ libvoguecairo_dep, cairo_dep ] ],
     ]
   endif
 endif
@@ -120,8 +120,8 @@ foreach d: test_items_data
   installed_test_items_data += d + '.expected'
 endforeach
 
-installed_test_datadir = join_paths(pango_datadir, 'installed-tests', 'pango')
-installed_test_bindir = join_paths(pango_libexecdir, 'installed-tests', 'pango')
+installed_test_datadir = join_paths(vogue_datadir, 'installed-tests', 'vogue')
+installed_test_bindir = join_paths(vogue_libexecdir, 'installed-tests', 'vogue')
 
 if get_option('install-tests')
   install_data(installed_test_data, install_dir: installed_test_bindir)
@@ -146,7 +146,7 @@ custom_target('all-unicode',
 foreach t: tests
   name = t[0]
   src = t.get(1, [ '@0@.c'.format(name) ])
-  deps = t.get(2, [ libpango_dep ])
+  deps = t.get(2, [ libvogue_dep ])
 
   custom_target(name + '.test',
                 output: name + '.test',
@@ -162,8 +162,8 @@ foreach t: tests
   bin = executable(name, src,
                    dependencies: deps,
                    include_directories: root_inc,
-                   c_args: common_cflags + pango_debug_cflags + test_cflags,
-                   cpp_args: common_cppflags + pango_debug_cflags + test_cflags,
+                   c_args: common_cflags + vogue_debug_cflags + test_cflags,
+                   cpp_args: common_cppflags + vogue_debug_cflags + test_cflags,
                    install: get_option('install-tests'),
                    install_dir: installed_test_bindir)
 

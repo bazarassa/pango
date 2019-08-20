@@ -1,6 +1,6 @@
 /* -*- mode: C; c-file-style: "gnu" -*- */
-/* Pango
- * testscript.c: Test cases for PangoScriptIter
+/* Vogue
+ * testscript.c: Test cases for VogueScriptIter
  *
  * Copyright (C) 2002 Red Hat Software
  *
@@ -21,7 +21,7 @@
  */
 
 #undef PANGO_DISABLE_DEPRECATED
-#include <pango/pango-ot.h>
+#include <vogue/vogue-ot.h>
 
 #undef VERBOSE
 
@@ -41,7 +41,7 @@ static void
 test_script_tags (void)
 {
   gunichar ch;
-  PangoScript i, max_script;
+  VogueScript i, max_script;
 
   /* we need to know what the maximum script number is.  but we don't
    * provide an api for that.  instead of looking into internal tables,
@@ -50,12 +50,12 @@ test_script_tags (void)
 
   max_script = PANGO_SCRIPT_INVALID_CODE;
   for (ch = 0; ch <= 0x10FFFF; ch++)
-    max_script = MAX (max_script, pango_script_for_unichar (ch));
+    max_script = MAX (max_script, vogue_script_for_unichar (ch));
 
   for (i = PANGO_SCRIPT_COMMON; i <= max_script; i++)
     {
-      PangoOTTag tag = pango_ot_tag_from_script (i);
-      PangoScript j  = pango_ot_tag_to_script (tag);
+      VogueOTTag tag = vogue_ot_tag_from_script (i);
+      VogueScript j  = vogue_ot_tag_to_script (tag);
 
       if (tag == FT_MAKE_TAG ('k', 'a', 'n', 'a'))
         {
@@ -71,7 +71,7 @@ test_script_tags (void)
 	}
     }
 
-  ASSERT (pango_ot_tag_to_script (FT_MAKE_TAG ('X', 'Y', 'Z', ' ')) == PANGO_SCRIPT_UNKNOWN);
+  ASSERT (vogue_ot_tag_to_script (FT_MAKE_TAG ('X', 'Y', 'Z', ' ')) == PANGO_SCRIPT_UNKNOWN);
 }
 
 static void
@@ -94,10 +94,10 @@ test_language_tags (void)
 
   for (i = 0; i < G_N_ELEMENTS (languages); i++)
     {
-      PangoLanguage *l = pango_language_from_string (languages[i]);
-      PangoOTTag tag   = pango_ot_tag_from_language (l);
+      VogueLanguage *l = vogue_language_from_string (languages[i]);
+      VogueOTTag tag   = vogue_ot_tag_from_language (l);
 #if 0
-      PangoLanguage *m = pango_ot_tag_to_language (tag);
+      VogueLanguage *m = vogue_ot_tag_to_language (tag);
 #endif
 
       if (i == 0)
@@ -107,14 +107,14 @@ test_language_tags (void)
       else
         {
 	  if (tag == PANGO_OT_TAG_DEFAULT_LANGUAGE)
-	    g_error ("Got PANGO_OT_TAG_DEFAULT_LANGUAGE for language '%s'", pango_language_to_string (l));
+	    g_error ("Got PANGO_OT_TAG_DEFAULT_LANGUAGE for language '%s'", vogue_language_to_string (l));
 
 	  /* The following test can't work without proper BCP 47 language tag
 	   * support.  So, disable it. */
 #if 0
-	  if (!pango_language_matches (l, pango_language_to_string (m)))
+	  if (!vogue_language_matches (l, vogue_language_to_string (m)))
 	    g_error ("Got back %s for language %s (OT tag '%c%c%c%c')",
-		     pango_language_to_string (m), pango_language_to_string (l),
+		     vogue_language_to_string (m), vogue_language_to_string (l),
 		     tag>>24, (tag>>16)&255, (tag>>8)&255, tag&255);
 #endif
 	}

@@ -1,5 +1,5 @@
-/* Pango
- * test-break.c: Test Pango line breaking
+/* Vogue
+ * test-break.c: Test Vogue line breaking
  *
  * Copyright (C) 2019 Red Hat, Inc
  *
@@ -28,11 +28,11 @@
 #endif
 
 #include "config.h"
-#include <pango/pangocairo.h>
+#include <vogue/voguecairo.h>
 #include "test-common.h"
 
 
-static PangoContext *context;
+static VogueContext *context;
 
 static void
 test_file (const gchar *filename, GString *string)
@@ -40,7 +40,7 @@ test_file (const gchar *filename, GString *string)
   gchar *contents;
   gsize  length;
   GError *error = NULL;
-  PangoLogAttr *attrs;
+  VogueLogAttr *attrs;
   int len;
   char *p;
   int i;
@@ -48,8 +48,8 @@ test_file (const gchar *filename, GString *string)
   int m;
   char *test;
   char *text;
-  PangoAttrList *attributes;
-  PangoLayout *layout;
+  VogueAttrList *attributes;
+  VogueLayout *layout;
 
   if (!g_file_get_contents (filename, &contents, &length, &error))
     {
@@ -66,19 +66,19 @@ test_file (const gchar *filename, GString *string)
 
   length = strlen (test);
   len = g_utf8_strlen (test, -1) + 1;
-  attrs = g_new (PangoLogAttr, len);
+  attrs = g_new (VogueLogAttr, len);
 
-  if (!pango_parse_markup (test, -1, 0, &attributes, &text, NULL, &error))
+  if (!vogue_parse_markup (test, -1, 0, &attributes, &text, NULL, &error))
     {
       fprintf (stderr, "%s\n", error->message);
       g_error_free (error);
       return;
     }
 
-  layout = pango_layout_new (context);
-  pango_layout_set_text (layout, text, length);
-  pango_layout_set_attributes (layout, attributes);
-  pango_layout_get_log_attrs (layout, &attrs, &len);
+  layout = vogue_layout_new (context);
+  vogue_layout_set_text (layout, text, length);
+  vogue_layout_set_attributes (layout, attributes);
+  vogue_layout_get_log_attrs (layout, &attrs, &len);
 
   s1 = g_string_new ("Breaks: ");
   s2 = g_string_new ("Whitespace: ");
@@ -97,7 +97,7 @@ test_file (const gchar *filename, GString *string)
 
   for (i = 0, p = text; i < len; i++, p = g_utf8_next_char (p))
     {
-      PangoLogAttr log = attrs[i];
+      VogueLogAttr log = attrs[i];
       int b = 0;
       int w = 0;
       int o = 0;
@@ -221,7 +221,7 @@ test_file (const gchar *filename, GString *string)
   g_object_unref (layout);
   g_free (attrs);
   g_free (contents);
-  pango_attr_list_unref (attributes);
+  vogue_attr_list_unref (attributes);
 }
 
 static gchar *
@@ -282,7 +282,7 @@ main (int argc, char *argv[])
 
   g_test_init (&argc, &argv, NULL);
 
-  context = pango_font_map_create_context (pango_cairo_font_map_get_default ());
+  context = vogue_font_map_create_context (vogue_cairo_font_map_get_default ());
 
   /* allow to easily generate expected output for new test cases */
   if (argc > 1)

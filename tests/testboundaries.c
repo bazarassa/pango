@@ -1,4 +1,4 @@
-/* Pango
+/* Vogue
  * testboundaries.c: Test text boundary algorithms
  *
  * Copyright (C) 1999-2000 Red Hat Software
@@ -24,7 +24,7 @@
 #include <stdio.h>
 
 #include <glib.h>
-#include <pango/pango.h>
+#include <vogue/vogue.h>
 
 #ifndef G_OS_WIN32
 #include <unistd.h>
@@ -73,14 +73,14 @@ typedef void (* CharForeachFunc) (gunichar      wc,
 				  GUnicodeType  type,
 				  GUnicodeType  prev_type,
 				  GUnicodeType  next_type,
-				  PangoLogAttr *attr,
-				  PangoLogAttr *prev_attr,
-				  PangoLogAttr *next_attr,
+				  VogueLogAttr *attr,
+				  VogueLogAttr *prev_attr,
+				  VogueLogAttr *next_attr,
 				  gpointer      data);
 
 static void
 log_attr_foreach (const char     *text,
-		  PangoLogAttr   *attrs,
+		  VogueLogAttr   *attrs,
 		  CharForeachFunc func,
 		  gpointer        data)
 {
@@ -157,9 +157,9 @@ check_line_char (gunichar      wc,
 		 GUnicodeType  type,
 		 GUnicodeType  prev_type,
 		 GUnicodeType  next_type,
-		 PangoLogAttr *attr,
-		 PangoLogAttr *prev_attr,
-		 PangoLogAttr *next_attr,
+		 VogueLogAttr *attr,
+		 VogueLogAttr *prev_attr,
+		 VogueLogAttr *next_attr,
 		 gpointer      data)
 {
   GUnicodeBreakType break_type;
@@ -225,14 +225,14 @@ check_line_char (gunichar      wc,
 
 static void
 check_line_invariants (const char   *text,
-		       PangoLogAttr *attrs)
+		       VogueLogAttr *attrs)
 {
   log_attr_foreach (text, attrs, check_line_char, NULL);
 }
 
 static void
 check_word_invariants (const char   *text,
-		       PangoLogAttr *attrs)
+		       VogueLogAttr *attrs)
 {
 
 
@@ -240,7 +240,7 @@ check_word_invariants (const char   *text,
 
 static void
 check_sentence_invariants (const char   *text,
-			   PangoLogAttr *attrs)
+			   VogueLogAttr *attrs)
 {
 
 
@@ -248,7 +248,7 @@ check_sentence_invariants (const char   *text,
 
 static void
 check_grapheme_invariants (const char   *text,
-			   PangoLogAttr *attrs)
+			   VogueLogAttr *attrs)
 {
 
 
@@ -256,10 +256,10 @@ check_grapheme_invariants (const char   *text,
 
 #if 0
 static void print_sentences (const char   *text,
-			     PangoLogAttr *attrs);
+			     VogueLogAttr *attrs);
 static void
 print_sentences (const char   *text,
-		 PangoLogAttr *attrs)
+		 VogueLogAttr *attrs)
 {
   const char *p;
   const char *last;
@@ -288,18 +288,18 @@ static void
 check_invariants (const char *text)
 {
   int len;
-  PangoLogAttr *attrs;
+  VogueLogAttr *attrs;
 
   if (!g_utf8_validate (text, -1, NULL))
     fail ("Invalid UTF-8 in test text");
 
   len = g_utf8_strlen (text, -1);
-  attrs = g_new0 (PangoLogAttr, len + 1);
+  attrs = g_new0 (VogueLogAttr, len + 1);
 
-  pango_get_log_attrs (text,
+  vogue_get_log_attrs (text,
 		       -1,
 		       0,
-		       pango_language_from_string ("C"),
+		       vogue_language_from_string ("C"),
 		       attrs,
 		       len + 1);
 

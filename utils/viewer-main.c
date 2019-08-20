@@ -40,14 +40,14 @@ int
 main (int    argc,
       char **argv)
 {
-  const PangoViewer *view;
+  const VogueViewer *view;
   gpointer instance;
-  PangoContext *context;
+  VogueContext *context;
   int run;
   int width, height;
   gpointer surface;
 
-  g_set_prgname ("pango-view");
+  g_set_prgname ("vogue-view");
   setlocale (LC_ALL, "");
   parse_options (argc, argv);
 
