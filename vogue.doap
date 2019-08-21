@@ -10,7 +10,7 @@
   <programming-language>C</programming-language>
 
   <homepage
-  rdf:resource="http://www.vogue.org/" />
+  rdf:resource="http://www.pango.org/" />
   <mailing-list
   rdf:resource="http://mail.gnome.org/mailman/listinfo/gtk-i18n-list" />
   <download-page
