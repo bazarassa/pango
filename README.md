@@ -1,7 +1,7 @@
 Vogue
 =====
 
-## Vogue is fork of [Pango](https://github.com/GNOME/pango), made for the sake of @L29ah.
+## Vogue is fork of [Pango](https://github.com/GNOME/pango), made for the sake of [L29ah](https://github.com/l29ah).
 
 Vogue is a library for layout and rendering of text, with an emphasis
 on internationalization. Vogue can be used anywhere that text layout
@@ -67,4 +67,4 @@ GNU Lesser Public License (LGPL) - see the file COPYING for details.
 
 Now this is more joke, than real ready-to use product (you need bindings to libvogue in your apps and DE utils)
 
-Shotout to all freedesktop.org contributors.
+Thanks to all freedesktop.org contributors.
