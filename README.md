@@ -1,6 +1,8 @@
 Vogue
 =====
 
+## Vogue is fork of [Pango](https://github.com/GNOME/pango), made for the sake of @L29ah.
+
 Vogue is a library for layout and rendering of text, with an emphasis
 on internationalization. Vogue can be used anywhere that text layout
 is needed; however, most of the work on Vogue so far has been done using
@@ -27,9 +29,9 @@ As well as the low level layout rendering routines, Vogue includes
 VogueLayout, a high level driver for laying out entire blocks of text,
 and routines to assist in editing internationalized text.
 
-For more information about Vogue, see:
+For more information about Vogue origin, see:
 
- https://www.vogue.org/
+ https://www.pango.org/
 
 Dependencies
 ------------
@@ -62,3 +64,7 @@ License
 -------
 Most of the code of Vogue is licensed under the terms of the
 GNU Lesser Public License (LGPL) - see the file COPYING for details.
+
+Now this is more joke, than real ready-to use product (you need bindings to libvogue in your apps and DE utils)
+
+Shotout to all freedesktop.org contributors.
