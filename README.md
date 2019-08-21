@@ -33,6 +33,10 @@ For more information about Vogue origin, see:
 
  https://www.pango.org/
 
+Usage
+-----
+For invocation of Vogue functons, use Pango API, then try to `sed -i 's/Pango/Vogue/g' $yourfile` =)
+
 Dependencies
 ------------
 Vogue depends on the GLib library; more information about GLib can
